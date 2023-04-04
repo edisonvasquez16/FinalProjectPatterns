@@ -6,7 +6,7 @@ import mundo.NaveJugador;
 import mundo.Partida;
 import mundo.SpaceInvaders;
 
-public class HiloDisparoEnemigos extends Thread {
+public class HiloDisparoEnemigos extends Threads {
 
 	private Partida partidaEnemigos;
 	private SpaceInvaders space;

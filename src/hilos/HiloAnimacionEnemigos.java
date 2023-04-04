@@ -5,7 +5,7 @@ import mundo.Enemigo;
 import mundo.InvasorCalamar;
 import mundo.InvasorCangrejo;
 
-public class HiloAnimacionEnemigos extends Thread {
+public class HiloAnimacionEnemigos extends Threads {
 
 	Enemigo enemigo;
 	InterfazSpaceInvaders interfaz;

@@ -1,426 +1,393 @@
 package interfaz;
 
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import control.Teclado;
 import excepciones.NicknameYaExisteException;
 import excepciones.PartidaYaExisteException;
-import hilos.HiloAnimacionEnemigos;
-import hilos.HiloAuxiliarCreaDisparo;
-import hilos.HiloDisparoEnemigos;
-import hilos.HiloDisparoJugador;
-import hilos.HiloEnemigos;
+import hilos.ThreadsFacade;
 import mundo.NaveJugador;
 import mundo.Partida;
 import mundo.SpaceInvaders;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class InterfazSpaceInvaders extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public static CardLayout card = new CardLayout();
+    public static CardLayout card = new CardLayout();
 
-	public static Container contenedor;
+    public static Container contenedor;
 
-	private PanelImagenInicial imagen;
+    private PanelImagenInicial imagen;
 
-	private Teclado tecladito;
+    private Teclado tecladito;
 
-	private PanelMenu panelMenu;
+    private PanelMenu panelMenu;
 
-	private PanelNivel panelNivel;
+    private PanelNivel panelNivel;
 
-	private SpaceInvaders mundo;
+    private SpaceInvaders mundo;
 
-	private HiloEnemigos hilitoEnemigo;
+    /*private HiloEnemigos hilitoEnemigo;
 
-	private HiloDisparoJugador hilitoDisparo;
+    private HiloDisparoJugador hilitoDisparo;
 
-	private HiloDisparoEnemigos hilitoEnemigoDisparo;
+    private HiloDisparoEnemigos hilitoEnemigoDisparo;
 
-	private HiloAuxiliarCreaDisparo hilitoAuxiliar;
+    private HiloAuxiliarCreaDisparo hilitoAuxiliar;
 
-	private HiloAnimacionEnemigos hilitoAnimacion;
+    private HiloAnimacionEnemigos hilitoAnimacion;*/
+    private ThreadsFacade threadsFacade;
+    private boolean pausa;
 
-	private boolean pausa;
+    public InterfazSpaceInvaders() {
 
-	public InterfazSpaceInvaders() {
+        mundo = new SpaceInvaders(false);
 
-		mundo = new SpaceInvaders(false);
+        panelMenu = new PanelMenu(this);
+        panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo, this);
 
-		panelMenu = new PanelMenu(this);
-		panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo, this);
+        imagen = new PanelImagenInicial(this);
+        addKeyListener(imagen);
+        contenedor = this.getContentPane();
+        card.addLayoutComponent(imagen, "Inicio");
+        card.addLayoutComponent(panelMenu, "Menï¿½");
+        card.addLayoutComponent(panelNivel, "Juego");
 
-		imagen = new PanelImagenInicial(this);
-		addKeyListener(imagen);
-		contenedor = this.getContentPane();
-		card.addLayoutComponent(imagen, "Inicio");
-		card.addLayoutComponent(panelMenu, "Menú");
-		card.addLayoutComponent(panelNivel, "Juego");
+        contenedor.add(imagen);
+        contenedor.add(panelMenu);
+        contenedor.add(panelNivel);
 
-		contenedor.add(imagen);
-		contenedor.add(panelMenu);
-		contenedor.add(panelNivel);
+        contenedor.setLayout(card);
+        card.show(contenedor, "Inicio");
 
-		contenedor.setLayout(card);
-		card.show(contenedor, "Inicio");
+        tecladito = new Teclado(this, mundo);
+        addKeyListener(tecladito);
 
-		tecladito = new Teclado(this, mundo);
-		addKeyListener(tecladito);
+        setSize(640, 480);
+        setUndecorated(true);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
-		setSize(640, 480);
-		setUndecorated(true);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));
+    }
 
-	}
+    /**
+     * @param nombre
+     */
+    public void cambiarPanel(String nombre) {
+        if (nombre.equals("Menï¿½")) {
+            card.show(contenedor, "Menï¿½");
+        } else if (nombre.equals("Juego")) {
+            card.show(contenedor, "Juego");
+        }
+    }
 
-	/**
-	 * 
-	 * @param nombre
-	 */
-	public void cambiarPanel(String nombre) {
-		if (nombre.equals("Menú")) {
-			card.show(contenedor, "Menú");
-		} else if (nombre.equals("Juego")) {
-			card.show(contenedor, "Juego");
-		}
-	}
+    /**
+     *
+     */
+    public void cerrar() {
+        try {
+            mundo.serializarJugador();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+    }
 
-	/**
-	 * 
-	 */
-	public void cerrar() {
-		try {
-			mundo.serializarJugador();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.exit(0);
-	}
+    /**
+     * @return
+     */
+    public boolean estaEnPausa() {
+        return pausa;
+    }
 
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean estaEnPausa() {
-		return pausa;
-	}
+    /**
+     * @return
+     */
+    public ThreadsFacade getThreadsFacade() {
+        return this.threadsFacade;
+    }
 
-	/**
-	 * 
-	 * @param paus
-	 */
-	public void cambiarPausa (boolean paus) {
-		this.pausa = paus;
-	}
+    /**
+     * @param paus
+     */
+    public void cambiarPausa(boolean paus) {
+        this.pausa = paus;
+    }
 
-	/**
-	 * 
-	 */
-	public void startHiloEnemigo() {
-		for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
-			for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
-				if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
-					hilitoEnemigo = new HiloEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], this);
-					hilitoEnemigo.start();
-				}
-			}
-		}
-	}
+    /*
+     *
+     *
+    public void startHiloEnemigo() {
+        for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
+            for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
+                if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
+                    hilitoEnemigo = new HiloEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], this);
+                    hilitoEnemigo.start();
+                }
+            }
+        }
+    }
 
-	/**
-	 * 
-	 */
-	public void startHiloAuxiliar() {
-		hilitoAuxiliar = new HiloAuxiliarCreaDisparo(mundo.getPartidaActual(), this);
-		hilitoAuxiliar.start();
-	}
+    /*
+     *
+     *
+    public void startHiloAuxiliar() {
+        hilitoAuxiliar = new HiloAuxiliarCreaDisparo(mundo.getPartidaActual(), this);
+        hilitoAuxiliar.start();
+    }
 
-	/**
-	 * 
-	 */
-	public void startHiloAnimacion() {
-		for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
-			for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
-				if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
-					hilitoAnimacion = new HiloAnimacionEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], this);
-					hilitoAnimacion.start();
-				}
-			}
-		}
-	}
+    /*
+     *
+     *
+    public void startHiloAnimacion() {
+        for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
+            for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
+                if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
+                    hilitoAnimacion = new HiloAnimacionEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], this);
+                    hilitoAnimacion.start();
+                }
+            }
+        }
+    }
 
-	/**
-	 * 
-	 */
-	public void startHiloDisparoEnemigo() {
-		hilitoEnemigoDisparo = new HiloDisparoEnemigos(mundo.getPartidaActual(), this, mundo);
-		hilitoEnemigoDisparo.start();
-	}
+    /*
+     *
+     *
+    public void startHiloDisparoEnemigo() {
+        hilitoEnemigoDisparo = new HiloDisparoEnemigos(mundo.getPartidaActual(), this, mundo);
+        hilitoEnemigoDisparo.start();
+    }
 
-	/**
-	 * 
-	 */
-	public void startHiloJugador() {
-		hilitoDisparo = new HiloDisparoJugador((NaveJugador) mundo.getJugadorActual(), this,
-				mundo.getPartidaActual().getEnemigos(), mundo.getPartidaActual());
-		hilitoDisparo.start();
-	}
+    /*
+     *
+     *
+    public void startHiloJugador() {
+        hilitoDisparo = new HiloDisparoJugador((NaveJugador) mundo.getJugadorActual(), this,
+                mundo.getPartidaActual().getEnemigos(), mundo.getPartidaActual());
+        hilitoDisparo.start();
+    }
 
-	/**
-	 * 
-	 * @return
-	 */
-	public int darPosActualJugador() {
-		return panelNivel.getPosJugadorActualX();
-	}
+    /**
+     * @return
+     */
+    public int darPosActualJugador() {
+        return panelNivel.getPosJugadorActualX();
+    }
 
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean estaEnFuncionamiento() {
-		return mundo.getEnFuncionamiento();
-	}
+    /**
+     * @return
+     */
+    public boolean estaEnFuncionamiento() {
+        return mundo.getEnFuncionamiento();
+    }
 
-	/**
-	 * 
-	 * @param salida
-	 */
-	public void modificarFuncionamiento (boolean salida) {
-		mundo.setEnFuncionamiento(salida);
-	}
+    /**
+     * @param salida
+     */
+    public void modificarFuncionamiento(boolean salida) {
+        mundo.setEnFuncionamiento(salida);
+    }
 
-	/**
-	 * 
-	 * @return
-	 */
-	public PanelNivel getPanelNivel() {
-		return panelNivel;
-	}
+    /**
+     * @return
+     */
+    public PanelNivel getPanelNivel() {
+        return panelNivel;
+    }
 
-	/**
-	 * 
-	 * @return
-	 */
-	public NaveJugador getJugadorActual() {
-		return mundo.getJugadorActual();
-	}
+    /**
+     * @return
+     */
+    public NaveJugador getJugadorActual() {
+        return mundo.getJugadorActual();
+    }
 
-	/**
-	 * 
-	 * @param panelNivel
-	 */
-	public void setPanelNivel(PanelNivel panelNivel) {
-		this.panelNivel = panelNivel;
-	}
+    /**
+     * @param panelNivel
+     */
+    public void setPanelNivel(PanelNivel panelNivel) {
+        this.panelNivel = panelNivel;
+    }
 
-	/**
-	 * 
-	 * @return
-	 */
-	public PanelMenu getPanelMenu() {
-		return panelMenu;
-	}
+    /**
+     * @return
+     */
+    public PanelMenu getPanelMenu() {
+        return panelMenu;
+    }
 
-	/**
-	 * 
-	 * @param panelMenu
-	 */
-	public void setPanelMenu(PanelMenu panelMenu) {
-		this.panelMenu = panelMenu;
-	}
+    /**
+     * @param panelMenu
+     */
+    public void setPanelMenu(PanelMenu panelMenu) {
+        this.panelMenu = panelMenu;
+    }
 
-	/**
-	 * 
-	 */
-	public void iniciarTodosLosHilos() {
-		mundo.setEnFuncionamiento(true);
-		startHiloJugador();
-		startHiloEnemigo();
-		startHiloAnimacion();
-		startHiloAuxiliar();
-		startHiloDisparoEnemigo();
-	}
+    /**
+     *
+     */
+    public void iniciarTodosLosHilos() {
+        mundo.setEnFuncionamiento(true);
+        threadsFacade = new ThreadsFacade(this, mundo);
+        threadsFacade.startThreads();
+    }
 
-	/**
-	 * 
-	 */
-	public void matarHilos (){
-		hilitoAnimacion = null;
-		hilitoAuxiliar = null;
-		hilitoDisparo = null;
-		hilitoEnemigoDisparo = null;
-		hilitoEnemigo = null;
-	}
+    /**
+     * @param nombre
+     */
+    public void reqCrearPartida(String nombre) {
+        try {
+            mundo.crearPartida(nombre);
+            mundo.getPartidaActual().inicializarPartida();
+            actualizarPartidas();
+            actualizarPartidaActual(nombre);
+            panelNivel.setPartida(mundo.getPartidaActual());
+            mundo.iniciarPartida();
+            cambiarPanel("Juego");
+        } catch (PartidaYaExisteException | IOException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error al crear la partida", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
-	/**
-	 * 
-	 * @param nombre
-	 */
-	public void reqCrearPartida(String nombre) {
-		try {
-			mundo.crearPartida(nombre);
-			mundo.getPartidaActual().inicializarPartida();
-			actualizarPartidas();
-			actualizarPartidaActual(nombre);
-			panelNivel.setPartida(mundo.getPartidaActual());
-			mundo.iniciarPartida();
-			cambiarPanel("Juego");
-		} catch (PartidaYaExisteException | IOException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Error al crear la partida", JOptionPane.ERROR_MESSAGE);
-		}
-	}
+    /**
+     * @param nombre
+     * @param nickname
+     */
+    public void reqAgregarJugador(String nombre, String nickname) {
+        try {
+            mundo.agregarJugador(nombre, nickname);
+            panelMenu.repaint();
+            actualizarJugadores();
+            actualizarJugadorActual(nickname);
+        } catch (NicknameYaExisteException | IOException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error al agregar el jugador",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
-	/**
-	 * 
-	 * @param nombre
-	 * @param nickname
-	 */
-	public void reqAgregarJugador(String nombre, String nickname) {
-		try {
-			mundo.agregarJugador(nombre, nickname);
-			panelMenu.repaint();
-			actualizarJugadores();
-			actualizarJugadorActual(nickname);
-		} catch (NicknameYaExisteException | IOException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Error al agregar el jugador",
-					JOptionPane.ERROR_MESSAGE);
-		}
-	}
+    /**
+     * @param nickname
+     */
+    public void actualizarJugadorActual(String nickname) {
+        if (!nickname.equals("")) {
+            NaveJugador actual = mundo.buscarJugador(nickname);
+            mundo.setJugadorActual(actual);
+            panelMenu.repaint();
+        } else
+            JOptionPane.showMessageDialog(this, "Por favor cree algï¿½n jugador", "No existen jugadores",
+                    JOptionPane.INFORMATION_MESSAGE);
+    }
 
-	/**
-	 * 
-	 * @param nickname
-	 */
-	public void actualizarJugadorActual(String nickname) {
-		if (!nickname.equals("")) {
-			NaveJugador actual = mundo.buscarJugador(nickname);
-			mundo.setJugadorActual(actual);
-			panelMenu.repaint();
-		} else
-			JOptionPane.showMessageDialog(this, "Por favor cree algún jugador", "No existen jugadores",
-					JOptionPane.INFORMATION_MESSAGE);
-	}
+    /**
+     * @param nombre
+     */
+    public void actualizarPartidaActual(String nombre) {
 
-	/**
-	 * 
-	 * @param nombre
-	 */
-	public void actualizarPartidaActual(String nombre) {
+        Partida partidaActual = mundo.getJugadorActual().getPartidaRaiz().buscarPartida(nombre);
+        mundo.setPartidaActual(partidaActual);
+        panelNivel.setPartida(partidaActual);
+        iniciarTodosLosHilos();
 
-		Partida partidaActual = mundo.getJugadorActual().getPartidaRaiz().buscarPartida(nombre);
-		mundo.setPartidaActual(partidaActual);
-		panelNivel.setPartida(partidaActual);
-		iniciarTodosLosHilos();
+    }
 
-	}
+    /**
+     *
+     */
+    public void actualizarJugadores() {
+        ArrayList<NaveJugador> jugadores = mundo.getJugadores();
+        if (jugadores == null)
+            jugadores = new ArrayList<>();
+        panelMenu.getDialogoSeleccionarJugador().cambiarListaJugadores(jugadores);
+    }
 
-	/**
-	 * 
-	 */
-	public void actualizarJugadores() {
-		ArrayList<NaveJugador> jugadores = mundo.getJugadores();
-		if (jugadores == null)
-			jugadores = new ArrayList<>();
-		panelMenu.getDialogoSeleccionarJugador().cambiarListaJugadores(jugadores);
-	}
+    /**
+     *
+     */
+    public void actualizarPartidas() {
+        ArrayList<Partida> partidas = mundo.darPartidasJugador();
+        if (partidas.size() == 0)
+            partidas = new ArrayList<Partida>();
+        panelMenu.getDialogoSeleccionarPartida().cambiarListaPartidas(partidas);
+    }
 
-	/**
-	 * 
-	 */
-	public void actualizarPartidas() {
-		ArrayList<Partida> partidas = mundo.darPartidasJugador();
-		if (partidas.size() == 0)
-			partidas = new ArrayList<Partida>();
-		panelMenu.getDialogoSeleccionarPartida().cambiarListaPartidas(partidas);
-	}
+    /**
+     *
+     */
+    public void nivelCompleto() {
+        try {
+            if (mundo.getPartidaActual().nivelCompleto()) {
+                iniciarTodosLosHilos();
+            } else {
+                panelMenu.repaint();
+                mundo.eliminarPartida();
+                actualizarPartidas();
+                cambiarPanel("Menï¿½");
+                panelMenu.repaint();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * 
-	 */
-	public void nivelCompleto () {
-		try {
-			if (mundo.getPartidaActual().nivelCompleto()) {
-				iniciarTodosLosHilos();
-			} else {
-				panelMenu.repaint();
-				mundo.eliminarPartida();
-				actualizarPartidas();
-				cambiarPanel("Menú");	
-				panelMenu.repaint();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     *
+     */
+    public void perder() {
+        panelMenu.repaint();
+        try {
+            mundo.eliminarPartida();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        actualizarPartidas();
+        cambiarPanel("Menï¿½");
+        panelMenu.repaint();
+    }
 
-	/**
-	 * 
-	 */
-	public void perder(){
-		panelMenu.repaint();
-		try {
-			mundo.eliminarPartida();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		actualizarPartidas();
-		cambiarPanel("Menú");	
-		panelMenu.repaint();
-	}
+    /**
+     *
+     */
+    public void ordenarJugadores() {
+        ArrayList<NaveJugador> jugadores = mundo.ordenarPorNickname();
+        if (jugadores == null)
+            jugadores = new ArrayList<>();
+        panelMenu.getDialogoSeleccionarJugador().cambiarListaJugadores(jugadores);
+    }
 
-	/**
-	 * 
-	 */
-	public void ordenarJugadores() {
-		ArrayList<NaveJugador> jugadores = mundo.ordenarPorNickname();
-		if (jugadores == null)
-			jugadores = new ArrayList<>();
-		panelMenu.getDialogoSeleccionarJugador().cambiarListaJugadores(jugadores);
-	}
+    /**
+     * @param nickname
+     */
+    public void loginRapido(String nickname) {
+        if (!mundo.busquedaRapida(nickname)) {
+            JOptionPane.showMessageDialog(null, "El jugador con el nickname " + nickname + " no existe",
+                    "Jugador no encontrado", JOptionPane.ERROR_MESSAGE);
+        }
+        panelMenu.repaint();
+    }
 
-	/**
-	 * 
-	 * @param nickname
-	 */
-	public void loginRapido(String nickname){
-		if(!mundo.busquedaRapida(nickname)){
-			JOptionPane.showMessageDialog(null, "El jugador con el nickname " + nickname + " no existe",
-					"Jugador no encontrado", JOptionPane.ERROR_MESSAGE);
-		}
-		panelMenu.repaint();
-	}
-
-	/**
-	 * 
-	 */
-	public void mejoresPuntajes(){
-		panelMenu.setDialogoMejoresPuntajes(new DialogoMejoresPuntajes(this,mundo.mejoresPuntajes()));
-		panelMenu.getDialogoMejoresPuntajes().mostrar();	
-	}
+    /**
+     *
+     */
+    public void mejoresPuntajes() {
+        panelMenu.setDialogoMejoresPuntajes(new DialogoMejoresPuntajes(this, mundo.mejoresPuntajes()));
+        panelMenu.getDialogoMejoresPuntajes().mostrar();
+    }
 
 
-	/**
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		InterfazSpaceInvaders ventana = new InterfazSpaceInvaders();
-		ventana.setVisible(true);
-	}
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        InterfazSpaceInvaders ventana = new InterfazSpaceInvaders();
+        ventana.setVisible(true);
+    }
 
 }

@@ -5,7 +5,7 @@ import mundo.Enemigo;
 import mundo.NaveJugador;
 import mundo.Partida;
 
-public class HiloDisparoJugador extends Thread {
+public class HiloDisparoJugador extends Threads {
 
 	private NaveJugador navesita;
 	private InterfazSpaceInvaders interfaz;

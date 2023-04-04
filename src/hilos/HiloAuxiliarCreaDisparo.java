@@ -3,7 +3,7 @@ package hilos;
 import interfaz.InterfazSpaceInvaders;
 import mundo.Partida;
 
-public class HiloAuxiliarCreaDisparo extends Thread {
+public class HiloAuxiliarCreaDisparo extends Threads {
 
 	private Partida partidaEnemigos;
 	private InterfazSpaceInvaders interfaz;
