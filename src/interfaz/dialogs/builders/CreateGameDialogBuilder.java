@@ -18,7 +18,7 @@ public class CreateGameDialogBuilder implements DialogBuilder {
     }
 
     @Override
-    public void getResult() {
+    public void viewDialog() {
         createGame.mostrar();
     }
 }

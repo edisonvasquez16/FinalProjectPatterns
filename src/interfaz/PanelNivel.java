@@ -53,7 +53,7 @@ public class PanelNivel extends JPanel {
         g.drawString("NICKNAME", 30, 40);
         g.drawString("PUNTUACION ", 250, 40);
 
-        g.setColor(Color.GREEN);
+        g.setColor(Color.CYAN);
         g.drawString(interfaz.getJugadorActual().getNickname(), 160, 40);
         g.drawString(partida.getPuntaje().getPuntuacion() + "", 420, 40);
 

@@ -10,9 +10,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * Panel que contiene el men� principal del juego
+ * Panel que contiene el menu principal del juego
  * 
- * @author Juan Sebasti�n Quintero Yoshioka - Manuel Alejandro Coral Lozano
+ * @author Juan Sebastian Quintero Yoshioka - Manuel Alejandro Coral Lozano
  *         Proyecto final - Algoritmos y programaci�n II
  */
 public class PanelMenu extends JPanel implements ActionListener {
@@ -169,10 +169,10 @@ public class PanelMenu extends JPanel implements ActionListener {
 		JLabel space = new JLabel("SPACE INVADERS");
 		space.setForeground(Color.WHITE);
 		space.setFont(new Font("ArcadeClassic", Font.PLAIN, 40));
-		space.setBounds(5, 75, 560, 80);
+		space.setBounds(45, 75, 560, 80);
 		add(space);
 
-		// Inicializa los 4 di�logos que se puede ver en el men�
+		// Inicializa los 4 di�logos que se puede ver en el menu
 		dialogoCrearJugador = new CreatePlayerDialogBuilder();
 		dialogoCrearJugador.setLayout(interfaz);
 
@@ -236,8 +236,8 @@ public class PanelMenu extends JPanel implements ActionListener {
 		// JLabel de las mejoras
 		labLoginRapido = new JLabel("LOGIN RAPIDO");
 		labLoginRapido.setForeground(Color.WHITE);
-		labLoginRapido.setBounds(10, 300, 250, 23);
-		labLoginRapido.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
+		labLoginRapido.setBounds(15, 300, 250, 23);
+		labLoginRapido.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		add(labLoginRapido);
 		labLoginRapido.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -257,8 +257,8 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		// Boton Open Menu Jugar
 		labOpenMenuJugar = new JLabel("JUGAR");
-		labOpenMenuJugar.setBounds(10, 240, 110, 23);
-		labOpenMenuJugar.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
+		labOpenMenuJugar.setBounds(15, 240, 110, 23);
+		labOpenMenuJugar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		labOpenMenuJugar.setForeground(Color.WHITE);
 		labOpenMenuJugar.setAlignmentX(RIGHT_ALIGNMENT);
 		labOpenMenuJugar.addMouseListener(new MouseAdapter() {
@@ -271,8 +271,8 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		// Boton Open Menu Jugador
 		labOpenMenuJugador = new JLabel("JUGADOR");
-		labOpenMenuJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
-		labOpenMenuJugador.setBounds(10, 270, 190, 23);
+		labOpenMenuJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		labOpenMenuJugador.setBounds(15, 270, 190, 23);
 		labOpenMenuJugador.setForeground(Color.WHITE);
 		labOpenMenuJugador.setAlignmentX(RIGHT_ALIGNMENT);
 		labOpenMenuJugador.addMouseListener(new MouseAdapter() {
@@ -286,8 +286,8 @@ public class PanelMenu extends JPanel implements ActionListener {
 		// JLabel de los mejores puntajes
 		labMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
 		labMejoresPuntajes.setForeground(Color.WHITE);
-		labMejoresPuntajes.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
-		labMejoresPuntajes.setBounds(10, 360, 340, 23);
+		labMejoresPuntajes.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		labMejoresPuntajes.setBounds(15, 360, 340, 23);
 		add(labMejoresPuntajes);
 		labMejoresPuntajes.addMouseListener(new MouseListener() {
 
@@ -325,8 +325,8 @@ public class PanelMenu extends JPanel implements ActionListener {
 		// JLabel con las intrucciones
 		labInstrucciones = new JLabel("INSTRUCCIONES");
 		labInstrucciones.setForeground(Color.WHITE);
-		labInstrucciones.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
-		labInstrucciones.setBounds(10, 330, 300, 23);
+		labInstrucciones.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		labInstrucciones.setBounds(15, 330, 300, 23);
 		labInstrucciones.addMouseListener(new MouseListener() {
 
 			@Override
@@ -351,7 +351,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dialogoInstrucciones.getResult();
+				dialogoInstrucciones.viewDialog();
 			}
 		});
 		// labInstrucciones.addMouseListener(new MouseAdapter() {
@@ -375,7 +375,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		String comando = e.getActionCommand();
 
 		if (comando.equals(CREAR_JUGADOR)) {
-			dialogoCrearJugador.getResult();
+			dialogoCrearJugador.viewDialog();
 		} else if (comando.equals(SELECCIONAR_JUGADOR)) {
 			interfaz.actualizarJugadores();
 			dialogoSeleccionarJugador.getResult();
@@ -383,7 +383,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		else if (comando.equals(CREAR_PARTIDA))
 			if (interfaz.getJugadorActual() != null)
-				dialogoCrearPartida.getResult();
+				dialogoCrearPartida.viewDialog();
 			else
 				JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
 						"Error al iniciar partida", JOptionPane.ERROR_MESSAGE);
@@ -431,20 +431,20 @@ public class PanelMenu extends JPanel implements ActionListener {
 		g2.drawImage(fondo.getImage(), 0, 0, getSize().width, getSize().height, null);
 
 		// Dibuja el nickname, nombre y monedas del jugador actual del juego.
-		g2.setColor(Color.GREEN);
+		g2.setColor(Color.lightGray);
 		g2.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		g2.drawString("NICKNAME", 30, 40);
-		g2.drawString("JUGADOR", 170, 40);
+		g2.drawString("NICKNAME", 360, 430);
+		g2.drawString("JUGADOR", 500, 430);
 
-		g2.setColor(Color.RED);
+		g2.setColor(Color.CYAN);
 		if (interfaz.getJugadorActual() != null) {
 
-			g2.drawString(interfaz.getJugadorActual().getNickname(), 30, 60);
+			g2.drawString(interfaz.getJugadorActual().getNickname(), 360, 460);
 
 			if (interfaz.getJugadorActual().getNombre().length() <= 13)
-				g2.drawString(interfaz.getJugadorActual().getNombre(), 170, 60);
+				g2.drawString(interfaz.getJugadorActual().getNombre(), 500, 460);
 			else
-				g2.drawString(interfaz.getJugadorActual().getNombre().substring(0, 13), 170, 60);
+				g2.drawString(interfaz.getJugadorActual().getNombre().substring(0, 13), 500, 470);
 
 		}
 	}

@@ -18,7 +18,7 @@ public class InstructionsDialogBuilder implements DialogBuilder {
     }
 
     @Override
-    public void getResult() {
+    public void viewDialog() {
         instructions.mostrar();
     }
 }

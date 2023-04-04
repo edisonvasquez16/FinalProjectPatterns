@@ -50,7 +50,7 @@ public class InterfazSpaceInvaders extends JFrame {
         addKeyListener(imagen);
         contenedor = this.getContentPane();
         card.addLayoutComponent(imagen, "Inicio");
-        card.addLayoutComponent(panelMenu, "Men�");
+        card.addLayoutComponent(panelMenu, "Menu");
         card.addLayoutComponent(panelNivel, "Juego");
 
         contenedor.add(imagen);
@@ -75,8 +75,8 @@ public class InterfazSpaceInvaders extends JFrame {
      * @param nombre
      */
     public void cambiarPanel(String nombre) {
-        if (nombre.equals("Men�")) {
-            card.show(contenedor, "Men�");
+        if (nombre.equals("Menu")) {
+            card.show(contenedor, "Menu");
         } else if (nombre.equals("Juego")) {
             card.show(contenedor, "Juego");
         }
@@ -275,7 +275,7 @@ public class InterfazSpaceInvaders extends JFrame {
             mundo.setJugadorActual(actual);
             panelMenu.repaint();
         } else
-            JOptionPane.showMessageDialog(this, "Por favor cree alg�n jugador", "No existen jugadores",
+            JOptionPane.showMessageDialog(this, "Por favor cree algun jugador", "No existen jugadores",
                     JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -322,7 +322,7 @@ public class InterfazSpaceInvaders extends JFrame {
                 panelMenu.repaint();
                 mundo.eliminarPartida();
                 actualizarPartidas();
-                cambiarPanel("Men�");
+                cambiarPanel("Menu");
                 panelMenu.repaint();
             }
         } catch (IOException e) {
@@ -341,7 +341,7 @@ public class InterfazSpaceInvaders extends JFrame {
             e.printStackTrace();
         }
         actualizarPartidas();
-        cambiarPanel("Men�");
+        cambiarPanel("Menu");
         panelMenu.repaint();
     }
 
@@ -373,7 +373,7 @@ public class InterfazSpaceInvaders extends JFrame {
         DialogBuilder dialog = new BestScoreDialogBuilder(mundo.mejoresPuntajes());
         dialog.setLayout(this);
         panelMenu.setDialogoMejoresPuntajes(dialog);
-        panelMenu.getDialogoMejoresPuntajes().getResult();
+        panelMenu.getDialogoMejoresPuntajes().viewDialog();
     }
 
 

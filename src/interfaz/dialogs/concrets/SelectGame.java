@@ -86,7 +86,7 @@ public class SelectGame extends JDialog implements ListSelectionListener, Action
 		scroll.getViewport().add(partidas);
 		partidas.setBackground(Color.BLACK);
 		partidas.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		partidas.setForeground(Color.WHITE);
+		partidas.setForeground(Color.CYAN);
 		scroll.setBackground(Color.BLACK);
 		add(scroll, BorderLayout.CENTER);
 

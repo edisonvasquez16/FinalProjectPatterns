@@ -59,30 +59,24 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 		// Imagen de fondo
 		ImageIcon icono = new ImageIcon("./data/imagenes/menuInicio.gif");
 		labImagen = new JLabel(icono);
-		Color fondo = new Color(21, 22, 25);
-		setBackground(fondo);
 
 		// T�tulo del juego: "SPACE INVADERS"
-		JPanel titulo = new JPanel(new FlowLayout());
 		JLabel invaders = new JLabel("Space Invaders");
-		invaders.setFont(new Font("ArcadeClassic", Font.PLAIN, 82));
+		invaders.setFont(new Font("ArcadeClassic", Font.PLAIN, 50));
 		invaders.setForeground(Color.WHITE);
-		titulo.setBackground(fondo);
-		titulo.add(invaders);
+		invaders.setBounds(150, 20, 400, 50);
 
 		// Texto instructivo: "PRESIONE LA TECLA ESPACIO"
-		JPanel flow = new JPanel(new FlowLayout());
-		JLabel espacio = new JLabel("PRESIONE ENTER ");
+		JLabel espacio = new JLabel("PRESIONE ENTER");
 		espacio.setForeground(Color.WHITE);
-		espacio.setFont(new Font("ArcadeClassic", Font.PLAIN, 49));
-		flow.setBackground(fondo);
-		flow.add(espacio);
+		espacio.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		espacio.setBounds(20, 440, 240, 30);
 
 		// Agrega los tres elementos al panel: imagen de fondo, t�tulo del juego
 		// y la intstrucci�n.
-		add(labImagen, BorderLayout.CENTER);
-		add(titulo, BorderLayout.NORTH);
-		add(flow, BorderLayout.SOUTH);
+		add(invaders);
+		add(espacio);
+		add(labImagen);
 
 	}
 
@@ -102,7 +96,7 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 			// En caso que el usuario presione la tecla Enter, cambia al panel
 			// que contiene el men� del juego
 			if(!interfaz.estaEnFuncionamiento())
-			interfaz.cambiarPanel("Men�");
+			interfaz.cambiarPanel("Menu");
 	}
 
 	/**
@@ -124,6 +118,6 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
-			interfaz.cambiarPanel("Men�");
+			interfaz.cambiarPanel("Menu");
 	}
 }

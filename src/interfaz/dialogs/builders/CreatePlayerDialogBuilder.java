@@ -18,7 +18,7 @@ public class CreatePlayerDialogBuilder implements DialogBuilder {
     }
 
     @Override
-    public void getResult() {
+    public void viewDialog() {
         createPlayer.mostrar();
     }
 }

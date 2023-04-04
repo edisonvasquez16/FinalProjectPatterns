@@ -26,7 +26,7 @@ public class BestScoreDialogBuilder implements DialogBuilder {
     }
 
     @Override
-    public void getResult() {
+    public void viewDialog() {
         bestScore.mostrar();
     }
 }

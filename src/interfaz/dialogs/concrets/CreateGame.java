@@ -49,11 +49,6 @@ public class CreateGame extends JDialog implements ActionListener {
 	/**
 	 * 
 	 */
-	JLabel nombre;
-
-	/**
-	 * 
-	 */
 	JLabel nombre1;
 
 	/**

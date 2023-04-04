@@ -6,6 +6,6 @@ public interface DialogBuilder {
 
     void setLayout(InterfazSpaceInvaders interfaz);
     void reset();
-    void getResult();
+    void viewDialog();
 
 }

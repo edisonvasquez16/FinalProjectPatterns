@@ -99,7 +99,7 @@ public class SelectPlayer extends JDialog implements ListSelectionListener, Acti
 		scroll.getViewport().add(jugadores);
 		jugadores.setBackground(Color.BLACK);
 		jugadores.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		jugadores.setForeground(Color.WHITE);
+		jugadores.setForeground(Color.CYAN);
 		scroll.setBackground(Color.BLACK);
 		add(scroll, BorderLayout.CENTER);
 
