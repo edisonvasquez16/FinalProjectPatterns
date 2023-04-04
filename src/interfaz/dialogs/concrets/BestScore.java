@@ -2,17 +2,11 @@ package interfaz.dialogs.concrets;
 
 import interfaz.InterfazSpaceInvaders;
 
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class BestScore extends JDialog implements ActionListener {
 

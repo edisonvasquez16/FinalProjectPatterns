@@ -1,6 +1,6 @@
 package interfaz;
 
-import control.Teclado;
+import control.Keyboard;
 import excepciones.NicknameYaExisteException;
 import excepciones.PartidaYaExisteException;
 import hilos.ThreadsFacade;
@@ -28,7 +28,7 @@ public class InterfazSpaceInvaders extends JFrame {
 
     private PanelImagenInicial imagen;
 
-    private Teclado tecladito;
+    private Keyboard tecladito;
 
     private PanelMenu panelMenu;
 
@@ -69,7 +69,7 @@ public class InterfazSpaceInvaders extends JFrame {
         contenedor.setLayout(card);
         card.show(contenedor, "Inicio");
 
-        tecladito = new Teclado(this, mundo);
+        tecladito = new Keyboard(this, mundo);
         addKeyListener(tecladito);
 
         setSize(640, 480);

@@ -3,12 +3,12 @@ package hilos;
 import interfaz.InterfazSpaceInvaders;
 import mundo.Enemigo;
 
-public class HiloEnemigos extends Threads {
+public class ThreadsEnemy extends Threads {
 
 	InterfazSpaceInvaders interfaz;
 	Enemigo enemigo;
 
-	public HiloEnemigos(Enemigo invasores, InterfazSpaceInvaders interfaz) {
+	public ThreadsEnemy(Enemigo invasores, InterfazSpaceInvaders interfaz) {
 		// TODO Auto-generated constructor stub
 
 		enemigo = invasores;

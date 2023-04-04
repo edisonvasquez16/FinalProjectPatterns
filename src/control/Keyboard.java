@@ -11,7 +11,7 @@ import java.awt.event.KeyListener;
  * @author Manuel Alejandro Coral Lozano - Juan Sebasti�n Quintero Yoshioka
  * Proyecto final - Algoritmos y programaci�n II.
  */
-public class Teclado implements KeyListener {
+public class Keyboard implements KeyListener {
 
     // -----------------------------------------------------------------
     // ----------------------------Atributos----------------------------
@@ -29,7 +29,7 @@ public class Teclado implements KeyListener {
     // -----------------------------M�todos-----------------------------
     // -----------------------------------------------------------------
 
-    public Teclado(InterfazSpaceInvaders principal, SpaceInvaders actual) {
+    public Keyboard(InterfazSpaceInvaders principal, SpaceInvaders actual) {
         // TODO Auto-generated constructor stub
         interfaz = principal;
         actu = actual;

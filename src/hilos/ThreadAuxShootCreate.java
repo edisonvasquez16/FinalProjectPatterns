@@ -3,12 +3,12 @@ package hilos;
 import interfaz.InterfazSpaceInvaders;
 import mundo.Partida;
 
-public class HiloAuxiliarCreaDisparo extends Threads {
+public class ThreadAuxShootCreate extends Threads {
 
 	private Partida partidaEnemigos;
 	private InterfazSpaceInvaders interfaz;
 
-	public HiloAuxiliarCreaDisparo(Partida a, InterfazSpaceInvaders principal) {
+	public ThreadAuxShootCreate(Partida a, InterfazSpaceInvaders principal) {
 		// TODO Auto-generated constructor stub
 		partidaEnemigos = a;
 		interfaz = principal;

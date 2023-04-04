@@ -1,7 +1,6 @@
 package control;
 
 import interfaz.InterfazSpaceInvaders;
-import mundo.NaveJugador;
 
 public class PauseResume implements Command{
 

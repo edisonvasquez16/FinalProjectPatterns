@@ -2,17 +2,16 @@ package hilos;
 
 
 import interfaz.InterfazSpaceInvaders;
-import mundo.NaveJugador;
 import mundo.Partida;
 import mundo.SpaceInvaders;
 
-public class HiloDisparoEnemigos extends Threads {
+public class ThreadEnemyShoot extends Threads {
 
 	private Partida partidaEnemigos;
 	private SpaceInvaders space;
 	private InterfazSpaceInvaders interfaz;
 	
-	public HiloDisparoEnemigos(Partida a, InterfazSpaceInvaders p, SpaceInvaders b) {
+	public ThreadEnemyShoot(Partida a, InterfazSpaceInvaders p, SpaceInvaders b) {
 		// TODO Auto-generated constructor stub
 
 		partidaEnemigos = a;

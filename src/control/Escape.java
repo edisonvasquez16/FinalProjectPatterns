@@ -2,8 +2,6 @@ package control;
 
 import interfaz.InterfazSpaceInvaders;
 
-import java.awt.event.KeyEvent;
-
 public class Escape implements Command{
 
     private final InterfazSpaceInvaders interfaz;

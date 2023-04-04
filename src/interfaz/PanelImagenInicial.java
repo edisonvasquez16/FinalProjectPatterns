@@ -1,21 +1,15 @@
 package interfaz;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  * Panel que representa la imagen inicial al ejecutar el programa
  * 
- * @author Juan Sebastián Quintero Yoshioka - Manuel Alejandro Coral Lozano
- *         Proyecto final - Algoritmos y programación II
+ * @author Juan Sebastiï¿½n Quintero Yoshioka - Manuel Alejandro Coral Lozano
+ *         Proyecto final - Algoritmos y programaciï¿½n II
  */
 public class PanelImagenInicial extends JPanel implements KeyListener {
 
@@ -56,10 +50,10 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 	 */
 	public PanelImagenInicial(InterfazSpaceInvaders interfaz) {
 
-		// Inicializa la asociación con la interfaz
+		// Inicializa la asociaciï¿½n con la interfaz
 		this.interfaz = interfaz;
 
-		// Contenedor gráfico
+		// Contenedor grï¿½fico
 		setLayout(new BorderLayout());
 
 		// Imagen de fondo
@@ -68,7 +62,7 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 		Color fondo = new Color(21, 22, 25);
 		setBackground(fondo);
 
-		// Título del juego: "SPACE INVADERS"
+		// Tï¿½tulo del juego: "SPACE INVADERS"
 		JPanel titulo = new JPanel(new FlowLayout());
 		JLabel space = new JLabel("Space ");
 		space.setFont(new Font("ArcadeClassic", Font.PLAIN, 82));
@@ -100,8 +94,8 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 		flow.add(tecla);
 		flow.add(espacio);
 
-		// Agrega los tres elementos al panel: imagen de fondo, título del juego
-		// y la intstrucción.
+		// Agrega los tres elementos al panel: imagen de fondo, tï¿½tulo del juego
+		// y la intstrucciï¿½n.
 		add(labImagen, BorderLayout.CENTER);
 		add(titulo, BorderLayout.NORTH);
 		add(flow, BorderLayout.SOUTH);
@@ -116,22 +110,22 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 	 * Manejo de eventos de los botones
 	 * 
 	 * @param e
-	 *            Evento que generó la acción - e != null.
+	 *            Evento que generï¿½ la acciï¿½n - e != null.
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER)
 			// En caso que el usuario presione la tecla Enter, cambia al panel
-			// que contiene el menú del juego
+			// que contiene el menï¿½ del juego
 			if(!interfaz.estaEnFuncionamiento())
-			interfaz.cambiarPanel("Menú");
+			interfaz.cambiarPanel("Menï¿½");
 	}
 
 	/**
 	 * Manejo de eventos de los botones
 	 * 
 	 * @param e
-	 *            Evento que generó la acción - e != null.
+	 *            Evento que generï¿½ la acciï¿½n - e != null.
 	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -141,11 +135,11 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 	 * Manejo de eventos de los botones
 	 * 
 	 * @param e
-	 *            Evento que generó la acción - e != null.
+	 *            Evento que generï¿½ la acciï¿½n - e != null.
 	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
-			interfaz.cambiarPanel("Menú");
+			interfaz.cambiarPanel("Menï¿½");
 	}
 }

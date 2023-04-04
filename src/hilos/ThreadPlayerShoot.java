@@ -5,14 +5,14 @@ import mundo.Enemigo;
 import mundo.NaveJugador;
 import mundo.Partida;
 
-public class HiloDisparoJugador extends Threads {
+public class ThreadPlayerShoot extends Threads {
 
 	private NaveJugador navesita;
 	private InterfazSpaceInvaders interfaz;
 	private Enemigo[][] enemigos;
 	private Partida actual;
 
-	public HiloDisparoJugador(NaveJugador a, InterfazSpaceInvaders b, Enemigo[][] c, Partida d) {
+	public ThreadPlayerShoot(NaveJugador a, InterfazSpaceInvaders b, Enemigo[][] c, Partida d) {
 		// TODO Auto-generated constructor stub
 
 		navesita = a;

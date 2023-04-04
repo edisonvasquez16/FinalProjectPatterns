@@ -1,21 +1,16 @@
 package mundo;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-
 import excepciones.NicknameYaExisteException;
 import excepciones.PartidaYaExisteException;
+
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Clase principal del mundo que representa el juego.
  * 
- * @author Manuel Alejandro Coral Lozano - Juan Sebastián Quintero Yoshioka
- *         Proyecto final - Algoritmos y programación II.
+ * @author Manuel Alejandro Coral Lozano - Juan Sebastiï¿½n Quintero Yoshioka
+ *         Proyecto final - Algoritmos y programaciï¿½n II.
  */
 public class SpaceInvaders {
 
@@ -81,7 +76,7 @@ public class SpaceInvaders {
 	}
 
 	// -----------------------------------------------------------------
-	// -----------------------------Métodos-----------------------------
+	// -----------------------------Mï¿½todos-----------------------------
 	// -----------------------------------------------------------------
 
 	/**

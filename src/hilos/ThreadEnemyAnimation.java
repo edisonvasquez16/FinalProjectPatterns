@@ -5,12 +5,12 @@ import mundo.Enemigo;
 import mundo.InvasorCalamar;
 import mundo.InvasorCangrejo;
 
-public class HiloAnimacionEnemigos extends Threads {
+public class ThreadEnemyAnimation extends Threads {
 
 	Enemigo enemigo;
 	InterfazSpaceInvaders interfaz;
 	
-	public HiloAnimacionEnemigos(Enemigo invasores, InterfazSpaceInvaders principal) {
+	public ThreadEnemyAnimation(Enemigo invasores, InterfazSpaceInvaders principal) {
 		// TODO Auto-generated constructor stub
 		
 		enemigo = invasores;

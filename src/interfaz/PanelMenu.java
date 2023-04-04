@@ -4,23 +4,9 @@ import interfaz.dialogs.DialogBuilder;
 import interfaz.dialogs.DialogBuilderWithLists;
 import interfaz.dialogs.builders.*;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Panel que contiene el men� principal del juego

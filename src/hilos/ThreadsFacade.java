@@ -18,7 +18,7 @@ public class ThreadsFacade {
         for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
             for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
                 if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
-                    thread = new HiloEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], interfaz);
+                    thread = new ThreadsEnemy(mundo.getPartidaActual().getEnemigos()[i][j], interfaz);
                     thread.start();
                 }
             }
@@ -26,7 +26,7 @@ public class ThreadsFacade {
     }
 
     private void startAuxShootThread() {
-        thread = new HiloAuxiliarCreaDisparo(mundo.getPartidaActual(), interfaz);
+        thread = new ThreadAuxShootCreate(mundo.getPartidaActual(), interfaz);
         thread.start();
     }
 
@@ -34,7 +34,7 @@ public class ThreadsFacade {
         for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
             for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
                 if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
-                    thread = new HiloAnimacionEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], interfaz);
+                    thread = new ThreadEnemyAnimation(mundo.getPartidaActual().getEnemigos()[i][j], interfaz);
                     thread.start();
                 }
             }
@@ -42,12 +42,12 @@ public class ThreadsFacade {
     }
 
     private void startShootEnemyThread() {
-        thread = new HiloDisparoEnemigos(mundo.getPartidaActual(), interfaz, mundo);
+        thread = new ThreadEnemyShoot(mundo.getPartidaActual(), interfaz, mundo);
         thread.start();
     }
 
     public void startShootPlayerThread() {
-        thread = new HiloDisparoJugador(mundo.getJugadorActual(), interfaz, mundo.getPartidaActual().getEnemigos(), mundo.getPartidaActual());
+        thread = new ThreadPlayerShoot(mundo.getJugadorActual(), interfaz, mundo.getPartidaActual().getEnemigos(), mundo.getPartidaActual());
         thread.start();
     }
 
