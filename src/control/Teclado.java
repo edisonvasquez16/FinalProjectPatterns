@@ -1,94 +1,85 @@
 package control;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import interfaz.InterfazSpaceInvaders;
 import mundo.NaveJugador;
 import mundo.SpaceInvaders;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 /**
- * 
  * @author Manuel Alejandro Coral Lozano - Juan Sebasti�n Quintero Yoshioka
- *         Proyecto final - Algoritmos y programaci�n II.
+ * Proyecto final - Algoritmos y programaci�n II.
  */
 public class Teclado implements KeyListener {
 
-	// -----------------------------------------------------------------
-	// ----------------------------Atributos----------------------------
-	// -----------------------------------------------------------------
+    // -----------------------------------------------------------------
+    // ----------------------------Atributos----------------------------
+    // -----------------------------------------------------------------
 
-	// public Partida actu;
+    // public Partida actu;
 
-	private SpaceInvaders actu;
+    private SpaceInvaders actu;
 
-	public NaveJugador navesita;
+    public NaveJugador navesita;
 
-	public InterfazSpaceInvaders interfaz;
+    public InterfazSpaceInvaders interfaz;
 
-	// -----------------------------------------------------------------
-	// -----------------------------M�todos-----------------------------
-	// -----------------------------------------------------------------
+    // -----------------------------------------------------------------
+    // -----------------------------M�todos-----------------------------
+    // -----------------------------------------------------------------
 
-	public Teclado(InterfazSpaceInvaders principal, SpaceInvaders actual) {
-		// TODO Auto-generated constructor stub
-		interfaz = principal;
-		actu = actual;
-		navesita = actu.getJugadorActual();
+    public Teclado(InterfazSpaceInvaders principal, SpaceInvaders actual) {
+        // TODO Auto-generated constructor stub
+        interfaz = principal;
+        actu = actual;
+        navesita = actu.getJugadorActual();
 
-	}
+    }
 
-	public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
 
-		if (actu.getEnFuncionamiento()) {
-			navesita = actu.getJugadorActual();
-			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+        Invoker invoker = new Invoker();
 
-				if (navesita.getDisparoUno() == null) {
-					navesita.disparar(interfaz.darPosActualJugador(), 410);
-					interfaz.getThreadsFacade().startShootPlayerThread();
-				}
-			}
+        if (actu.getEnFuncionamiento()) {
+            navesita = actu.getJugadorActual();
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_SPACE:
+                    invoker.setCommand(new Space(interfaz, navesita));
+                    break;
+                case KeyEvent.VK_LEFT:
+                    invoker.setCommand(new MoveLeft(interfaz, navesita));
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    invoker.setCommand(new MoveRight(interfaz, navesita));
+                    break;
+            }
+        }
 
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				navesita.mover(-1);
-				interfaz.getPanelNivel().updateUI();
-			}
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_ESCAPE:
+                invoker.setCommand(new Escape(interfaz));
+                break;
+            case KeyEvent.VK_P:
+                invoker.setCommand(new PauseResume(interfaz));
+                break;
+        }
 
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				navesita.mover(1);
-				interfaz.getPanelNivel().updateUI();
-			}
-		}
+        invoker.executeCommand();
+    }
 
-		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			interfaz.cerrar();
-		}
-		
-		if (e.getKeyCode() == KeyEvent.VK_P) {
-			if (interfaz.estaEnPausa()) {
-				interfaz.modificarFuncionamiento(true);
-				interfaz.cambiarPausa(false);
-				interfaz.iniciarTodosLosHilos();
-			} else {
-				interfaz.modificarFuncionamiento(false);
-				interfaz.cambiarPausa(true);
-			}
-		}
-	}
+    /**
+     *
+     */
+    public void keyReleased(KeyEvent e) {
 
-	/**
-	 * 
-	 */
-	public void keyReleased(KeyEvent e) {
+    }
 
-	}
+    /**
+     *
+     */
+    public void keyTyped(KeyEvent e) {
 
-	/**
-	 * 
-	 */
-	public void keyTyped(KeyEvent e) {
-
-	}
+    }
 
 }
