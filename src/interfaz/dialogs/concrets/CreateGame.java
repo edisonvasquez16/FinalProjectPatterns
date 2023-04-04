@@ -86,14 +86,14 @@ public class CreateGame extends JDialog implements ActionListener {
 
 		nombre1 = new JLabel("Nombre de partida");
 		nombre1.setForeground(Color.WHITE);
-		nombre1.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
+		nombre1.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		nombre1.setBounds(10, 55, 240, 30);
 
 		txtNombre = new JTextField();
 		txtNombre.setBackground(Color.WHITE);
 		txtNombre.setBounds(10, 100, 210, 25);
-		txtNombre.setForeground(Color.BLUE);
-		txtNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
+		txtNombre.setForeground(Color.BLACK);
+		txtNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 15));
 
 		JLabel imagen = new JLabel();
 		ImageIcon icono = new ImageIcon("./data/imagenes/fondoAP.jpg");

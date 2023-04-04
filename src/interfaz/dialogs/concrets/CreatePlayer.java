@@ -104,7 +104,7 @@ public class CreatePlayer extends JDialog implements ActionListener {
 		txtNombre.setBackground(Color.white);
 		txtNombre.setBounds(180, 85, 205, 25);
 		txtNombre.setForeground(Color.black);
-		txtNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
+		txtNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 15));
 
 		labNickname = new JLabel("NICKNAME");
 		labNickname.setForeground(Color.LIGHT_GRAY);
@@ -115,7 +115,7 @@ public class CreatePlayer extends JDialog implements ActionListener {
 		txtNickame.setBackground(Color.white);
 		txtNickame.setBounds(230, 180, 150, 25);
 		txtNickame.setForeground(Color.black);
-		txtNickame.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
+		txtNickame.setFont(new Font("ArcadeClassic", Font.PLAIN, 15));
 
 		JLabel imagen = new JLabel();
 		ImageIcon icono = new ImageIcon("./data/imagenes/fondAgJ.jpg");
