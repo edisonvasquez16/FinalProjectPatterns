@@ -96,24 +96,24 @@ public class CreatePlayer extends JDialog implements ActionListener {
 		auxiliar.setLayout(null);
 
 		labNombre = new JLabel("NOMBRE DEL JUGADOR");
-		labNombre.setForeground(Color.GREEN);
+		labNombre.setForeground(Color.LIGHT_GRAY);
 		labNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		labNombre.setBounds(10, 60, 350, 20);
+		labNombre.setBounds(160, 60, 350, 20);
 
 		txtNombre = new JTextField();
 		txtNombre.setBackground(Color.white);
-		txtNombre.setBounds(10, 85, 205, 25);
+		txtNombre.setBounds(180, 85, 205, 25);
 		txtNombre.setForeground(Color.black);
 		txtNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
 
 		labNickname = new JLabel("NICKNAME");
-		labNickname.setForeground(Color.GREEN);
+		labNickname.setForeground(Color.LIGHT_GRAY);
 		labNickname.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		labNickname.setBounds(10, 150, 260, 20);
+		labNickname.setBounds(270, 150, 260, 20);
 
 		txtNickame = new JTextField();
 		txtNickame.setBackground(Color.white);
-		txtNickame.setBounds(10, 180, 150, 25);
+		txtNickame.setBounds(230, 180, 150, 25);
 		txtNickame.setForeground(Color.black);
 		txtNickame.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
 
@@ -125,7 +125,7 @@ public class CreatePlayer extends JDialog implements ActionListener {
 		butBotonAceptar = new JButton(ACEPTAR);
 		butBotonAceptar.setActionCommand(ACEPTAR);
 		butBotonAceptar.addActionListener(this);
-		butBotonAceptar.setBounds(10, 210, 130, 25);
+		butBotonAceptar.setBounds(250, 210, 130, 25);
 		butBotonAceptar.setBackground(Color.BLACK);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonAceptar.setForeground(Color.BLACK);
@@ -133,7 +133,7 @@ public class CreatePlayer extends JDialog implements ActionListener {
 		butBotonCancelar = new JButton(CANCELAR);
 		butBotonCancelar.setActionCommand(CANCELAR);
 		butBotonCancelar.addActionListener(this);
-		butBotonCancelar.setBounds(10, 350, 130, 25);
+		butBotonCancelar.setBounds(250, 350, 130, 25);
 		butBotonCancelar.setBackground(Color.WHITE);
 		butBotonCancelar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonCancelar.setForeground(Color.BLACK);

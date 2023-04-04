@@ -95,7 +95,7 @@ public class CreateGame extends JDialog implements ActionListener {
 		nombre1.setBounds(10, 55, 240, 30);
 
 		txtNombre = new JTextField();
-		txtNombre.setBackground(Color.orange);
+		txtNombre.setBackground(Color.WHITE);
 		txtNombre.setBounds(10, 100, 210, 25);
 		txtNombre.setForeground(Color.BLUE);
 		txtNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));

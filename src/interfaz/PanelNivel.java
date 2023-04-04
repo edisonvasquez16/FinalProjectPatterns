@@ -49,13 +49,13 @@ public class PanelNivel extends JPanel {
 
         //DIBUJAR INFORMACI�N DEL JUGADOR
         g.setColor(Color.WHITE);
-        g.setFont(new Font("ArcadeClassic", Font.PLAIN, 24));
+        g.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
         g.drawString("NICKNAME", 30, 40);
         g.drawString("PUNTUACION ", 250, 40);
 
         g.setColor(Color.GREEN);
-        g.drawString(interfaz.getJugadorActual().getNickname(), 140, 40);
-        g.drawString(partida.getPuntaje().getPuntuacion() + "", 400, 40);
+        g.drawString(interfaz.getJugadorActual().getNickname(), 160, 40);
+        g.drawString(partida.getPuntaje().getPuntuacion() + "", 420, 40);
 
         // DISPARO DE LA NAVE
         Disparo a = (Disparo) space.getJugadorActual().getDisparoUno();
