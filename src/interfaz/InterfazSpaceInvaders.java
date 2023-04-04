@@ -4,6 +4,8 @@ import control.Teclado;
 import excepciones.NicknameYaExisteException;
 import excepciones.PartidaYaExisteException;
 import hilos.ThreadsFacade;
+import interfaz.dialogs.DialogBuilder;
+import interfaz.dialogs.builders.BestScoreDialogBuilder;
 import mundo.NaveJugador;
 import mundo.Partida;
 import mundo.SpaceInvaders;
@@ -305,7 +307,7 @@ public class InterfazSpaceInvaders extends JFrame {
         ArrayList<NaveJugador> jugadores = mundo.getJugadores();
         if (jugadores == null)
             jugadores = new ArrayList<>();
-        panelMenu.getDialogoSeleccionarJugador().cambiarListaJugadores(jugadores);
+        panelMenu.getDialogoSeleccionarJugador().changeList(jugadores);
     }
 
     /**
@@ -315,7 +317,7 @@ public class InterfazSpaceInvaders extends JFrame {
         ArrayList<Partida> partidas = mundo.darPartidasJugador();
         if (partidas.size() == 0)
             partidas = new ArrayList<Partida>();
-        panelMenu.getDialogoSeleccionarPartida().cambiarListaPartidas(partidas);
+        panelMenu.getDialogoSeleccionarPartida().changeList(partidas);
     }
 
     /**
@@ -359,7 +361,7 @@ public class InterfazSpaceInvaders extends JFrame {
         ArrayList<NaveJugador> jugadores = mundo.ordenarPorNickname();
         if (jugadores == null)
             jugadores = new ArrayList<>();
-        panelMenu.getDialogoSeleccionarJugador().cambiarListaJugadores(jugadores);
+        panelMenu.getDialogoSeleccionarJugador().changeList(jugadores);
     }
 
     /**
@@ -377,8 +379,10 @@ public class InterfazSpaceInvaders extends JFrame {
      *
      */
     public void mejoresPuntajes() {
-        panelMenu.setDialogoMejoresPuntajes(new DialogoMejoresPuntajes(this, mundo.mejoresPuntajes()));
-        panelMenu.getDialogoMejoresPuntajes().mostrar();
+        DialogBuilder dialog = new BestScoreDialogBuilder(mundo.mejoresPuntajes());
+        dialog.setLayout(this);
+        panelMenu.setDialogoMejoresPuntajes(dialog);
+        panelMenu.getDialogoMejoresPuntajes().getResult();
     }
 
 

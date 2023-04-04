@@ -1,4 +1,4 @@
-package interfaz;
+package interfaz.dialogs.concrets;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,13 +20,22 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import mundo.Partida;
+import interfaz.InterfazSpaceInvaders;
+import mundo.NaveJugador;
 
-public class DialogoSeleccionarPartida extends JDialog implements ListSelectionListener, ActionListener {
+public class SelectPlayer extends JDialog implements ListSelectionListener, ActionListener {
 
 	// -----------------------------------------------------------------
 	// ---------------------------Constantes----------------------------
 	// -----------------------------------------------------------------
+	
+	/**
+	 * 
+	 */
+	private final static String ORDENAR = "Ordenar";
+
+	private JButton butOrdenar;
+	// Fin temporal
 
 	/**
 	 * 
@@ -60,7 +69,7 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 	 * 
 	 */
 	@SuppressWarnings("rawtypes")
-	private JList partidas;
+	private JList jugadores;
 
 	/**
 	 * 
@@ -70,7 +79,12 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 	/**
 	 * 
 	 */
-	JButton butBotonAceptar, butBotonCancelar;
+	JButton butBotonAceptar;
+
+	/**
+	 * 
+	 */
+	JButton butBotonCancelar;
 
 	// -----------------------------------------------------------------
 	// ---------------------------Constructor---------------------------
@@ -81,7 +95,7 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 	 * @param interfaz
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public DialogoSeleccionarPartida(InterfazSpaceInvaders interfaz) {
+	public SelectPlayer(InterfazSpaceInvaders interfaz) {
 
 		super(interfaz, true);
 		setLayout(new BorderLayout());
@@ -89,22 +103,22 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 		this.interfaz = interfaz;
 		scroll = new JScrollPane();
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scroll.setPreferredSize(new Dimension(230, 200));
-		partidas = new JList();
-		partidas.addListSelectionListener(this);
-		partidas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		partidas.setModel(new DefaultListModel());
-		scroll.getViewport().add(partidas);
-		partidas.setBackground(Color.BLACK);
-		partidas.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		partidas.setForeground(Color.BLUE);
+		scroll.setPreferredSize(new Dimension(240, 200));
+		jugadores = new JList();
+		jugadores.addListSelectionListener(this);
+		jugadores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jugadores.setModel(new DefaultListModel());
+		scroll.getViewport().add(jugadores);
+		jugadores.setBackground(Color.BLACK);
+		jugadores.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		jugadores.setForeground(Color.BLUE);
 		scroll.setBackground(Color.BLACK);
 		add(scroll, BorderLayout.CENTER);
 
 		butBotonAceptar = new JButton(ACEPTAR);
 		butBotonAceptar.setActionCommand(ACEPTAR);
 		butBotonAceptar.addActionListener(this);
-		butBotonAceptar.setBounds(60, 2, 130, 25);
+		butBotonAceptar.setBounds(5, 2, 130, 25);
 		butBotonAceptar.setBackground(Color.BLACK);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonAceptar.setForeground(Color.YELLOW);
@@ -112,10 +126,18 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 		butBotonCancelar = new JButton(CANCELAR);
 		butBotonCancelar.setActionCommand(CANCELAR);
 		butBotonCancelar.addActionListener(this);
-		butBotonCancelar.setBounds(210, 2, 130, 25);
+		butBotonCancelar.setBounds(140, 2, 130, 25);
 		butBotonCancelar.setBackground(Color.BLACK);
 		butBotonCancelar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonCancelar.setForeground(Color.green);
+
+		butOrdenar = new JButton("ORDENAR");
+		butOrdenar.addActionListener(this);
+		butOrdenar.setActionCommand(ORDENAR);
+		butOrdenar.setBounds(275, 2, 130, 25);
+		butOrdenar.setBackground(Color.BLACK);
+		butOrdenar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		butOrdenar.setForeground(Color.BLUE);
 
 		this.setBackground(Color.BLACK);
 		JPanel auxiliar = new JPanel();
@@ -123,11 +145,15 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 		auxiliar.setBackground(Color.BLACK);
 		auxiliar.add(butBotonAceptar);
 		auxiliar.add(butBotonCancelar);
-		auxiliar.setPreferredSize(new Dimension(230, 28));
+		auxiliar.add(butOrdenar);
+		auxiliar.setPreferredSize(new Dimension(240, 28));
 		add(auxiliar, BorderLayout.SOUTH);
 
 		setUndecorated(true);
 		getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+		// Fin temporal
+
 	}
 
 	// -----------------------------------------------------------------
@@ -144,18 +170,20 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 		if (comando.equals(CANCELAR))
 			this.dispose();
 		else if (comando.equals(ACEPTAR)) {
-			String partidaSeleccionada = darPartidaSeleccionada();
-			if (!partidaSeleccionada.equals("")) {
-				interfaz.actualizarPartidaActual(partidaSeleccionada);
+			if (darJugadorSeleccionado() != "") {
+				interfaz.actualizarJugadorActual(darJugadorSeleccionado());
 				this.dispose();
-				interfaz.cambiarPanel("Juego");
 			} else {
-				JOptionPane.showMessageDialog(this, "Por favor cree una partida para el jugaodor",
-						"No existen partidas", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Por favor cree un jugador", "No existen jugadores",
+						JOptionPane.INFORMATION_MESSAGE);
 				this.dispose();
-			}
 
+			}
+	
+		} else if (comando.equals(ORDENAR)) {
+			interfaz.ordenarJugadores();
 		}
+
 	}
 
 	/**
@@ -167,7 +195,7 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 	}
 
 	// -----------------------------------------------------------------
-	// -----------------------------Métodos-----------------------------
+	// -----------------------------Mï¿½todos-----------------------------
 	// -----------------------------------------------------------------
 
 	/**
@@ -175,22 +203,22 @@ public class DialogoSeleccionarPartida extends JDialog implements ListSelectionL
 	 * @param lista
 	 */
 	@SuppressWarnings("unchecked")
-	public void cambiarListaPartidas(Collection lista) {
+	public void cambiarListaJugadores(Collection lista) {
 
-		partidas.setListData(lista.toArray());
+		jugadores.setListData(lista.toArray());
 
-		if (partidas.getModel().getSize() > 0)
-			partidas.setSelectedIndex(0);
+		if (jugadores.getModel().getSize() > 0)
+			jugadores.setSelectedIndex(0);
 	}
 
 	/**
 	 * 
 	 * @return
 	 */
-	public String darPartidaSeleccionada() {
-		Partida partida = (Partida) partidas.getSelectedValue();
-		if (partida != null)
-			return (String) partida.getNombre();
+	public String darJugadorSeleccionado() {
+		NaveJugador jugador = (NaveJugador) jugadores.getSelectedValue();
+		if (jugador != null)
+			return (String) jugador.getNickname();
 		else
 			return "";
 	}

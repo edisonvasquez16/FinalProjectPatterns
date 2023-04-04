@@ -1,5 +1,9 @@
 package interfaz;
 
+import interfaz.dialogs.DialogBuilder;
+import interfaz.dialogs.DialogBuilderWithLists;
+import interfaz.dialogs.builders.*;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,10 +23,10 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 /**
- * Panel que contiene el menú principal del juego
+ * Panel que contiene el menï¿½ principal del juego
  * 
- * @author Juan Sebastián Quintero Yoshioka - Manuel Alejandro Coral Lozano
- *         Proyecto final - Algoritmos y programación II
+ * @author Juan Sebastiï¿½n Quintero Yoshioka - Manuel Alejandro Coral Lozano
+ *         Proyecto final - Algoritmos y programaciï¿½n II
  */
 public class PanelMenu extends JPanel implements ActionListener {
 
@@ -75,32 +79,32 @@ public class PanelMenu extends JPanel implements ActionListener {
 	/**
 	 * 
 	 */
-	DialogoCrearJugador dialogoCrearJugador;
+	DialogBuilder dialogoCrearJugador;
 
 	/**
 	 * 
 	 */
-	DialogoSeleccionarJugador dialogoSeleccionarJugador;
+	DialogBuilderWithLists dialogoSeleccionarJugador;
 
 	/**
 	 * 
 	 */
-	DialogoCrearPartida dialogoCrearPartida;
+	DialogBuilder dialogoCrearPartida;
 
 	/**
 	 *
 	 */
-	DialogoSeleccionarPartida dialogoSeleccionarPartida;
+	DialogBuilderWithLists dialogoSeleccionarPartida;
 
 	/**
 	 * 
 	 */
-	DialogoInstrucciones dialogoInstrucciones;
+	DialogBuilder dialogoInstrucciones;
 	
 	/**
 	 * 
 	 */
-	DialogoMejoresPuntajes dialogoMejoresPuntajes;
+	DialogBuilder dialogoMejoresPuntajes;
 
 	/**
 	 * 
@@ -161,32 +165,41 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 	/**
 	 * 
-	 * @param pPrincipal
+	 * @param interfaz
 	 */
 	public PanelMenu(InterfazSpaceInvaders interfaz) {
 
-		// Inicializa la asociación
+		// Inicializa la asociaciï¿½n
 		this.interfaz = interfaz;
 
-		// Establece el tamaño, la contenedora de tamaño y le quita el fondo que
+		// Establece el tamaï¿½o, la contenedora de tamaï¿½o y le quita el fondo que
 		// trae por defecto.
 		setPreferredSize(new Dimension(640, 480));
 		setLayout(null);
 		setOpaque(false);
 
-		// Título del juego: "SPACE INVADERS"
+		// Tï¿½tulo del juego: "SPACE INVADERS"
 		JLabel space = new JLabel("SPACE INVADERS");
 		space.setForeground(Color.WHITE);
 		space.setFont(new Font("ArcadeClassic", Font.PLAIN, 74));
 		space.setBounds(5, 75, 560, 80);
 		add(space);
 
-		// Inicializa los 4 diálogos que se puede ver en el menú
-		dialogoCrearJugador = new DialogoCrearJugador(interfaz);
-		dialogoCrearPartida = new DialogoCrearPartida(interfaz);
-		dialogoSeleccionarJugador = new DialogoSeleccionarJugador(interfaz);
-		dialogoSeleccionarPartida = new DialogoSeleccionarPartida(interfaz);
-		dialogoInstrucciones = new DialogoInstrucciones(interfaz);
+		// Inicializa los 4 diï¿½logos que se puede ver en el menï¿½
+		dialogoCrearJugador = new CreatePlayerDialogBuilder();
+		dialogoCrearJugador.setLayout(interfaz);
+
+		dialogoCrearPartida = new CreateGameDialogBuilder();
+		dialogoCrearPartida.setLayout(interfaz);
+
+		dialogoSeleccionarJugador = new SelectPlayerDialogBuilder();
+		dialogoSeleccionarJugador.setLayout(interfaz);
+
+		dialogoSeleccionarPartida = new SelectGameDialogBuilder();
+		dialogoSeleccionarPartida.setLayout(interfaz);
+
+		dialogoInstrucciones = new InstructionsDialogBuilder();
+		dialogoInstrucciones.setLayout(interfaz);
 
 		// Popup Menu Jugar
 		popMenuJugar = new JPopupMenu();
@@ -199,7 +212,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		menuCargarPartida = new JMenuItem("CARGAR PARTIDA");
 		menuCargarPartida.setFont(new Font("ArcadeClassic", Font.PLAIN, 30));
 
-		// Añadir los action listener a los item's de Menu Jugar
+		// Aï¿½adir los action listener a los item's de Menu Jugar
 		menuCrearPartida.addActionListener(this);
 		menuCrearPartida.setActionCommand(CREAR_PARTIDA);
 		menuCargarPartida.addActionListener(this);
@@ -220,7 +233,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		menuSeleccionarJugador = new JMenuItem("SELECCIONAR JUGADOR");
 		menuSeleccionarJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 30));
 
-		// Añadir los action listener a los Item's de Menu Jugador
+		// Aï¿½adir los action listener a los Item's de Menu Jugador
 		menuNuevoJugador.addActionListener(this);
 		menuNuevoJugador.setActionCommand(CREAR_JUGADOR);
 		menuSeleccionarJugador.addActionListener(this);
@@ -241,12 +254,12 @@ public class PanelMenu extends JPanel implements ActionListener {
 		add(labLoginRapido);
 		labLoginRapido.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				String respuesta = 	JOptionPane.showInputDialog(null, "Por favor ingresa tu nickname", "Login rápido", JOptionPane.DEFAULT_OPTION);
+				String respuesta = 	JOptionPane.showInputDialog(null, "Por favor ingresa tu nickname", "Login rï¿½pido", JOptionPane.DEFAULT_OPTION);
 				if(respuesta == null || respuesta.equals("")){
-					JOptionPane.showMessageDialog(null, "Por favor ingresar un nickname válido",
+					JOptionPane.showMessageDialog(null, "Por favor ingresar un nickname vï¿½lido",
 							"Error al escribir el nickname", JOptionPane.ERROR_MESSAGE);
 				} else if(respuesta.length() != 5){
-					JOptionPane.showMessageDialog(null, "Recuerde que el nickname contiene 5 dígitos",
+					JOptionPane.showMessageDialog(null, "Recuerde que el nickname contiene 5 dï¿½gitos",
 							"Error al escribir el nickname", JOptionPane.ERROR_MESSAGE);
 				} else
 					interfaz.loginRapido(respuesta);
@@ -351,7 +364,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dialogoInstrucciones.mostrar();
+				dialogoInstrucciones.getResult();
 			}
 		});
 		// labInstrucciones.addMouseListener(new MouseAdapter() {
@@ -375,15 +388,15 @@ public class PanelMenu extends JPanel implements ActionListener {
 		String comando = e.getActionCommand();
 
 		if (comando.equals(CREAR_JUGADOR)) {
-			dialogoCrearJugador.mostrar();
+			dialogoCrearJugador.getResult();
 		} else if (comando.equals(SELECCIONAR_JUGADOR)) {
 			interfaz.actualizarJugadores();
-			dialogoSeleccionarJugador.mostrar();
+			dialogoSeleccionarJugador.getResult();
 		}
 
 		else if (comando.equals(CREAR_PARTIDA))
 			if (interfaz.getJugadorActual() != null)
-				dialogoCrearPartida.mostrar();
+				dialogoCrearPartida.getResult();
 			else
 				JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
 						"Error al iniciar partida", JOptionPane.ERROR_MESSAGE);
@@ -391,7 +404,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		else if (comando.equals(SELECCIONAR_PARTIDA)) {
 			if (interfaz.getJugadorActual() != null) {
 				interfaz.actualizarPartidas();
-				dialogoSeleccionarPartida.mostrar();
+				dialogoSeleccionarPartida.getResult();
 			} else
 				JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
 						"Error al seleccionar la partida", JOptionPane.ERROR_MESSAGE);
@@ -400,13 +413,13 @@ public class PanelMenu extends JPanel implements ActionListener {
 	}
 
 	// -----------------------------------------------------------------
-	// -----------------------------Métodos-----------------------------
+	// -----------------------------Mï¿½todos-----------------------------
 	// -----------------------------------------------------------------
 
 	/**
 	 * 
 	 */
-	public DialogoSeleccionarJugador getDialogoSeleccionarJugador() {
+	public DialogBuilderWithLists getDialogoSeleccionarJugador() {
 		return dialogoSeleccionarJugador;
 	}
 
@@ -414,7 +427,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 	 * 
 	 * @return
 	 */
-	public DialogoSeleccionarPartida getDialogoSeleccionarPartida() {
+	public DialogBuilderWithLists getDialogoSeleccionarPartida() {
 		return dialogoSeleccionarPartida;
 	}
 
@@ -449,11 +462,11 @@ public class PanelMenu extends JPanel implements ActionListener {
 		}
 	}
 
-	public DialogoMejoresPuntajes getDialogoMejoresPuntajes() {
+	public DialogBuilder getDialogoMejoresPuntajes() {
 		return dialogoMejoresPuntajes;
 	}
 
-	public void setDialogoMejoresPuntajes(DialogoMejoresPuntajes dialogoMejoresPuntajes) {
+	public void setDialogoMejoresPuntajes(DialogBuilder dialogoMejoresPuntajes) {
 		this.dialogoMejoresPuntajes = dialogoMejoresPuntajes;
 	}
 }

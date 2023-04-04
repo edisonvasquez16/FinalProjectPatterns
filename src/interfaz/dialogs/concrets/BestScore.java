@@ -1,4 +1,6 @@
-package interfaz;
+package interfaz.dialogs.concrets;
+
+import interfaz.InterfazSpaceInvaders;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,15 +9,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-public class DialogoMejoresPuntajes extends JDialog implements ActionListener {
+public class BestScore extends JDialog implements ActionListener {
 
 	// -----------------------------------------------------------------
 	// ---------------------------Constantes----------------------------
@@ -57,7 +56,7 @@ public class DialogoMejoresPuntajes extends JDialog implements ActionListener {
 	 * 
 	 * @param interfaz
 	 */
-	public DialogoMejoresPuntajes(InterfazSpaceInvaders interfaz, ArrayList<String> puntajes) {
+	public BestScore(InterfazSpaceInvaders interfaz, ArrayList<String> puntajes) {
 
 		super(interfaz, false);
 
@@ -174,7 +173,7 @@ public class DialogoMejoresPuntajes extends JDialog implements ActionListener {
 		}
 	}
 	// -----------------------------------------------------------------
-	// -----------------------------Métodos-----------------------------
+	// -----------------------------Mï¿½todos-----------------------------
 	// -----------------------------------------------------------------
 
 	/**
