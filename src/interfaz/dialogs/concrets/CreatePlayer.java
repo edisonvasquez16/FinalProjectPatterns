@@ -96,25 +96,25 @@ public class CreatePlayer extends JDialog implements ActionListener {
 		auxiliar.setLayout(null);
 
 		labNombre = new JLabel("NOMBRE DEL JUGADOR");
-		labNombre.setForeground(Color.RED);
-		labNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 33));
+		labNombre.setForeground(Color.GREEN);
+		labNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		labNombre.setBounds(10, 60, 350, 20);
 
 		txtNombre = new JTextField();
-		txtNombre.setBackground(Color.orange);
+		txtNombre.setBackground(Color.white);
 		txtNombre.setBounds(10, 85, 205, 25);
-		txtNombre.setForeground(Color.BLUE);
+		txtNombre.setForeground(Color.black);
 		txtNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
 
 		labNickname = new JLabel("NICKNAME");
-		labNickname.setForeground(Color.red);
-		labNickname.setFont(new Font("ArcadeClassic", Font.PLAIN, 33));
+		labNickname.setForeground(Color.GREEN);
+		labNickname.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		labNickname.setBounds(10, 150, 260, 20);
 
 		txtNickame = new JTextField();
-		txtNickame.setBackground(Color.orange);
+		txtNickame.setBackground(Color.white);
 		txtNickame.setBounds(10, 180, 150, 25);
-		txtNickame.setForeground(Color.BLUE);
+		txtNickame.setForeground(Color.black);
 		txtNickame.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
 
 		JLabel imagen = new JLabel();
@@ -128,15 +128,15 @@ public class CreatePlayer extends JDialog implements ActionListener {
 		butBotonAceptar.setBounds(10, 210, 130, 25);
 		butBotonAceptar.setBackground(Color.BLACK);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		butBotonAceptar.setForeground(Color.YELLOW);
+		butBotonAceptar.setForeground(Color.BLACK);
 
 		butBotonCancelar = new JButton(CANCELAR);
 		butBotonCancelar.setActionCommand(CANCELAR);
 		butBotonCancelar.addActionListener(this);
 		butBotonCancelar.setBounds(10, 350, 130, 25);
-		butBotonCancelar.setBackground(Color.BLACK);
+		butBotonCancelar.setBackground(Color.WHITE);
 		butBotonCancelar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		butBotonCancelar.setForeground(Color.green);
+		butBotonCancelar.setForeground(Color.BLACK);
 
 		auxiliar.setSize(icono.getIconWidth(), icono.getIconHeight());
 		auxiliar.add(labNombre);

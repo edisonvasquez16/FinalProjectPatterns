@@ -145,7 +145,7 @@ public class SpaceInvaders {
 
 	/**
 	 * 
-	 * @param nombre
+	 * @param nickname
 	 * @return
 	 */
 	public NaveJugador buscarJugador(String nickname) {
@@ -165,7 +165,7 @@ public class SpaceInvaders {
 	/**
 	 * 
 	 * @param nombre
-	 * @param directorio
+	 * @param nickname
 	 * @throws NicknameYaExisteException
 	 * @throws IOException
 	 */
@@ -208,8 +208,7 @@ public class SpaceInvaders {
 	}
 
 	/**
-	 * 
-	 * @param ruta
+	 *
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
@@ -362,8 +361,7 @@ public class SpaceInvaders {
 	}
 
 	/**
-	 * 
-	 * @param ruta
+	 *
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */

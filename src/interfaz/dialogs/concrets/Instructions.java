@@ -60,7 +60,7 @@ public class Instructions extends JDialog implements ListSelectionListener, Acti
 		butBotonAceptar.setBounds(235, 270, 130, 25);
 		butBotonAceptar.setBackground(Color.BLACK);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		butBotonAceptar.setForeground(Color.BLUE);
+		butBotonAceptar.setForeground(Color.BLACK);
 
 		add(butBotonAceptar);
 

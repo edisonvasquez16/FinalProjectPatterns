@@ -86,7 +86,7 @@ public class SelectGame extends JDialog implements ListSelectionListener, Action
 		scroll.getViewport().add(partidas);
 		partidas.setBackground(Color.BLACK);
 		partidas.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		partidas.setForeground(Color.BLUE);
+		partidas.setForeground(Color.WHITE);
 		scroll.setBackground(Color.BLACK);
 		add(scroll, BorderLayout.CENTER);
 
@@ -96,7 +96,7 @@ public class SelectGame extends JDialog implements ListSelectionListener, Action
 		butBotonAceptar.setBounds(60, 2, 130, 25);
 		butBotonAceptar.setBackground(Color.BLACK);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		butBotonAceptar.setForeground(Color.YELLOW);
+		butBotonAceptar.setForeground(Color.BLACK);
 
 		butBotonCancelar = new JButton(CANCELAR);
 		butBotonCancelar.setActionCommand(CANCELAR);
@@ -104,7 +104,7 @@ public class SelectGame extends JDialog implements ListSelectionListener, Action
 		butBotonCancelar.setBounds(210, 2, 130, 25);
 		butBotonCancelar.setBackground(Color.BLACK);
 		butBotonCancelar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		butBotonCancelar.setForeground(Color.green);
+		butBotonCancelar.setForeground(Color.BLACK);
 
 		this.setBackground(Color.BLACK);
 		JPanel auxiliar = new JPanel();

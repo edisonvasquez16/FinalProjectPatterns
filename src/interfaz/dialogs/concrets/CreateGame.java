@@ -89,19 +89,14 @@ public class CreateGame extends JDialog implements ActionListener {
 		auxiliar = new JPanel();
 		auxiliar.setLayout(null);
 
-		nombre = new JLabel("Ingrese el nombre    de");
-		nombre.setForeground(Color.YELLOW);
-		nombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 33));
-		nombre.setBounds(10, 30, 350, 20);
-
-		nombre1 = new JLabel("la    partida");
-		nombre1.setForeground(Color.YELLOW);
-		nombre1.setFont(new Font("ArcadeClassic", Font.PLAIN, 33));
-		nombre1.setBounds(10, 55, 240, 20);
+		nombre1 = new JLabel("Nombre de partida");
+		nombre1.setForeground(Color.WHITE);
+		nombre1.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
+		nombre1.setBounds(10, 55, 240, 30);
 
 		txtNombre = new JTextField();
 		txtNombre.setBackground(Color.orange);
-		txtNombre.setBounds(10, 150, 210, 25);
+		txtNombre.setBounds(10, 100, 210, 25);
 		txtNombre.setForeground(Color.BLUE);
 		txtNombre.setFont(new Font("ArcadeClassic", Font.PLAIN, 25));
 
@@ -113,21 +108,20 @@ public class CreateGame extends JDialog implements ActionListener {
 		butBotonAceptar = new JButton(ACEPTAR);
 		butBotonAceptar.setActionCommand(ACEPTAR);
 		butBotonAceptar.addActionListener(this);
-		butBotonAceptar.setBounds(10, 200, 130, 25);
+		butBotonAceptar.setBounds(10, 150, 130, 25);
 		butBotonAceptar.setBackground(Color.BLACK);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		butBotonAceptar.setForeground(Color.YELLOW);
+		butBotonAceptar.setForeground(Color.BLACK);
 
 		butBotonCancelar = new JButton(CANCELAR);
 		butBotonCancelar.setActionCommand(CANCELAR);
 		butBotonCancelar.addActionListener(this);
-		butBotonCancelar.setBounds(200, 200, 130, 25);
+		butBotonCancelar.setBounds(200, 150, 130, 25);
 		butBotonCancelar.setBackground(Color.BLACK);
 		butBotonCancelar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		butBotonCancelar.setForeground(Color.green);
+		butBotonCancelar.setForeground(Color.BLACK);
 
 		auxiliar.setSize(icono.getIconWidth(), icono.getIconHeight());
-		auxiliar.add(nombre);
 		auxiliar.add(nombre1);
 		auxiliar.add(txtNombre);
 		auxiliar.add(butBotonAceptar);

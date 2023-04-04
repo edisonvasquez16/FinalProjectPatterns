@@ -6,6 +6,7 @@ import excepciones.PartidaYaExisteException;
 import hilos.ThreadsFacade;
 import interfaz.dialogs.DialogBuilder;
 import interfaz.dialogs.builders.BestScoreDialogBuilder;
+import interfaz.panelmenu.PanelMenu;
 import mundo.NaveJugador;
 import mundo.Partida;
 import mundo.SpaceInvaders;
@@ -35,16 +36,6 @@ public class InterfazSpaceInvaders extends JFrame {
     private PanelNivel panelNivel;
 
     private SpaceInvaders mundo;
-
-    /*private HiloEnemigos hilitoEnemigo;
-
-    private HiloDisparoJugador hilitoDisparo;
-
-    private HiloDisparoEnemigos hilitoEnemigoDisparo;
-
-    private HiloAuxiliarCreaDisparo hilitoAuxiliar;
-
-    private HiloAnimacionEnemigos hilitoAnimacion;*/
     private ThreadsFacade threadsFacade;
     private boolean pausa;
 

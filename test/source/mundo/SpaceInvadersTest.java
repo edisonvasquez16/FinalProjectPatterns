@@ -1,10 +1,10 @@
 package mundo;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import excepciones.NicknameYaExisteException;
 import junit.framework.TestCase;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class SpaceInvadersTest extends TestCase {
 
