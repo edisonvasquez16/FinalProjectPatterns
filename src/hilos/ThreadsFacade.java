@@ -52,7 +52,6 @@ public class ThreadsFacade {
     }
 
     public void startThreads() {
-        startShootPlayerThread();
         startEnemyThread();
         startAnimationEnemyThread();
         startAuxShootThread();
