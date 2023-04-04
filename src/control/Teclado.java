@@ -9,8 +9,8 @@ import mundo.SpaceInvaders;
 
 /**
  * 
- * @author Manuel Alejandro Coral Lozano - Juan Sebastián Quintero Yoshioka
- *         Proyecto final - Algoritmos y programación II.
+ * @author Manuel Alejandro Coral Lozano - Juan Sebastiï¿½n Quintero Yoshioka
+ *         Proyecto final - Algoritmos y programaciï¿½n II.
  */
 public class Teclado implements KeyListener {
 
@@ -27,7 +27,7 @@ public class Teclado implements KeyListener {
 	public InterfazSpaceInvaders interfaz;
 
 	// -----------------------------------------------------------------
-	// -----------------------------Métodos-----------------------------
+	// -----------------------------Mï¿½todos-----------------------------
 	// -----------------------------------------------------------------
 
 	public Teclado(InterfazSpaceInvaders principal, SpaceInvaders actual) {
@@ -46,7 +46,7 @@ public class Teclado implements KeyListener {
 
 				if (navesita.getDisparoUno() == null) {
 					navesita.disparar(interfaz.darPosActualJugador(), 410);
-					interfaz.startHiloJugador();
+					interfaz.getThreadsFacade().startShootPlayerThread();
 				}
 			}
 
