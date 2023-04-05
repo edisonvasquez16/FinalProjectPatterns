@@ -378,7 +378,7 @@ public class SpaceInvaders {
         serializarPuntaje();
         if (winner)
             JOptionPane.showConfirmDialog(null,
-                    "NIVEL COMPLETADO!!!", "Infomracion...",
+                    "HAS GANADO!!!", "Infomracion...",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 
     }
