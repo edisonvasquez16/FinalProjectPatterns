@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 /**
  * 
- * @author Manuel Alejandro Coral Lozano - Juan Sebastián Quintero Yoshioka
- *         Proyecto final - Algoritmos y programación II.
+ * @author Manuel Alejandro Coral Lozano - Juan Sebastiï¿½n Quintero Yoshioka
+ *         Proyecto final - Algoritmos y programaciï¿½n II.
  */
 public class Nivel implements Serializable {
 
@@ -65,7 +65,7 @@ public class Nivel implements Serializable {
 	 * 
 	 * @param nivel
 	 * @param enemigos
-	 * @param velocidadEnemigos
+	 * @param velocidad
 	 * @param posXPrimerEnemigo
 	 * @param posYPrimerEnemigo
 	 * @param anchoEnemigos
@@ -84,7 +84,7 @@ public class Nivel implements Serializable {
 	}
 
 	// -----------------------------------------------------------------
-	// -----------------------------Métodos-----------------------------
+	// -----------------------------Mï¿½todos-----------------------------
 	// -----------------------------------------------------------------
 
 	/**

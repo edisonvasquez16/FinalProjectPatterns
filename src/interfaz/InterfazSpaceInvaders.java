@@ -86,12 +86,18 @@ public class InterfazSpaceInvaders extends JFrame {
      *
      */
     public void cerrar() {
-        try {
-            mundo.serializarJugador();
-        } catch (IOException e) {
-            e.printStackTrace();
+        int input = JOptionPane.showConfirmDialog(null,
+                "Desea salir del juego?", "Selecione una Opcion...",
+                JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+
+        if (input != 1) {
+            try {
+                mundo.serializarJugador();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.exit(0);
         }
-        System.exit(0);
     }
 
     /**
@@ -317,10 +323,13 @@ public class InterfazSpaceInvaders extends JFrame {
     public void nivelCompleto() {
         try {
             if (mundo.getPartidaActual().nivelCompleto()) {
+                JOptionPane.showConfirmDialog(null,
+                        "NIVEL COMPLETADO!!!", "Infomracion...",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
                 iniciarTodosLosHilos();
             } else {
                 panelMenu.repaint();
-                mundo.eliminarPartida();
+                mundo.eliminarPartida(true);
                 actualizarPartidas();
                 cambiarPanel("Menu");
                 panelMenu.repaint();
@@ -336,7 +345,7 @@ public class InterfazSpaceInvaders extends JFrame {
     public void perder() {
         panelMenu.repaint();
         try {
-            mundo.eliminarPartida();
+            mundo.eliminarPartida(false);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -6,6 +6,7 @@ import mundo.Partida;
 import mundo.SpaceInvaders;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicProgressBarUI;
 import java.awt.*;
 
 public class PanelNivel extends JPanel {
@@ -55,7 +56,7 @@ public class PanelNivel extends JPanel {
 
         g.setColor(Color.CYAN);
         g.drawString(interfaz.getJugadorActual().getNickname(), 160, 40);
-        g.drawString(partida.getPuntaje().getPuntuacion() + "", 420, 40);
+        g.drawString(String.valueOf(partida.getPuntaje().getPuntuacion()), 420, 40);
 
         // DISPARO DE LA NAVE
         Disparo a = (Disparo) space.getJugadorActual().getDisparoUno();
@@ -107,9 +108,8 @@ public class PanelNivel extends JPanel {
             if (bonificacion > 0)
                 space.getPartidaActual().getPuntaje().setPuntuacion(bonificacion);
             interfaz.nivelCompleto();
-
-
         }
+
 
         // PERDI�
         if (space.getJugadorActual().perdio()) {

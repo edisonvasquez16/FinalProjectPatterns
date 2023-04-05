@@ -58,7 +58,6 @@ public class Partida implements Serializable {
 	/**
 	 * 
 	 * @param nombre
-	 * @param duracionNivel
 	 */
 	public Partida(String nombre) {
 		this.nombre = nombre;
