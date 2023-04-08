@@ -109,7 +109,8 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_SPACE)
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			interfaz.cambiarPanel("Menu");
+		}
 	}
 }

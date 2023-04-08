@@ -11,12 +11,18 @@ import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+
+import interfaz.panelmenu.PanelMenu;
 
 public class Director {
 
     private static final String FONT_NAME = "ArcadeClassic";
+
+    private Builder builder;
 
     /**
      * Create and configure a PanelImagenInicial Object
@@ -24,75 +30,30 @@ public class Director {
      * @param builder
      */
     public void makePanelImagenInicial(Builder builder) {
-        ImageIcon icono = new ImageIcon("./data/imagenes/menuInicio.gif");
-        JLabel labelImagen = new JLabel(icono);
+        // Agrega los tres elementos al panel: imagen de fondo, t�tulo del juego
+        // y la intstrucci�n.
 
-        builder.setLabel(labelImagen);
+        // Imagen de fondo
         builder.setLabel(new JLabel(new ImageIcon("./data/imagenes/menuInicio.gif")));
 
         // Contenedor gr�fico
-        Color fondo = new Color(21, 22, 25);
-
         builder.setLayout(new BorderLayout());
-        builder.setBackground(fondo);
 
         // T�tulo del juego: "SPACE INVADERS"
-        JLabel space = new JLabel("Space ");
-        space.setFont(new Font(FONT_NAME, Font.PLAIN, 82));
-        space.setForeground(Color.WHITE);
-
-        JLabel invaders = new JLabel("Invaders");
-        invaders.setFont(new Font(FONT_NAME, Font.PLAIN, 82));
+        JLabel invaders = new JLabel("Space Invaders");
+        invaders.setFont(new Font(FONT_NAME, Font.PLAIN, 50));
         invaders.setForeground(Color.WHITE);
+        invaders.setBounds(150, 20, 400, 50);
 
-        /**
-         * Could be only one JLabel rather than two?
-         */
-        // JLabel space_invaders = new JLabel("Space Invaders");
-        // invaders.setFont(new Font(FONT_NAME, Font.PLAIN, 82));
-        // invaders.setForeground(Color.WHITE);
+        builder.setLabel(invaders);
 
-        // titulo.add(space_invaders);
+        // Texto instructivo: "PRESIONE LA TECLA ENTER"
+        JLabel enter = new JLabel("PRESIONE ENTER");
+        enter.setForeground(Color.WHITE);
+        enter.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+        enter.setBounds(20, 440, 240, 30);
 
-        /**
-         * END
-         */
-
-        JPanel titulo = new JPanel(new FlowLayout());
-
-        titulo.setBackground(fondo);
-        titulo.add(space);
-        titulo.add(invaders);
-
-        builder.setPanel(titulo, BorderLayout.NORTH);
-
-        // Texto instructivo: "PRESIONE LA TECLA ESPACIO"
-        JPanel flow = new JPanel(new FlowLayout());
-
-        JLabel presione = new JLabel("PRESIONE ");
-        JLabel la = new JLabel("LA ");
-        JLabel tecla = new JLabel("TECLA ");
-        JLabel espacio = new JLabel("ENTER ");
-
-        presione.setFont(new Font(FONT_NAME, Font.PLAIN, 49));
-        presione.setForeground(Color.BLUE);
-
-        la.setFont(new Font(FONT_NAME, Font.PLAIN, 49));
-        la.setForeground(Color.RED);
-
-        tecla.setFont(new Font(FONT_NAME, Font.PLAIN, 49));
-        tecla.setForeground(Color.GREEN);
-
-        espacio.setFont(new Font(FONT_NAME, Font.PLAIN, 49));
-        espacio.setForeground(Color.YELLOW);
-
-        flow.setBackground(fondo);
-        flow.add(presione);
-        flow.add(la);
-        flow.add(tecla);
-        flow.add(espacio);
-
-        builder.setPanel(flow, BorderLayout.SOUTH);
+        builder.setLabel(enter);
     }
 
     /**
@@ -105,20 +66,20 @@ public class Director {
         JLabel space = new JLabel("SPACE INVADERS");
 
         space.setForeground(Color.WHITE);
-        space.setFont(new Font(FONT_NAME, Font.PLAIN, 74));
-        space.setBounds(5, 75, 560, 80);
+        space.setFont(new Font(FONT_NAME, Font.PLAIN, 40));
+        space.setBounds(45, 75, 560, 80);
 
         builder.setLabel(space);
 
-        JLabel labelLoginRapido = new JLabel("LOGIN RAPIDO");
-        labelLoginRapido.setForeground(Color.WHITE);
-        labelLoginRapido.setFont(new Font(FONT_NAME, Font.PLAIN, 40));
-        labelLoginRapido.setBounds(10, 300, 250, 23);
-
-        builder.setLabel(labelLoginRapido);
-
         // JLabel de las mejoras
-        labelLoginRapido.addMouseListener(new MouseAdapter() {
+        JLabel labLoginRapido = new JLabel("LOGIN RAPIDO");
+        labLoginRapido.setForeground(Color.WHITE);
+        labLoginRapido.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+        labLoginRapido.setBounds(15, 300, 250, 23);
+
+        builder.setLabel(labLoginRapido);
+
+        labLoginRapido.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 String respuesta = 	JOptionPane.showInputDialog(null, "Por favor ingresa tu nickname", "Login r�pido", JOptionPane.DEFAULT_OPTION);
@@ -129,54 +90,54 @@ public class Director {
                     JOptionPane.showMessageDialog(null, "Recuerde que el nickname contiene 5 d�gitos",
                             "Error al escribir el nickname", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    this.panelMenu.interfaz.loginRapido(respuesta);
+                    this.panelMenu.interfaz.loginRapido(respuesta); //TODO: REFERENCIA SIN RESOLVER
                 }
             }
         });
 
          // Boton Open Menu Jugar
-		JLabel labelOpenMenuJugar = new JLabel("JUGAR");
+		JLabel labOpenMenuJugar = new JLabel("JUGAR");
 
-		labelOpenMenuJugar.setBounds(10, 240, 110, 23);
-		labelOpenMenuJugar.setFont(new Font(FONT_NAME, Font.PLAIN, 40));
-		labelOpenMenuJugar.setForeground(Color.WHITE);
-		labelOpenMenuJugar.setAlignmentX(RIGHT_ALIGNMENT);
+		labOpenMenuJugar.setBounds(15, 240, 110, 23);
+		labOpenMenuJugar.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+		labOpenMenuJugar.setForeground(Color.WHITE);
+		labOpenMenuJugar.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
 
-		labelOpenMenuJugar.addMouseListener(new MouseAdapter() {
+		labOpenMenuJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				this.popMenuJugar.show(e.getComponent(), e.getX(), e.getY());
+				this.popMenuJugar.show(e.getComponent(), e.getX(), e.getY()); //TODO: REFERENCIA SIN RESOLVER
 			}
 		});
 
-		builder.setLabel(labelOpenMenuJugar);
+		builder.setLabel(labOpenMenuJugar);
 
         // Boton Open Menu Jugador
-        JLabel labelOpenMenuJugador = new JLabel("JUGADOR");
+        JLabel labOpenMenuJugador = new JLabel("JUGADOR");
 
-        labelOpenMenuJugador.setFont(new Font(FONT_NAME, Font.PLAIN, 40));
-        labelOpenMenuJugador.setBounds(10, 270, 190, 23);
-        labelOpenMenuJugador.setForeground(Color.WHITE);
-        labelOpenMenuJugador.setAlignmentX(RIGHT_ALIGNMENT);
+        labOpenMenuJugador.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+        labOpenMenuJugador.setBounds(15, 270, 190, 23);
+        labOpenMenuJugador.setForeground(Color.WHITE);
+        labOpenMenuJugador.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
 
-        labelOpenMenuJugador.addMouseListener(new MouseAdapter() {
+        labOpenMenuJugador.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                this.popMenuJugador.show(e.getComponent(), e.getX(), e.getY());
+                this.popMenuJugador.show(e.getComponent(), e.getX(), e.getY()); //TODO: REFERENCIA SIN RESOLVER
             }
         });
 
-        builder.setLabel(labelOpenMenuJugador);
+        builder.setLabel(labOpenMenuJugador);
 
         // JLabel de los mejores puntajes
-        JLabel labelMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
-        labelMejoresPuntajes.setForeground(Color.WHITE);
-        labelMejoresPuntajes.setFont(new Font(FONT_NAME, Font.PLAIN, 40));
-        labelMejoresPuntajes.setBounds(10, 360, 340, 23);
+        JLabel labMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
+        labMejoresPuntajes.setForeground(Color.WHITE);
+        labMejoresPuntajes.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+        labMejoresPuntajes.setBounds(15, 360, 340, 23);
 
-        builder.setLabel(labelMejoresPuntajes);
+        builder.setLabel(labMejoresPuntajes);
 
-        labelMejoresPuntajes.addMouseListener(new MouseListener() {
+        labMejoresPuntajes.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -204,18 +165,18 @@ public class Director {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				this.panelMenu.interfaz.mejoresPuntajes();
+				this.panelMenu.interfaz.mejoresPuntajes(); //TODO: REFERENCIA SIN RESOLVER
 			}
 		});
 
         // JLabel con las intrucciones
-		JLabel labelInstrucciones = new JLabel("INSTRUCCIONES");
+		JLabel labInstrucciones = new JLabel("INSTRUCCIONES");
 
-		labelInstrucciones.setForeground(Color.WHITE);
-		labelInstrucciones.setFont(new Font(FONT_NAME, Font.PLAIN, 40));
-		labelInstrucciones.setBounds(10, 330, 300, 23);
+		labInstrucciones.setForeground(Color.WHITE);
+		labInstrucciones.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+		labInstrucciones.setBounds(15, 330, 300, 23);
 
-		labelInstrucciones.addMouseListener(new MouseListener() {
+		labInstrucciones.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -239,15 +200,16 @@ public class Director {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				this.panelMenu.dialogoInstrucciones.mostrar();
+				this.panelMenu.dialogoInstrucciones.viewDialog();  //TODO: REFERENCIA SIN RESOLVER
 			}
 		});
 
-		builder.setLabel(labelInstrucciones);
+		builder.setLabel(labInstrucciones);
 
-        builder.setMenu(); //TODO: Jack work here remaining
+        builder.setMenu();
 
-
+        // Establece el tama�o, la contenedora de tama�o y le quita el fondo que
+		// trae por defecto.
         builder.setLayout(null);
         builder.setPreferredSize(new Dimension(640, 480));
         builder.setOpaque(false);

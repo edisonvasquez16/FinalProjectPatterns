@@ -5,13 +5,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 import interfaz.InterfazSpaceInvaders;
-import interfaz.PanelMenu;
+import interfaz.panelmenu.PanelMenu;
 
 public class PanelMenuBuilder implements Builder {
 
@@ -88,9 +89,9 @@ public class PanelMenuBuilder implements Builder {
 
         // A�adir los action listener a los item's de Menu Jugar
         menuCrearPartida.addActionListener(this.panelMenu);
-        // menuCrearPartida.setActionCommand(this.panelMenu::CREAR_PARTIDA); //Como se le hace entonces??
+        menuCrearPartida.setActionCommand(PanelMenu.CREAR_PARTIDA); //Como se le hace entonces??
         menuCargarPartida.addActionListener(this.panelMenu);
-        // menuCargarPartida.setActionCommand(SELECCIONAR_PARTIDA); //Como se le hace entonces??
+        menuCargarPartida.setActionCommand(PanelMenu.SELECCIONAR_PARTIDA); //Como se le hace entonces??
 
         // Agregar al Menu Jugar los Item's
         popMenuJugar.add(menuCrearPartida);
@@ -109,9 +110,9 @@ public class PanelMenuBuilder implements Builder {
 
 		// A�adir los action listener a los Item's de Menu Jugador
 		menuNuevoJugador.addActionListener(this.panelMenu);
-		// menuNuevoJugador.setActionCommand(CREAR_JUGADOR);
+		menuNuevoJugador.setActionCommand(PanelMenu.CREAR_JUGADOR);
 		menuSeleccionarJugador.addActionListener(this.panelMenu);
-		// menuSeleccionarJugador.setActionCommand(SELECCIONAR_JUGADOR);
+		menuSeleccionarJugador.setActionCommand(PanelMenu.SELECCIONAR_JUGADOR);
 
         // Agregar al Menu Jugar los Item's
 		popMenuJugador.add(menuNuevoJugador);

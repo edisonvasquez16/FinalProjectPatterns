@@ -29,27 +29,23 @@ public class PanelMenu extends JPanel implements ActionListener {
 	/**
 	 *
 	 */
-	private final static String CREAR_JUGADOR = "CREAR JUGADOR";
+	public final static String CREAR_JUGADOR = "CREAR JUGADOR";
 
 	/**
 	 *
 	 */
-	private final static String SELECCIONAR_JUGADOR = "SELECCIONAR JUGADOR";
+	public final static String SELECCIONAR_JUGADOR = "SELECCIONAR JUGADOR";
 
 	/**
 	 *
 	 */
-	private final static String CREAR_PARTIDA = "CREAR PARTIDA";
+	public final static String CREAR_PARTIDA = "CREAR PARTIDA";
 
 	/**
 	 *
 	 */
-	private final static String SELECCIONAR_PARTIDA = "SELECCIONAR PARTIDA";
+	public final static String SELECCIONAR_PARTIDA = "SELECCIONAR PARTIDA";
 
-	/**
-	 *
-	 */
-	private final static String INTRUCCIONES = "INSTRUCCIONES";
 	// -----------------------------------------------------------------
 	// --------------------------Asociaciones---------------------------
 	// -----------------------------------------------------------------
