@@ -1,9 +1,9 @@
 package mundo;
 
-import java.io.IOException;
-
 import excepciones.PartidaYaExisteException;
 import junit.framework.TestCase;
+
+import java.io.IOException;
 
 public class PartidaTest extends TestCase {
 

@@ -1,19 +1,15 @@
 package mundo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-
 import excepciones.PartidaYaExisteException;
+
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  *
  * 
- * @author Manuel Alejandro Coral Lozano - Juan Sebastián Quintero Yoshioka
- *         Proyecto final - Algoritmos y programación II.
+ * @author Manuel Alejandro Coral Lozano - Juan Sebastiï¿½n Quintero Yoshioka
+ *         Proyecto final - Algoritmos y programaciï¿½n II.
  */
 public class Partida implements Serializable {
 
@@ -62,7 +58,6 @@ public class Partida implements Serializable {
 	/**
 	 * 
 	 * @param nombre
-	 * @param duracionNivel
 	 */
 	public Partida(String nombre) {
 		this.nombre = nombre;
@@ -72,7 +67,7 @@ public class Partida implements Serializable {
 	}
 
 	// -----------------------------------------------------------------
-	// -----------------------------Métodos-----------------------------
+	// -----------------------------Mï¿½todos-----------------------------
 	// -----------------------------------------------------------------
 
 	/**
