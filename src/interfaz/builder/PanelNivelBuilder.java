@@ -7,7 +7,7 @@ import interfaz.PanelNivel;
 import mundo.Partida;
 import mundo.SpaceInvaders;
 
-public class PanelNivelBuilder {
+public class PanelNivelBuilder implements Builder {
 
     private PanelNivel panelNivel;
 
