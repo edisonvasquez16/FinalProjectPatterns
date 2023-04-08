@@ -19,15 +19,9 @@ public class PanelNivel extends JPanel {
     private int posJugadorActualY;
 
     public PanelNivel(Partida actual, SpaceInvaders b) {
-        // TODO Auto-generated constructor stub
-        // BORAR
-
         partida = actual;
         space = b;
         interfaz = InterfazSpaceInvaders.getInstance();
-
-        setSize(640, 480);
-
     }
 
     public void paintComponent(Graphics g) {
@@ -128,7 +122,7 @@ public class PanelNivel extends JPanel {
             g.drawString("Vidas jugador: " + space.getJugadorActual().getVida(), 100, 470);
         }
 
-    }
+	}
 
     public int getPosJugadorActualX() {
         return posJugadorActualX;

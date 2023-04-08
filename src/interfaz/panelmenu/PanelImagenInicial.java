@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 
 /**
  * Panel que representa la imagen inicial al ejecutar el programa
- * 
+ *
  * @author Juan Sebasti�n Quintero Yoshioka - Manuel Alejandro Coral Lozano
  *         Proyecto final - Algoritmos y programaci�n II
  */
@@ -20,7 +20,7 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 	// -----------------------------------------------------------------
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -29,25 +29,13 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 	// -----------------------------------------------------------------
 
 	/**
-	 * 
+	 *
 	 */
 	private InterfazSpaceInvaders interfaz;
 
-	// -----------------------------------------------------------------
-	// ---------------------------Atributos-----------------------------
-	// -----------------------------------------------------------------
-
 	/**
-	 * 
-	 */
-	private JLabel labImagen;
-
-	// -----------------------------------------------------------------
-	// ---------------------------Constructor---------------------------
-	// -----------------------------------------------------------------
-
-	/**
-	 * 
+	 * Constructor
+	 *
 	 * @param interfaz
 	 */
 	public PanelImagenInicial() {
@@ -88,22 +76,24 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 
 	/**
 	 * Manejo de eventos de los botones
-	 * 
+	 *
 	 * @param e
 	 *            Evento que gener� la acci�n - e != null.
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER)
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			// En caso que el usuario presione la tecla Enter, cambia al panel
 			// que contiene el men� del juego
-			if(!interfaz.estaEnFuncionamiento())
-			interfaz.cambiarPanel("Menu");
+			if (!interfaz.estaEnFuncionamiento()) {
+				interfaz.cambiarPanel("Menu");
+			}
+		}
 	}
 
 	/**
 	 * Manejo de eventos de los botones
-	 * 
+	 *
 	 * @param e
 	 *            Evento que gener� la acci�n - e != null.
 	 */
@@ -113,7 +103,7 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 
 	/**
 	 * Manejo de eventos de los botones
-	 * 
+	 *
 	 * @param e
 	 *            Evento que gener� la acci�n - e != null.
 	 */
