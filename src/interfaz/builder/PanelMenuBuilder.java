@@ -16,7 +16,11 @@ import interfaz.panelmenu.PanelMenu;
 
 public class PanelMenuBuilder implements Builder {
 
+    private static final String FONT_NAME = "ArcadeClassic";
+
     private PanelMenu panelMenu;
+    private JPopupMenu popMenuJugar;
+    private JPopupMenu popMenuJugador;
 
     public PanelMenuBuilder() {
         this.panelMenu = new PanelMenu(new InterfazSpaceInvaders());
@@ -72,12 +76,150 @@ public class PanelMenuBuilder implements Builder {
         this.panelMenu.add(panel, borderLayout);
     }
 
+    public void setLabels() {
+        // JLabel de las mejoras
+        JLabel labLoginRapido = new JLabel("LOGIN RAPIDO");
+        labLoginRapido.setForeground(Color.WHITE);
+        labLoginRapido.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+        labLoginRapido.setBounds(15, 300, 250, 23);
+
+        this.setLabel(labLoginRapido);
+
+        labLoginRapido.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String respuesta = 	JOptionPane.showInputDialog(null, "Por favor ingresa tu nickname", "Login r�pido", JOptionPane.DEFAULT_OPTION);
+
+                if(respuesta == null || respuesta.equals("")){
+                    JOptionPane.showMessageDialog(null, "Por favor ingresar un nickname v�lido",
+                            "Error al escribir el nickname", JOptionPane.ERROR_MESSAGE);
+                } else if(respuesta.length() != 5){
+                    JOptionPane.showMessageDialog(null, "Recuerde que el nickname contiene 5 d�gitos",
+                            "Error al escribir el nickname", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    this.panelMenu.interfaz.loginRapido(respuesta); //TODO: REFERENCIA SIN RESOLVER
+                }
+            }
+        });
+
+        // Boton Open Menu Jugar
+        JLabel labOpenMenuJugar = new JLabel("JUGAR");
+
+        labOpenMenuJugar.setBounds(15, 240, 110, 23);
+        labOpenMenuJugar.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+        labOpenMenuJugar.setForeground(Color.WHITE);
+        labOpenMenuJugar.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
+
+        labOpenMenuJugar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                this.popMenuJugar.show(e.getComponent(), e.getX(), e.getY()); //TODO: REFERENCIA SIN RESOLVER
+            }
+        });
+
+        this.setLabel(labOpenMenuJugar);
+
+        // Boton Open Menu Jugador
+        JLabel labOpenMenuJugador = new JLabel("JUGADOR");
+
+        labOpenMenuJugador.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+        labOpenMenuJugador.setBounds(15, 270, 190, 23);
+        labOpenMenuJugador.setForeground(Color.WHITE);
+        labOpenMenuJugador.setAlignmentX(JPanel.RIGHT_ALIGNMENT);
+
+        labOpenMenuJugador.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                this.popMenuJugador.show(e.getComponent(), e.getX(), e.getY()); //TODO: REFERENCIA SIN RESOLVER
+            }
+        });
+
+        this.setLabel(labOpenMenuJugador);
+
+        // JLabel de los mejores puntajes
+        JLabel labMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
+        labMejoresPuntajes.setForeground(Color.WHITE);
+        labMejoresPuntajes.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+        labMejoresPuntajes.setBounds(15, 360, 340, 23);
+
+        this.setLabel(labMejoresPuntajes);
+
+        labMejoresPuntajes.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                this.panelMenu.interfaz.mejoresPuntajes(); //TODO: REFERENCIA SIN RESOLVER
+            }
+        });
+
+        // JLabel con las intrucciones
+        JLabel labInstrucciones = new JLabel("INSTRUCCIONES");
+
+        labInstrucciones.setForeground(Color.WHITE);
+        labInstrucciones.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
+        labInstrucciones.setBounds(15, 330, 300, 23);
+
+        labInstrucciones.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                this.panelMenu.dialogoInstrucciones.viewDialog();  //TODO: REFERENCIA SIN RESOLVER
+            }
+        });
+
+        this.setLabel(labInstrucciones);
+    }
+
     /**
      * Set Menu Object
      */
     public void setMenu() {
         // Popup Menu Jugar
-        JPopupMenu popMenuJugar = new JPopupMenu();
+        popMenuJugar = new JPopupMenu();
 
         // Item1 de Menu Jugar
 		JMenuItem menuCrearPartida = new JMenuItem("CREAR PARTIDA");
@@ -98,7 +240,7 @@ public class PanelMenuBuilder implements Builder {
         popMenuJugar.add(menuCargarPartida);
 
         // Popup Menu Jugador
-        JPopupMenu popMenuJugador = new JPopupMenu();
+        popMenuJugador = new JPopupMenu();
 
         // Item1 de Menu Jugador
 		JMenuItem menuNuevoJugador = new JMenuItem("NUEVO JUGADOR");

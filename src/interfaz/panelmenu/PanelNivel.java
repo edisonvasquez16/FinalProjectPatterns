@@ -72,6 +72,7 @@ public class PanelNivel extends JPanel {
                 if (partida.getEnemigos()[i][j] != null) {
                     if (partida.getEnemigos()[i][j].getDisparoUno() != null) {
                         Disparo b = (Disparo) partida.getEnemigos()[i][j].getDisparoUno();
+
                         if (b != null) {
                             g.setColor(Color.RED);
                             g.fillOval(b.getPosX(), b.getPosY(), 7, 7);
@@ -98,9 +99,13 @@ public class PanelNivel extends JPanel {
         if (space.getEnFuncionamiento() && space.getPartidaActual().terminarNivel()) {
             space.setEnFuncionamiento(false);
             interfaz.getThreadsFacade().stopThreads();
+
             int bonificacion = (space.puntosPorVida() - space.puntosPorDisparos());
-            if (bonificacion > 0)
+
+            if (bonificacion > 0) {
                 space.getPartidaActual().getPuntaje().setPuntuacion(bonificacion);
+            }
+
             interfaz.nivelCompleto();
         }
 

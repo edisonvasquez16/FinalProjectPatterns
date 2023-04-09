@@ -403,23 +403,21 @@ public class PanelMenu extends JPanel implements ActionListener {
 		} else if (comando.equals(SELECCIONAR_JUGADOR)) {
 			interfaz.actualizarJugadores();
 			dialogoSeleccionarJugador.getResult();
-		}
-
-		else if (comando.equals(CREAR_PARTIDA))
-			if (interfaz.getJugadorActual() != null)
+		} else if (comando.equals(CREAR_PARTIDA)) {
+			if (interfaz.getJugadorActual() != null) {
 				dialogoCrearPartida.viewDialog();
-			else
+			} else {
 				JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
 						"Error al iniciar partida", JOptionPane.ERROR_MESSAGE);
-
-		else if (comando.equals(SELECCIONAR_PARTIDA)) {
+			}
+		} else if (comando.equals(SELECCIONAR_PARTIDA)) {
 			if (interfaz.getJugadorActual() != null) {
 				interfaz.actualizarPartidas();
 				dialogoSeleccionarPartida.getResult();
-			} else
+			} else {
 				JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
 						"Error al seleccionar la partida", JOptionPane.ERROR_MESSAGE);
-
+			}
 		}
 	}
 
@@ -467,14 +465,13 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		g2.setColor(Color.CYAN);
 		if (interfaz.getJugadorActual() != null) {
-
 			g2.drawString(interfaz.getJugadorActual().getNickname(), 360, 460);
 
-			if (interfaz.getJugadorActual().getNombre().length() <= 13)
+			if (interfaz.getJugadorActual().getNombre().length() <= 13) {
 				g2.drawString(interfaz.getJugadorActual().getNombre(), 500, 460);
-			else
+			} else {
 				g2.drawString(interfaz.getJugadorActual().getNombre().substring(0, 13), 500, 470);
-
+			}
 		}
 	}
 

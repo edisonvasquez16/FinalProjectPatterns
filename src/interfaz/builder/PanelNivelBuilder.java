@@ -12,28 +12,28 @@ public class PanelNivelBuilder implements Builder {
     private PanelNivel panelNivel;
 
     public PanelNivelBuilder() {
-        this.panelNivel = new PanelNivel(new Partida("wmarin"), new SpaceInvaders(false), new InterfazSpaceInvaders());
+        this.panelNivel = new PanelNivel(new Partida(""), new SpaceInvaders(false), new InterfazSpaceInvaders());
     }
 
     /**
      * Reset the object
      */
     public void reset() {
-        this.panelNivel = new PanelNivel(new Partida("wmarin"), new SpaceInvaders(false), new InterfazSpaceInvaders());
-    }
-
-    /**
-     * Set the Labels for the Panel
-     */
-    public void setLabels() {
-
+        this.panelNivel = new PanelNivel(new Partida(""), new SpaceInvaders(false), new InterfazSpaceInvaders());
     }
 
     /**
      * Set Layout Object
      */
-    public void setLayout() {
-        this.panelNivel.setSize(640, 480);
+    public void setLayout(BorderLayout layout) {
+        this.panelImagenInicial.setLayout(layout);
+    }
+
+    /**
+     * Set Size Object
+     */
+    public void setSize(x, y) {
+        this.panelImagenInicial.setSize(x, y);
     }
 
     /**
