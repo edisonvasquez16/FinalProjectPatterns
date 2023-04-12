@@ -16,7 +16,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class InterfazSpaceInvaders extends JFrame {
+public final class InterfazSpaceInvaders extends JFrame {
 
     /**
      *
@@ -39,16 +39,19 @@ public class InterfazSpaceInvaders extends JFrame {
     private ThreadsFacade threadsFacade;
     private boolean pausa;
 
-    public InterfazSpaceInvaders() {
+    private static InterfazSpaceInvaders instance;
+
+    private InterfazSpaceInvaders() {
+
 
         mundo = new SpaceInvaders(false);
 
-        panelMenu = new PanelMenu(this);
-        panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo, this);
+        panelMenu = new PanelMenu(InterfazSpaceInvaders.getInstance());
+        panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo, InterfazSpaceInvaders.getInstance());
 
-        imagen = new PanelImagenInicial(this);
+        PanelImagenInicial imagen = new PanelImagenInicial(InterfazSpaceInvaders.getInstance());
         addKeyListener(imagen);
-        contenedor = this.getContentPane();
+        contenedor = InterfazSpaceInvaders.getInstance().getContentPane();
         card.addLayoutComponent(imagen, "Inicio");
         card.addLayoutComponent(panelMenu, "Menu");
         card.addLayoutComponent(panelNivel, "Juego");
@@ -60,7 +63,7 @@ public class InterfazSpaceInvaders extends JFrame {
         contenedor.setLayout(card);
         card.show(contenedor, "Inicio");
 
-        tecladito = new Keyboard(this, mundo);
+        Keyboard tecladito = new Keyboard(InterfazSpaceInvaders.getInstance(), mundo);
         addKeyListener(tecladito);
 
         setSize(640, 480);
@@ -69,6 +72,19 @@ public class InterfazSpaceInvaders extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
+    }
+
+    /**
+     * Singleton pattern
+     *
+     * @return InterfazSpaceInvaders
+     */
+    public static InterfazSpaceInvaders getInstance() {
+        if (instance == null) {
+            instance = new InterfazSpaceInvaders();
+        }
+
+        return instance;
     }
 
     /**
@@ -115,63 +131,10 @@ public class InterfazSpaceInvaders extends JFrame {
     }
 
     /**
-     * @param paus
+     * @param pause
      */
-    public void cambiarPausa(boolean paus) {
-        this.pausa = paus;
-    }
-
-    /*
-     *
-     *
-    public void startHiloEnemigo() {
-        for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
-            for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
-                if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
-                    hilitoEnemigo = new HiloEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], this);
-                    hilitoEnemigo.start();
-                }
-            }
-        }
-    }
-
-    /*
-     *
-     *
-    public void startHiloAuxiliar() {
-        hilitoAuxiliar = new HiloAuxiliarCreaDisparo(mundo.getPartidaActual(), this);
-        hilitoAuxiliar.start();
-    }
-
-    /*
-     *
-     *
-    public void startHiloAnimacion() {
-        for (int i = 0; i < mundo.getPartidaActual().getEnemigos().length; i++) {
-            for (int j = 0; j < mundo.getPartidaActual().getEnemigos()[0].length; j++) {
-                if (mundo.getPartidaActual().getEnemigos()[i][j] != null) {
-                    hilitoAnimacion = new HiloAnimacionEnemigos(mundo.getPartidaActual().getEnemigos()[i][j], this);
-                    hilitoAnimacion.start();
-                }
-            }
-        }
-    }
-
-    /*
-     *
-     *
-    public void startHiloDisparoEnemigo() {
-        hilitoEnemigoDisparo = new HiloDisparoEnemigos(mundo.getPartidaActual(), this, mundo);
-        hilitoEnemigoDisparo.start();
-    }
-
-    /*
-     *
-     *
-    public void startHiloJugador() {
-        hilitoDisparo = new HiloDisparoJugador((NaveJugador) mundo.getJugadorActual(), this,
-                mundo.getPartidaActual().getEnemigos(), mundo.getPartidaActual());
-        hilitoDisparo.start();
+    public void cambiarPausa(boolean pause) {
+        this.pausa = pause;
     }
 
     /**
@@ -235,7 +198,8 @@ public class InterfazSpaceInvaders extends JFrame {
      */
     public void iniciarTodosLosHilos() {
         mundo.setEnFuncionamiento(true);
-        threadsFacade = new ThreadsFacade(this, mundo);
+
+        threadsFacade = new ThreadsFacade(InterfazSpaceInvaders.getInstance(), mundo);
         threadsFacade.startThreads();
     }
 
@@ -252,7 +216,7 @@ public class InterfazSpaceInvaders extends JFrame {
             mundo.iniciarPartida();
             cambiarPanel("Juego");
         } catch (PartidaYaExisteException | IOException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error al crear la partida", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(InterfazSpaceInvaders.getInstance(), e.getMessage(), "Error al crear la partida", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -267,7 +231,7 @@ public class InterfazSpaceInvaders extends JFrame {
             actualizarJugadores();
             actualizarJugadorActual(nickname);
         } catch (NicknameYaExisteException | IOException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error al agregar el jugador",
+            JOptionPane.showMessageDialog(InterfazSpaceInvaders.getInstance(), e.getMessage(), "Error al agregar el jugador",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -281,7 +245,7 @@ public class InterfazSpaceInvaders extends JFrame {
             mundo.setJugadorActual(actual);
             panelMenu.repaint();
         } else
-            JOptionPane.showMessageDialog(this, "Por favor cree algun jugador", "No existen jugadores",
+            JOptionPane.showMessageDialog(InterfazSpaceInvaders.getInstance(), "Por favor cree algun jugador", "No existen jugadores",
                     JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -324,12 +288,12 @@ public class InterfazSpaceInvaders extends JFrame {
         try {
             if (mundo.getPartidaActual().nivelCompleto()) {
                 JOptionPane.showConfirmDialog(null,
-                        "NIVEL COMPLETADO!!!", "Infomracion...",
+                        "NIVEL COMPLETADO!!!", "Informacion...",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
                 iniciarTodosLosHilos();
             } else {
                 panelMenu.repaint();
-                mundo.eliminarPartida(true);
+                mundo.deleteGame(true);
                 actualizarPartidas();
                 cambiarPanel("Menu");
                 panelMenu.repaint();
@@ -345,7 +309,7 @@ public class InterfazSpaceInvaders extends JFrame {
     public void perder() {
         panelMenu.repaint();
         try {
-            mundo.eliminarPartida(false);
+            mundo.deleteGame(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -380,7 +344,7 @@ public class InterfazSpaceInvaders extends JFrame {
      */
     public void mejoresPuntajes() {
         DialogBuilder dialog = new BestScoreDialogBuilder(mundo.mejoresPuntajes());
-        dialog.setLayout(this);
+        dialog.setLayout(InterfazSpaceInvaders.getInstance());
         panelMenu.setDialogoMejoresPuntajes(dialog);
         panelMenu.getDialogoMejoresPuntajes().viewDialog();
     }
@@ -390,8 +354,9 @@ public class InterfazSpaceInvaders extends JFrame {
      * @param args
      */
     public static void main(String[] args) {
-        InterfazSpaceInvaders ventana = new InterfazSpaceInvaders();
-        ventana.setVisible(true);
+        InterfazSpaceInvaders gameWindow = InterfazSpaceInvaders.getInstance();
+
+        gameWindow.setVisible(true);
     }
 
 }
