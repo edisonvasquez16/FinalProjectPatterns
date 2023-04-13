@@ -10,6 +10,8 @@ import interfaz.panelmenu.PanelMenu;
 import mundo.NaveJugador;
 import mundo.Partida;
 import mundo.SpaceInvaders;
+import observer.Events;
+import observer.Publisher;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,13 +29,11 @@ public class InterfazSpaceInvaders extends JFrame {
 
     public static Container contenedor;
 
-    private PanelImagenInicial imagen;
-
-    private Keyboard tecladito;
-
     private PanelMenu panelMenu;
 
     private PanelNivel panelNivel;
+
+    private Publisher publisher;
 
     private SpaceInvaders mundo;
     private ThreadsFacade threadsFacade;
@@ -46,22 +46,22 @@ public class InterfazSpaceInvaders extends JFrame {
         panelMenu = new PanelMenu(this);
         panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo, this);
 
-        imagen = new PanelImagenInicial(this);
-        addKeyListener(imagen);
+        PanelImagenInicial image = new PanelImagenInicial(this);
+        addKeyListener(image);
         contenedor = this.getContentPane();
-        card.addLayoutComponent(imagen, "Inicio");
+        card.addLayoutComponent(image, "Inicio");
         card.addLayoutComponent(panelMenu, "Menu");
         card.addLayoutComponent(panelNivel, "Juego");
 
-        contenedor.add(imagen);
+        contenedor.add(image);
         contenedor.add(panelMenu);
         contenedor.add(panelNivel);
 
         contenedor.setLayout(card);
         card.show(contenedor, "Inicio");
 
-        tecladito = new Keyboard(this, mundo);
-        addKeyListener(tecladito);
+        Keyboard keyboard = new Keyboard(this, mundo);
+        addKeyListener(keyboard);
 
         setSize(640, 480);
         setUndecorated(true);
@@ -69,6 +69,7 @@ public class InterfazSpaceInvaders extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
+        publisher = new Publisher();
     }
 
     /**
@@ -312,8 +313,10 @@ public class InterfazSpaceInvaders extends JFrame {
      */
     public void actualizarPartidas() {
         ArrayList<Partida> partidas = mundo.darPartidasJugador();
-        if (partidas.size() == 0)
+        if (partidas.size() == 0) {
             partidas = new ArrayList<Partida>();
+        }
+
         panelMenu.getDialogoSeleccionarPartida().changeList(partidas);
     }
 
@@ -329,7 +332,8 @@ public class InterfazSpaceInvaders extends JFrame {
                 iniciarTodosLosHilos();
             } else {
                 panelMenu.repaint();
-                mundo.eliminarPartida(true);
+
+                publisher.notifySubscribers(Events.DELETE_GAME, true);
                 actualizarPartidas();
                 cambiarPanel("Menu");
                 panelMenu.repaint();
@@ -344,11 +348,9 @@ public class InterfazSpaceInvaders extends JFrame {
      */
     public void perder() {
         panelMenu.repaint();
-        try {
-            mundo.eliminarPartida(false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        publisher.notifySubscribers(Events.DELETE_GAME, false);
+
         actualizarPartidas();
         cambiarPanel("Menu");
         panelMenu.repaint();
