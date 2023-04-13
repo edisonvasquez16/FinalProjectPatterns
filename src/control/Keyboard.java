@@ -29,9 +29,9 @@ public class Keyboard implements KeyListener {
     // -----------------------------M�todos-----------------------------
     // -----------------------------------------------------------------
 
-    public Keyboard(InterfazSpaceInvaders principal, SpaceInvaders actual) {
+    public Keyboard(SpaceInvaders actual) {
         // TODO Auto-generated constructor stub
-        interfaz = principal;
+        interfaz = InterfazSpaceInvaders.getInstance();
         actu = actual;
         navesita = actu.getJugadorActual();
 

@@ -85,11 +85,11 @@ public class CreatePlayer extends JDialog implements ActionListener {
 	// ---------------------------Constructor---------------------------
 	// -----------------------------------------------------------------
 
-	public CreatePlayer(InterfazSpaceInvaders interfaz) {
+	public CreatePlayer() {
 
-		super(interfaz, true);
+		super(InterfazSpaceInvaders.getInstance(), true);
 
-		this.interfaz = interfaz;
+		this.interfaz = InterfazSpaceInvaders.getInstance();
 		setLayout(null);
 
 		auxiliar = new JPanel();

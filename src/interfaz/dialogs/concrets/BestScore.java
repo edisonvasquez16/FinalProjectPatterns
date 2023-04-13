@@ -50,11 +50,11 @@ public class BestScore extends JDialog implements ActionListener {
 	 * 
 	 * @param interfaz
 	 */
-	public BestScore(InterfazSpaceInvaders interfaz, ArrayList<String> puntajes) {
+	public BestScore(ArrayList<String> puntajes) {
 
-		super(interfaz, false);
+		super(InterfazSpaceInvaders.getInstance(), false);
 
-		this.interfaz = interfaz;
+		this.interfaz = InterfazSpaceInvaders.getInstance();
 		setLayout(null);
 
 		auxiliar = new JPanel();

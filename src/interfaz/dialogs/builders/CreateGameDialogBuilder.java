@@ -8,8 +8,8 @@ public class CreateGameDialogBuilder implements DialogBuilder {
 
     private CreateGame createGame;
     @Override
-    public void setLayout(InterfazSpaceInvaders interfaz) {
-        createGame = new CreateGame(interfaz);
+    public void setLayout() {
+        createGame = new CreateGame();
     }
 
     @Override

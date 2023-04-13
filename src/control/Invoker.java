@@ -9,7 +9,8 @@ public class Invoker {
     }
 
     public void executeCommand(){
-        if (command != null)
+        if (command != null) {
             command.execute();
+        }
     }
 }

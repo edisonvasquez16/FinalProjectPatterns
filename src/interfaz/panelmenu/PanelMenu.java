@@ -151,13 +151,12 @@ public class PanelMenu extends JPanel implements ActionListener {
 	// -----------------------------------------------------------------
 
 	/**
-	 * 
-	 * @param interfaz
+	 * PanelMenu Class
 	 */
-	public PanelMenu(InterfazSpaceInvaders interfaz) {
+	public PanelMenu() {
 
 		// Inicializa la asociaci�n
-		this.interfaz = interfaz;
+		this.interfaz = InterfazSpaceInvaders.getInstance();
 
 		// Establece el tama�o, la contenedora de tama�o y le quita el fondo que
 		// trae por defecto.
@@ -183,19 +182,19 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		// Inicializa los 4 di�logos que se puede ver en el menu
 		dialogoCrearJugador = new CreatePlayerDialogBuilder();
-		dialogoCrearJugador.setLayout(interfaz);
+		dialogoCrearJugador.setLayout();
 
 		dialogoCrearPartida = new CreateGameDialogBuilder();
-		dialogoCrearPartida.setLayout(interfaz);
+		dialogoCrearPartida.setLayout();
 
 		dialogoSeleccionarJugador = new SelectPlayerDialogBuilder();
-		dialogoSeleccionarJugador.setLayout(interfaz);
+		dialogoSeleccionarJugador.setLayout();
 
 		dialogoSeleccionarPartida = new SelectGameDialogBuilder();
-		dialogoSeleccionarPartida.setLayout(interfaz);
+		dialogoSeleccionarPartida.setLayout();
 
 		dialogoInstrucciones = new InstructionsDialogBuilder();
-		dialogoInstrucciones.setLayout(interfaz);
+		dialogoInstrucciones.setLayout();
 
 		// Popup Menu Jugar
 		popMenuJugar = new JPopupMenu();

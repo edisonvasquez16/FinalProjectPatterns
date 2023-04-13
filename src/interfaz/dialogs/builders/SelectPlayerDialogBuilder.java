@@ -11,8 +11,8 @@ public class SelectPlayerDialogBuilder implements DialogBuilderWithLists {
     private SelectPlayer selectPlayer;
 
     @Override
-    public void setLayout(InterfazSpaceInvaders interfaz) {
-        selectPlayer = new SelectPlayer(interfaz);
+    public void setLayout() {
+        selectPlayer = new SelectPlayer();
     }
 
     @Override
