@@ -83,12 +83,12 @@ public class SelectPlayer extends JDialog implements ListSelectionListener, Acti
 	 * @param interfaz
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public SelectPlayer(InterfazSpaceInvaders interfaz) {
+	public SelectPlayer() {
 
-		super(interfaz, true);
+		super(InterfazSpaceInvaders.getInstance(), true);
 		setLayout(new BorderLayout());
 
-		this.interfaz = interfaz;
+		this.interfaz = InterfazSpaceInvaders.getInstance();
 		scroll = new JScrollPane();
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setPreferredSize(new Dimension(240, 200));

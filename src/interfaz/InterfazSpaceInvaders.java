@@ -42,16 +42,20 @@ public final class InterfazSpaceInvaders extends JFrame {
     private static InterfazSpaceInvaders instance;
 
     private InterfazSpaceInvaders() {
+    }
 
-
+    /**
+     * Init InterfazSpaceInvaders logic
+     */
+    public void init() {
         mundo = new SpaceInvaders(false);
 
-        panelMenu = new PanelMenu(InterfazSpaceInvaders.getInstance());
-        panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo, InterfazSpaceInvaders.getInstance());
+        panelMenu = new PanelMenu();
+        panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo);
 
-        PanelImagenInicial imagen = new PanelImagenInicial(InterfazSpaceInvaders.getInstance());
+        PanelImagenInicial imagen = new PanelImagenInicial();
         addKeyListener(imagen);
-        contenedor = InterfazSpaceInvaders.getInstance().getContentPane();
+        contenedor = this.getContentPane();
         card.addLayoutComponent(imagen, "Inicio");
         card.addLayoutComponent(panelMenu, "Menu");
         card.addLayoutComponent(panelNivel, "Juego");
@@ -63,7 +67,7 @@ public final class InterfazSpaceInvaders extends JFrame {
         contenedor.setLayout(card);
         card.show(contenedor, "Inicio");
 
-        Keyboard tecladito = new Keyboard(InterfazSpaceInvaders.getInstance(), mundo);
+        Keyboard tecladito = new Keyboard(mundo);
         addKeyListener(tecladito);
 
         setSize(640, 480);
@@ -71,7 +75,6 @@ public final class InterfazSpaceInvaders extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));
-
     }
 
     /**
@@ -199,7 +202,7 @@ public final class InterfazSpaceInvaders extends JFrame {
     public void iniciarTodosLosHilos() {
         mundo.setEnFuncionamiento(true);
 
-        threadsFacade = new ThreadsFacade(InterfazSpaceInvaders.getInstance(), mundo);
+        threadsFacade = new ThreadsFacade(mundo);
         threadsFacade.startThreads();
     }
 
@@ -216,7 +219,7 @@ public final class InterfazSpaceInvaders extends JFrame {
             mundo.iniciarPartida();
             cambiarPanel("Juego");
         } catch (PartidaYaExisteException | IOException e) {
-            JOptionPane.showMessageDialog(InterfazSpaceInvaders.getInstance(), e.getMessage(), "Error al crear la partida", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error al crear la partida", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -231,7 +234,7 @@ public final class InterfazSpaceInvaders extends JFrame {
             actualizarJugadores();
             actualizarJugadorActual(nickname);
         } catch (NicknameYaExisteException | IOException e) {
-            JOptionPane.showMessageDialog(InterfazSpaceInvaders.getInstance(), e.getMessage(), "Error al agregar el jugador",
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error al agregar el jugador",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -245,7 +248,7 @@ public final class InterfazSpaceInvaders extends JFrame {
             mundo.setJugadorActual(actual);
             panelMenu.repaint();
         } else
-            JOptionPane.showMessageDialog(InterfazSpaceInvaders.getInstance(), "Por favor cree algun jugador", "No existen jugadores",
+            JOptionPane.showMessageDialog(this, "Por favor cree algun jugador", "No existen jugadores",
                     JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -344,7 +347,8 @@ public final class InterfazSpaceInvaders extends JFrame {
      */
     public void mejoresPuntajes() {
         DialogBuilder dialog = new BestScoreDialogBuilder(mundo.mejoresPuntajes());
-        dialog.setLayout(InterfazSpaceInvaders.getInstance());
+        dialog.setLayout();
+
         panelMenu.setDialogoMejoresPuntajes(dialog);
         panelMenu.getDialogoMejoresPuntajes().viewDialog();
     }
@@ -355,6 +359,7 @@ public final class InterfazSpaceInvaders extends JFrame {
      */
     public static void main(String[] args) {
         InterfazSpaceInvaders gameWindow = InterfazSpaceInvaders.getInstance();
+        gameWindow.init();
 
         gameWindow.setVisible(true);
     }

@@ -4,7 +4,7 @@ import interfaz.InterfazSpaceInvaders;
 
 public interface DialogBuilder {
 
-    void setLayout(InterfazSpaceInvaders interfaz);
+    void setLayout();
     void reset();
     void viewDialog();
 

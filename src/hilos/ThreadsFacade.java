@@ -9,8 +9,8 @@ public class ThreadsFacade {
     private InterfazSpaceInvaders interfaz;
     private SpaceInvaders mundo;
 
-    public ThreadsFacade(InterfazSpaceInvaders interfazSpaceInvaders, SpaceInvaders mundo) {
-        this.interfaz = interfazSpaceInvaders;
+    public ThreadsFacade(SpaceInvaders mundo) {
+        this.interfaz = InterfazSpaceInvaders.getInstance();
         this.mundo = mundo;
     }
 
