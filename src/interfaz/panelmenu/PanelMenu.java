@@ -166,11 +166,20 @@ public class PanelMenu extends JPanel implements ActionListener {
 		setOpaque(false);
 
 		// T�tulo del juego: "SPACE INVADERS"
-		JLabel space = new JLabel("SPACE INVADERS");
+		JLabel space = new JLabel("SPACE");
 		space.setForeground(Color.WHITE);
 		space.setFont(new Font("ArcadeClassic", Font.PLAIN, 40));
-		space.setBounds(45, 75, 560, 80);
+		space.setBounds(100, 50, 560, 80);
+		JLabel invaders = new JLabel("INVADERS");
+		invaders.setForeground(Color.WHITE);
+		invaders.setFont(new Font("ArcadeClassic", Font.PLAIN, 40));
+		invaders.setBounds(150, 90, 560, 80);
+		ImageIcon image6 = new ImageIcon("./data/imagenes/menu/invaders.png");
+		JLabel invadersIcon = new JLabel(image6);
+		invadersIcon.setBounds(20, 75, 64, 64);
+		add(invadersIcon);
 		add(space);
+		add(invaders);
 
 		// Inicializa los 4 di�logos que se puede ver en el menu
 		dialogoCrearJugador = new CreatePlayerDialogBuilder();
@@ -233,11 +242,51 @@ public class PanelMenu extends JPanel implements ActionListener {
 		// TODO
 		// Inicio temporal
 
+		// Boton Open Menu Jugar
+		labOpenMenuJugar = new JLabel("JUGAR");
+		labOpenMenuJugar.setBounds(55, 242, 110, 23);
+		labOpenMenuJugar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		labOpenMenuJugar.setForeground(Color.WHITE);
+		labOpenMenuJugar.setAlignmentX(RIGHT_ALIGNMENT);
+		labOpenMenuJugar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				popMenuJugar.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+		ImageIcon image = new ImageIcon("./data/imagenes/menu/play.png");
+		JLabel playIcon = new JLabel(image);
+		playIcon.setBounds(15, 240, 32, 32);
+		add(playIcon);
+		add(labOpenMenuJugar);
+
+		// Boton Open Menu Jugador
+		labOpenMenuJugador = new JLabel("JUGADOR");
+		labOpenMenuJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		labOpenMenuJugador.setBounds(55, 282, 190, 23);
+		labOpenMenuJugador.setForeground(Color.WHITE);
+		labOpenMenuJugador.setAlignmentX(RIGHT_ALIGNMENT);
+		labOpenMenuJugador.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				popMenuJugador.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+		ImageIcon image2 = new ImageIcon("./data/imagenes/menu/player.png");
+		JLabel playerIcon = new JLabel(image2);
+		playerIcon.setBounds(15, 280, 32, 32);
+		add(playerIcon);
+		add(labOpenMenuJugador);
+
 		// JLabel de las mejoras
 		labLoginRapido = new JLabel("LOGIN RAPIDO");
 		labLoginRapido.setForeground(Color.WHITE);
-		labLoginRapido.setBounds(15, 300, 250, 23);
+		labLoginRapido.setBounds(55, 322, 250, 23);
 		labLoginRapido.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		ImageIcon image3 = new ImageIcon("./data/imagenes/menu/fastLogin.png");
+		JLabel fastLoginIcon = new JLabel(image3);
+		fastLoginIcon.setBounds(15, 320, 32, 32);
+		add(fastLoginIcon);
 		add(labLoginRapido);
 		labLoginRapido.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -255,78 +304,15 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		//Fin temporal
 
-		// Boton Open Menu Jugar
-		labOpenMenuJugar = new JLabel("JUGAR");
-		labOpenMenuJugar.setBounds(15, 240, 110, 23);
-		labOpenMenuJugar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		labOpenMenuJugar.setForeground(Color.WHITE);
-		labOpenMenuJugar.setAlignmentX(RIGHT_ALIGNMENT);
-		labOpenMenuJugar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				popMenuJugar.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-		add(labOpenMenuJugar);
-
-		// Boton Open Menu Jugador
-		labOpenMenuJugador = new JLabel("JUGADOR");
-		labOpenMenuJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		labOpenMenuJugador.setBounds(15, 270, 190, 23);
-		labOpenMenuJugador.setForeground(Color.WHITE);
-		labOpenMenuJugador.setAlignmentX(RIGHT_ALIGNMENT);
-		labOpenMenuJugador.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				popMenuJugador.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-		add(labOpenMenuJugador);
-
-		// JLabel de los mejores puntajes
-		labMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
-		labMejoresPuntajes.setForeground(Color.WHITE);
-		labMejoresPuntajes.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		labMejoresPuntajes.setBounds(15, 360, 340, 23);
-		add(labMejoresPuntajes);
-		labMejoresPuntajes.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				interfaz.mejoresPuntajes();
-			}
-		});
-
-
 		// JLabel con las intrucciones
 		labInstrucciones = new JLabel("INSTRUCCIONES");
 		labInstrucciones.setForeground(Color.WHITE);
 		labInstrucciones.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		labInstrucciones.setBounds(15, 330, 300, 23);
+		labInstrucciones.setBounds(55, 362, 300, 23);
+		ImageIcon image4 = new ImageIcon("./data/imagenes/menu/instructions.png");
+		JLabel instructionsIcon = new JLabel(image4);
+		instructionsIcon.setBounds(15, 360, 32, 32);
+		add(instructionsIcon);
 		labInstrucciones.addMouseListener(new MouseListener() {
 
 			@Override
@@ -361,6 +347,49 @@ public class PanelMenu extends JPanel implements ActionListener {
 		// }
 		// });
 		add(labInstrucciones);
+
+		// JLabel de los mejores puntajes
+		labMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
+		labMejoresPuntajes.setForeground(Color.WHITE);
+		labMejoresPuntajes.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		labMejoresPuntajes.setBounds(55, 402, 340, 23);
+		ImageIcon image5 = new ImageIcon("./data/imagenes/menu/scores.png");
+		JLabel scoresIcon = new JLabel(image5);
+		scoresIcon.setBounds(15, 400, 32, 32);
+		add(scoresIcon);
+		add(labMejoresPuntajes);
+		labMejoresPuntajes.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				interfaz.mejoresPuntajes();
+			}
+		});
+
 	}
 
 	// -----------------------------------------------------------------
@@ -435,6 +464,11 @@ public class PanelMenu extends JPanel implements ActionListener {
 		g2.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		g2.drawString("NICKNAME", 360, 430);
 		g2.drawString("JUGADOR", 500, 430);
+		ImageIcon playerSelect = new ImageIcon("./data/imagenes/menu/playerSelect.png");
+		JLabel playerSelectIcon = new JLabel(playerSelect);
+		playerSelectIcon.setBounds(320, 430, 32, 32);
+		add(playerSelectIcon);
+
 
 		g2.setColor(Color.CYAN);
 		if (interfaz.getJugadorActual() != null) {
