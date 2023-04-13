@@ -370,16 +370,17 @@ public class SpaceInvaders {
         return jugadorActual.getCantidadDisparos();
     }
 
-    public void eliminarPartida(boolean winner) throws IOException {
+    public void deleteGame(boolean winner) throws IOException {
         Puntaje nuevoPuntaje = new Puntaje(partidaActual.getPuntaje().getPuntuacion(), jugadorActual.getNickname(), partidaActual.getNombre());
         agregarPuntaje(nuevoPuntaje);
         jugadorActual.setPartidaRaiz(jugadorActual.getPartidaRaiz().eliminar(partidaActual.getNombre()));
         serializarJugador();
         serializarPuntaje();
-        if (winner)
-            JOptionPane.showConfirmDialog(null,
-                    "HAS GANADO!!!", "Infomracion...",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
 
+        if (winner) {
+            JOptionPane.showConfirmDialog(null,
+                    "HAS GANADO!!!", "Informacion...",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+        }
     }
 }

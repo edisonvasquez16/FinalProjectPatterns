@@ -6,7 +6,7 @@ import java.util.Collection;
 
 public interface DialogBuilderWithLists {
 
-    void setLayout(InterfazSpaceInvaders interfaz);
+    void setLayout();
     void reset();
     void getResult();
 

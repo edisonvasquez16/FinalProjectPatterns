@@ -48,10 +48,10 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 	 * 
 	 * @param interfaz
 	 */
-	public PanelImagenInicial(InterfazSpaceInvaders interfaz) {
+	public PanelImagenInicial() {
 
 		// Inicializa la asociaci�n con la interfaz
-		this.interfaz = interfaz;
+		this.interfaz = InterfazSpaceInvaders.getInstance();
 
 		// Contenedor gr�fico
 		setLayout(new BorderLayout());

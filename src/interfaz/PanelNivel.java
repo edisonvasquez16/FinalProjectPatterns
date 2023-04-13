@@ -18,13 +18,13 @@ public class PanelNivel extends JPanel {
     private int posJugadorActualX;
     private int posJugadorActualY;
 
-    public PanelNivel(Partida actual, SpaceInvaders b, InterfazSpaceInvaders c) {
+    public PanelNivel(Partida actual, SpaceInvaders b) {
         // TODO Auto-generated constructor stub
         // BORAR
 
         partida = actual;
         space = b;
-        interfaz = c;
+        interfaz = InterfazSpaceInvaders.getInstance();
 
         setSize(640, 480);
 

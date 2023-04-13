@@ -10,8 +10,8 @@ public class SelectGameDialogBuilder implements DialogBuilderWithLists {
 
     private SelectGame selectGame;
     @Override
-    public void setLayout(InterfazSpaceInvaders interfaz) {
-        selectGame = new SelectGame(interfaz);
+    public void setLayout() {
+        selectGame = new SelectGame();
     }
 
     @Override
