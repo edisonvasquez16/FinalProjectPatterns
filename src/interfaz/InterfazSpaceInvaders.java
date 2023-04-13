@@ -97,6 +97,9 @@ public class InterfazSpaceInvaders extends JFrame {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            publisher.notifySubscribers(Events.CLOSED_GAME, "");
+
             System.exit(0);
         }
     }
@@ -120,6 +123,8 @@ public class InterfazSpaceInvaders extends JFrame {
      */
     public void cambiarPausa(boolean paus) {
         this.pausa = paus;
+
+        publisher.notifySubscribers(Events.TOGGLE_PAUSE, paus);
     }
 
     /*
@@ -194,6 +199,8 @@ public class InterfazSpaceInvaders extends JFrame {
      */
     public void modificarFuncionamiento(boolean salida) {
         mundo.setEnFuncionamiento(salida);
+
+        publisher.notifySubscribers(Events.TOGGLE_RUNNING, salida);
     }
 
     /**
@@ -235,9 +242,12 @@ public class InterfazSpaceInvaders extends JFrame {
      *
      */
     public void iniciarTodosLosHilos() {
-        mundo.setEnFuncionamiento(true);
+        this.modificarFuncionamiento(true);
+
         threadsFacade = new ThreadsFacade(this, mundo);
         threadsFacade.startThreads();
+
+        publisher.notifySubscribers(Events.START_THREADS, "");
     }
 
     /**
@@ -252,8 +262,12 @@ public class InterfazSpaceInvaders extends JFrame {
             panelNivel.setPartida(mundo.getPartidaActual());
             mundo.iniciarPartida();
             cambiarPanel("Juego");
+
+            publisher.notifySubscribers(Events.NEW_GAME, nombre);
         } catch (PartidaYaExisteException | IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error al crear la partida", JOptionPane.ERROR_MESSAGE);
+
+            publisher.notifySubscribers(Events.EXISTING_GAME, nombre);
         }
     }
 
@@ -267,6 +281,8 @@ public class InterfazSpaceInvaders extends JFrame {
             panelMenu.repaint();
             actualizarJugadores();
             actualizarJugadorActual(nickname);
+
+            publisher.notifySubscribers(Events.ADDED_PLAYER, nickname);
         } catch (NicknameYaExisteException | IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error al agregar el jugador",
                     JOptionPane.ERROR_MESSAGE);
@@ -295,7 +311,6 @@ public class InterfazSpaceInvaders extends JFrame {
         mundo.setPartidaActual(partidaActual);
         panelNivel.setPartida(partidaActual);
         iniciarTodosLosHilos();
-
     }
 
     /**
@@ -326,17 +341,22 @@ public class InterfazSpaceInvaders extends JFrame {
     public void nivelCompleto() {
         try {
             if (mundo.getPartidaActual().nivelCompleto()) {
+
                 JOptionPane.showConfirmDialog(null,
-                        "NIVEL COMPLETADO!!!", "Infomracion...",
+                        "NIVEL COMPLETADO!!!", "Informacion...",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+
                 iniciarTodosLosHilos();
+
+                publisher.notifySubscribers(Events.COMPLETED_LEVEL, "");
             } else {
                 panelMenu.repaint();
-
-                publisher.notifySubscribers(Events.DELETE_GAME, true);
+                mundo.eliminarPartida(true);
                 actualizarPartidas();
                 cambiarPanel("Menu");
                 panelMenu.repaint();
+
+                publisher.notifySubscribers(Events.COMPLETED_GAME, true);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -349,7 +369,7 @@ public class InterfazSpaceInvaders extends JFrame {
     public void perder() {
         panelMenu.repaint();
 
-        publisher.notifySubscribers(Events.DELETE_GAME, false);
+        publisher.notifySubscribers(Events.LOST_GAME, false);
 
         actualizarPartidas();
         cambiarPanel("Menu");
