@@ -78,13 +78,6 @@ public class PanelImagenInicialBuilder implements Builder {
     }
 
     /**
-     * Set Menu Object
-     */
-    public void setMenu() {
-      // TODO This Panel does not need a Menu Implementation
-    }
-
-    /**
      * Get resulting object
      *
      * @return PanelImagenInicial

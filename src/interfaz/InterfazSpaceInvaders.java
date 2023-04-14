@@ -4,6 +4,10 @@ import control.Keyboard;
 import excepciones.NicknameYaExisteException;
 import excepciones.PartidaYaExisteException;
 import hilos.ThreadsFacade;
+import interfaz.builder.Director;
+import interfaz.builder.PanelImagenInicialBuilder;
+import interfaz.builder.PanelMenuBuilder;
+import interfaz.builder.PanelNivelBuilder;
 import interfaz.dialogs.DialogBuilder;
 import interfaz.dialogs.builders.BestScoreDialogBuilder;
 import interfaz.panelmenu.PanelImagenInicial;
@@ -54,11 +58,24 @@ public final class InterfazSpaceInvaders extends JFrame {
     public void init() {
         mundo = new SpaceInvaders(false);
 
-        panelMenu = new PanelMenu();
-        panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo);
+        Director director = new Director();
 
-        PanelImagenInicial imagen = new PanelImagenInicial();
+        PanelMenuBuilder panelMenuBuilder = new PanelMenuBuilder();
+        director.makePanelMenu(panelMenuBuilder);
+        panelMenu = (PanelMenu) panelMenuBuilder.getResult();
+
+        PanelNivelBuilder panelNivelBuilder = new PanelNivelBuilder();
+        director.makePanelNivel(panelNivelBuilder);
+        panelNivel = (PanelNivel) panelNivelBuilder.getResult();
+
+//        panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo); //TODO: Estas dependencias no están solucionadas
+
+        PanelImagenInicialBuilder panelImagenInicialBuilder = new PanelImagenInicialBuilder();
+        director.makePanelImagenInicial(panelImagenInicialBuilder);
+        imagen = (PanelImagenInicial) panelImagenInicialBuilder.getResult();
+
         addKeyListener(imagen);
+
         contenedor = this.getContentPane();
         card.addLayoutComponent(imagen, "Inicio");
         card.addLayoutComponent(panelMenu, "Menu");

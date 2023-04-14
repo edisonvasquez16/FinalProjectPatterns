@@ -22,8 +22,6 @@ public class Director {
 
     private static final String FONT_NAME = "ArcadeClassic";
 
-    private Builder builder;
-
     /**
      * Create and configure a PanelImagenInicial Object
      *
@@ -62,15 +60,53 @@ public class Director {
      */
     public void makePanelMenu(Builder builder) {
         // T�tulo del juego: "SPACE INVADERS"
-        JLabel space = new JLabel("SPACE INVADERS");
-
+        JLabel space = new JLabel("SPACE");
         space.setForeground(Color.WHITE);
         space.setFont(new Font(FONT_NAME, Font.PLAIN, 40));
-        space.setBounds(45, 75, 560, 80);
+        space.setBounds(100, 50, 560, 80);
 
+        JLabel invaders = new JLabel("INVADERS");
+        invaders.setForeground(Color.WHITE);
+        invaders.setFont(new Font(FONT_NAME, Font.PLAIN, 40));
+        invaders.setBounds(150, 90, 560, 80);
+
+        ImageIcon image6 = new ImageIcon("./data/imagenes/menu/invaders.png");
+        JLabel invadersIcon = new JLabel(image6);
+        invadersIcon.setBounds(20, 75, 64, 64);
+
+        builder.setLabel(invadersIcon);
         builder.setLabel(space);
+        builder.setLabel(invaders);
 
-        builder.setMenu();
+        ImageIcon image = new ImageIcon("./data/imagenes/menu/play.png");
+        JLabel playIcon = new JLabel(image);
+        playIcon.setBounds(15, 240, 32, 32);
+
+        builder.setLabel(playIcon);
+
+        ImageIcon image2 = new ImageIcon("./data/imagenes/menu/player.png");
+        JLabel playerIcon = new JLabel(image2);
+        playerIcon.setBounds(15, 280, 32, 32);
+
+        builder.setLabel(playerIcon);
+
+        ImageIcon image3 = new ImageIcon("./data/imagenes/menu/fastLogin.png");
+        JLabel fastLoginIcon = new JLabel(image3);
+        fastLoginIcon.setBounds(15, 320, 32, 32);
+
+        builder.setLabel(fastLoginIcon);
+
+        ImageIcon image4 = new ImageIcon("./data/imagenes/menu/instructions.png");
+        JLabel instructionsIcon = new JLabel(image4);
+        instructionsIcon.setBounds(15, 360, 32, 32);
+
+        builder.setLabel(instructionsIcon);
+
+        ImageIcon image5 = new ImageIcon("./data/imagenes/menu/scores.png");
+        JLabel scoresIcon = new JLabel(image5);
+        scoresIcon.setBounds(15, 400, 32, 32);
+
+        builder.setLabel(scoresIcon);
 
         // Establece el tama�o, la contenedora de tama�o y le quita el fondo que
 		// trae por defecto.

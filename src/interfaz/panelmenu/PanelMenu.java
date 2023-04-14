@@ -46,6 +46,8 @@ public class PanelMenu extends JPanel implements ActionListener {
 	 */
 	public final static String SELECCIONAR_PARTIDA = "SELECCIONAR PARTIDA";
 
+	private static final String FONT_NAME = "ArcadeClassic";
+
 	// -----------------------------------------------------------------
 	// --------------------------Asociaciones---------------------------
 	// -----------------------------------------------------------------
@@ -119,29 +121,6 @@ public class PanelMenu extends JPanel implements ActionListener {
 	 */
 	JMenuItem menuSeleccionarJugador;
 
-	/**
-	 *
-	 */
-	JLabel labOpenMenuJugar;
-
-	/**
-	 *
-	 */
-	JLabel labOpenMenuJugador;
-
-
-	JLabel labLoginRapido;
-
-	/**
-	 *
-	 */
-	JLabel labMejoresPuntajes;
-
-	/**
-	 *
-	 */
-	JLabel labInstrucciones;
-
 	// -----------------------------------------------------------------
 	// ---------------------------Constructor---------------------------
 	// -----------------------------------------------------------------
@@ -197,11 +176,11 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		// Item1 de Menu Jugar
 		menuCrearPartida = new JMenuItem("Crear partida");
-		menuCrearPartida.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		menuCrearPartida.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 
 		// Item2 de Menu Jugar
 		menuCargarPartida = new JMenuItem("Cargar partida");
-		menuCargarPartida.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		menuCargarPartida.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 
 		// A�adir los action listener a los item's de Menu Jugar
 		menuCrearPartida.addActionListener(this);
@@ -218,11 +197,11 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		// Item1 de Menu Jugador
 		menuNuevoJugador = new JMenuItem("Nuevo jugador");
-		menuNuevoJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		menuNuevoJugador.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 
 		// Item2 de Menu Jugador
 		menuSeleccionarJugador = new JMenuItem("Seleccionar jugador");
-		menuSeleccionarJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		menuSeleccionarJugador.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 
 		// A�adir los action listener a los Item's de Menu Jugador
 		menuNuevoJugador.addActionListener(this);
@@ -454,7 +433,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		// Dibuja el nickname, nombre y monedas del jugador actual del juego.
 		g2.setColor(Color.lightGray);
-		g2.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		g2.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 		g2.drawString("NICKNAME", 360, 430);
 		g2.drawString("JUGADOR", 500, 430);
 		ImageIcon playerSelect = new ImageIcon("./data/imagenes/menu/playerSelect.png");

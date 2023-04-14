@@ -2,7 +2,6 @@ package interfaz.builder;
 
 import javax.swing.*;
 
-import interfaz.InterfazSpaceInvaders;
 import interfaz.PanelNivel;
 import mundo.Partida;
 import mundo.SpaceInvaders;
@@ -14,14 +13,14 @@ public class PanelNivelBuilder implements Builder {
     private PanelNivel panelNivel;
 
     public PanelNivelBuilder() {
-        this.panelNivel = new PanelNivel(new Partida(""), new SpaceInvaders(false), new InterfazSpaceInvaders());
+        this.panelNivel = new PanelNivel(new Partida(""), new SpaceInvaders(false));
     }
 
     /**
      * Reset the object
      */
     public void reset() {
-        this.panelNivel = new PanelNivel(new Partida(""), new SpaceInvaders(false), new InterfazSpaceInvaders());
+        this.panelNivel = new PanelNivel(new Partida(""), new SpaceInvaders(false));
     }
 
     /**
@@ -71,13 +70,6 @@ public class PanelNivelBuilder implements Builder {
      */
     public void setOpaque(boolean isOpaque) {
         this.panelNivel.setOpaque(isOpaque);
-    }
-
-    /**
-     * Set Menu Object
-     */
-    public void setMenu() {
-
     }
 
     /**

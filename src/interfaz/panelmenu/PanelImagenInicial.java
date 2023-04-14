@@ -35,8 +35,6 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 
 	/**
 	 * Constructor
-	 *
-	 * @param interfaz
 	 */
 	public PanelImagenInicial() {
 

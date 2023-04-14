@@ -54,6 +54,7 @@ public class PanelNivel extends JPanel {
 
         // DISPARO DE LA NAVE
         Disparo a = (Disparo) space.getJugadorActual().getDisparoUno();
+
         if (a != null) {
             g.setColor(Color.WHITE);
             g.fillOval(a.getPosX() + 13, a.getPosY(), 7, 7);

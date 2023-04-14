@@ -16,7 +16,6 @@ public interface Builder {
     public void setPanel(JPanel panel, Object borderLayout);
     public void setPreferredSize(Dimension dimension);
     public void setOpaque(boolean isOpaque);
-    public void setMenu();
     public void setSize(int x, int y);
     public JPanel getResult();
 }
