@@ -72,13 +72,13 @@ public class CreateGame extends JDialog implements ActionListener {
 
 	/**
 	 * 
-	 * @param interfaz
+	 * CreateGame class
 	 */
-	public CreateGame(InterfazSpaceInvaders interfaz) {
+	public CreateGame() {
 
-		super(interfaz, false);
+		super(InterfazSpaceInvaders.getInstance(), false);
 
-		this.interfaz = interfaz;
+		this.interfaz = InterfazSpaceInvaders.getInstance();
 		setLayout(null);
 
 		auxiliar = new JPanel();

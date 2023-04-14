@@ -25,15 +25,6 @@ public class Instructions extends JDialog implements ListSelectionListener, Acti
 	private final static String ACEPTAR = "Aceptar";
 
 	// -----------------------------------------------------------------
-	// --------------------------Asociaciones---------------------------
-	// -----------------------------------------------------------------
-
-	/**
-	 * 
-	 */
-	private InterfazSpaceInvaders interfaz;
-
-	// -----------------------------------------------------------------
 	// ----------------------------Atributos----------------------------
 	// -----------------------------------------------------------------
 
@@ -44,13 +35,13 @@ public class Instructions extends JDialog implements ListSelectionListener, Acti
 
 	/**
 	 * 
-	 * @param interfaz
+	 * Instructions class
 	 */
 	JPanel auxiliar;
 
-	public Instructions(InterfazSpaceInvaders interfaz) {
+	public Instructions() {
 
-		super(interfaz, true);
+		super(InterfazSpaceInvaders.getInstance(), true);
 
 		setLayout(null);
 

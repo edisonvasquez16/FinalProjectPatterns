@@ -8,8 +8,8 @@ public class InstructionsDialogBuilder implements DialogBuilder {
 
     private Instructions instructions;
     @Override
-    public void setLayout(InterfazSpaceInvaders interfaz) {
-        instructions = new Instructions(interfaz);
+    public void setLayout() {
+        instructions = new Instructions();
     }
 
     @Override

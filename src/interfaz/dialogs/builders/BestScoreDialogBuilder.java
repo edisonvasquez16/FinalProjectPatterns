@@ -16,8 +16,8 @@ public class BestScoreDialogBuilder implements DialogBuilder {
     }
 
     @Override
-    public void setLayout(InterfazSpaceInvaders interfaz) {
-        bestScore = new BestScore(interfaz, strings);
+    public void setLayout() {
+        bestScore = new BestScore(strings);
     }
 
     @Override
