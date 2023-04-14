@@ -116,15 +116,16 @@ public class PanelNivel extends JPanel {
             space.setEnFuncionamiento(false);
             interfaz.getThreadsFacade().stopThreads();
             int bonificacion = (space.puntosPorVida() - space.puntosPorDisparos());
-            if (bonificacion > 0)
+
+            if (bonificacion > 0) {
                 space.getPartidaActual().getPuntaje().setPuntuacion(bonificacion);
+            }
+
             interfaz.perder();
         }
 
         if (interfaz.estaEnFuncionamiento()) {
-
-            g.drawString("Vidas jugador" + space.getJugadorActual().getVida(), 100, 470);
-
+            g.drawString("Vidas jugador: " + space.getJugadorActual().getVida(), 100, 470);
         }
 
     }

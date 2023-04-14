@@ -11,6 +11,7 @@ import mundo.NaveJugador;
 import mundo.Partida;
 import mundo.SpaceInvaders;
 import observer.Events;
+import observer.LogSubscriber;
 import observer.Publisher;
 
 import javax.swing.*;
@@ -143,7 +144,7 @@ public final class InterfazSpaceInvaders extends JFrame {
     public void cambiarPausa(boolean pause) {
         this.pausa = pause;
 
-        publisher.notifySubscribers(Events.TOGGLE_PAUSE, paus);
+        publisher.notifySubscribers(Events.TOGGLE_PAUSE, pause);
     }
 
     /**
@@ -181,27 +182,6 @@ public final class InterfazSpaceInvaders extends JFrame {
      */
     public NaveJugador getJugadorActual() {
         return mundo.getJugadorActual();
-    }
-
-    /**
-     * @param panelNivel
-     */
-    public void setPanelNivel(PanelNivel panelNivel) {
-        this.panelNivel = panelNivel;
-    }
-
-    /**
-     * @return
-     */
-    public PanelMenu getPanelMenu() {
-        return panelMenu;
-    }
-
-    /**
-     * @param panelMenu
-     */
-    public void setPanelMenu(PanelMenu panelMenu) {
-        this.panelMenu = panelMenu;
     }
 
     /**
@@ -385,6 +365,10 @@ public final class InterfazSpaceInvaders extends JFrame {
     public static void main(String[] args) {
         InterfazSpaceInvaders gameWindow = InterfazSpaceInvaders.getInstance();
         gameWindow.init();
+
+        for (Events event : Events.values()) {
+            gameWindow.publisher.subscribe(event, new LogSubscriber("./data/log/log.txt"));
+        }
 
         gameWindow.setVisible(true);
     }

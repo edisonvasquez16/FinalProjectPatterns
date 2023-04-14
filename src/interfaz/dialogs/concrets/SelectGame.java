@@ -139,7 +139,7 @@ public class SelectGame extends JDialog implements ListSelectionListener, Action
 				this.dispose();
 				interfaz.cambiarPanel("Juego");
 			} else {
-				JOptionPane.showMessageDialog(this, "Por favor cree una partida para el jugaodor",
+				JOptionPane.showMessageDialog(this, "Por favor cree una partida para el jugador",
 						"No existen partidas", JOptionPane.INFORMATION_MESSAGE);
 				this.dispose();
 			}

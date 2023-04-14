@@ -1,5 +1,5 @@
 package observer;
 
 public interface Subscriber {
-    public void update(Object data);
+    public void update(Events eventType, Object data);
 }
