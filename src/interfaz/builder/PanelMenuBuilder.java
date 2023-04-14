@@ -4,12 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
+import javax.swing.*;
 
 import interfaz.InterfazSpaceInvaders;
 import interfaz.panelmenu.PanelMenu;
@@ -23,14 +22,14 @@ public class PanelMenuBuilder implements Builder {
     private JPopupMenu popMenuJugador;
 
     public PanelMenuBuilder() {
-        this.panelMenu = new PanelMenu(new InterfazSpaceInvaders());
+        this.panelMenu = new PanelMenu();
     }
 
     /**
      * Reset the object
      */
     public void reset() {
-        this.panelMenu = new PanelMenu(new InterfazSpaceInvaders());
+        this.panelMenu = new PanelMenu();
     }
 
     /**
@@ -74,6 +73,13 @@ public class PanelMenuBuilder implements Builder {
      */
     public void setPanel(JPanel panel, Object borderLayout) {
         this.panelMenu.add(panel, borderLayout);
+    }
+
+    /**
+     * Set Size Object
+     */
+    public void setSize(int x, int y) {
+        this.panelMenu.setSize(x, y);
     }
 
     public void setLabels() {

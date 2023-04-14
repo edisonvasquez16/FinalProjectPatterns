@@ -1,11 +1,13 @@
 package interfaz.builder;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import interfaz.InterfazSpaceInvaders;
 import interfaz.PanelNivel;
 import mundo.Partida;
 import mundo.SpaceInvaders;
+
+import java.awt.*;
 
 public class PanelNivelBuilder implements Builder {
 
@@ -23,17 +25,52 @@ public class PanelNivelBuilder implements Builder {
     }
 
     /**
+     * Set a Label for the Panel
+     */
+    public void setLabel(JLabel label) {
+        this.panelNivel.add(label);
+    }
+
+    /**
      * Set Layout Object
      */
     public void setLayout(BorderLayout layout) {
-        this.panelImagenInicial.setLayout(layout);
+        this.panelNivel.setLayout(layout);
     }
 
     /**
      * Set Size Object
      */
-    public void setSize(x, y) {
-        this.panelImagenInicial.setSize(x, y);
+    public void setSize(int x, int y) {
+        this.panelNivel.setSize(x, y);
+    }
+
+    /**
+     * Set Background Object
+     */
+    public void setBackground(Color background) {
+        this.panelNivel.setBackground(background);
+    }
+
+    /**
+     * Set Panel Object
+     */
+    public void setPanel(JPanel panel, Object borderLayout) {
+        this.panelNivel.add(panel, borderLayout);
+    }
+
+    /**
+     * Set Dimension Object
+     */
+    public void setPreferredSize(Dimension dimension) {
+        this.panelNivel.setPreferredSize(dimension);
+    }
+
+    /**
+     * Set Opaque Object
+     */
+    public void setOpaque(boolean isOpaque) {
+        this.panelNivel.setOpaque(isOpaque);
     }
 
     /**

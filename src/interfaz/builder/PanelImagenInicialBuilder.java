@@ -1,7 +1,6 @@
 package interfaz.builder;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.*;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,14 +18,14 @@ public class PanelImagenInicialBuilder implements Builder {
     private PanelImagenInicial panelImagenInicial;
 
     public PanelImagenInicialBuilder() {
-        this.panelImagenInicial = new PanelImagenInicial(new InterfazSpaceInvaders());
+        this.panelImagenInicial = new PanelImagenInicial();
     }
 
     /**
      * Reset the object
      */
     public void reset() {
-        this.panelImagenInicial = new PanelImagenInicial(new InterfazSpaceInvaders());
+        this.panelImagenInicial = new PanelImagenInicial();
     }
 
     /**
@@ -55,6 +54,27 @@ public class PanelImagenInicialBuilder implements Builder {
      */
     public void setPanel(JPanel panel, Object borderLayout) {
         this.panelImagenInicial.add(panel, borderLayout);
+    }
+
+    /**
+     * Set Dimension Object
+     */
+    public void setPreferredSize(Dimension dimension) {
+        this.panelImagenInicial.setPreferredSize(dimension);
+    }
+
+    /**
+     * Set Opaque Object
+     */
+    public void setOpaque(boolean isOpaque) {
+        this.panelImagenInicial.setOpaque(isOpaque);
+    }
+
+    /**
+     * Set Size Object
+     */
+    public void setSize(int x, int y) {
+        this.panelImagenInicial.setSize(x, y);
     }
 
     /**
