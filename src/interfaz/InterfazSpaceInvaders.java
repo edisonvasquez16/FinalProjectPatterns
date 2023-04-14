@@ -10,6 +10,9 @@ import interfaz.panelmenu.PanelMenu;
 import mundo.NaveJugador;
 import mundo.Partida;
 import mundo.SpaceInvaders;
+import observer.Events;
+import observer.LogSubscriber;
+import observer.Publisher;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,13 +30,11 @@ public final class InterfazSpaceInvaders extends JFrame {
 
     public static Container contenedor;
 
-    private PanelImagenInicial imagen;
-
-    private Keyboard tecladito;
-
     private PanelMenu panelMenu;
 
     private PanelNivel panelNivel;
+
+    private Publisher publisher;
 
     private SpaceInvaders mundo;
     private ThreadsFacade threadsFacade;
@@ -42,6 +43,7 @@ public final class InterfazSpaceInvaders extends JFrame {
     private static InterfazSpaceInvaders instance;
 
     private InterfazSpaceInvaders() {
+        publisher = new Publisher();
     }
 
     /**
@@ -67,8 +69,8 @@ public final class InterfazSpaceInvaders extends JFrame {
         contenedor.setLayout(card);
         card.show(contenedor, "Inicio");
 
-        Keyboard tecladito = new Keyboard(mundo);
-        addKeyListener(tecladito);
+        Keyboard keyboard = new Keyboard(mundo);
+        addKeyListener(keyboard);
 
         setSize(640, 480);
         setUndecorated(true);
@@ -115,6 +117,9 @@ public final class InterfazSpaceInvaders extends JFrame {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            publisher.notifySubscribers(Events.CLOSED_GAME, "");
+
             System.exit(0);
         }
     }
@@ -138,6 +143,8 @@ public final class InterfazSpaceInvaders extends JFrame {
      */
     public void cambiarPausa(boolean pause) {
         this.pausa = pause;
+
+        publisher.notifySubscribers(Events.TOGGLE_PAUSE, pause);
     }
 
     /**
@@ -159,6 +166,8 @@ public final class InterfazSpaceInvaders extends JFrame {
      */
     public void modificarFuncionamiento(boolean salida) {
         mundo.setEnFuncionamiento(salida);
+
+        publisher.notifySubscribers(Events.TOGGLE_RUNNING, salida);
     }
 
     /**
@@ -176,34 +185,15 @@ public final class InterfazSpaceInvaders extends JFrame {
     }
 
     /**
-     * @param panelNivel
-     */
-    public void setPanelNivel(PanelNivel panelNivel) {
-        this.panelNivel = panelNivel;
-    }
-
-    /**
-     * @return
-     */
-    public PanelMenu getPanelMenu() {
-        return panelMenu;
-    }
-
-    /**
-     * @param panelMenu
-     */
-    public void setPanelMenu(PanelMenu panelMenu) {
-        this.panelMenu = panelMenu;
-    }
-
-    /**
      *
      */
     public void iniciarTodosLosHilos() {
-        mundo.setEnFuncionamiento(true);
+        this.modificarFuncionamiento(true);
 
         threadsFacade = new ThreadsFacade(mundo);
         threadsFacade.startThreads();
+
+        publisher.notifySubscribers(Events.START_THREADS, "");
     }
 
     /**
@@ -218,8 +208,12 @@ public final class InterfazSpaceInvaders extends JFrame {
             panelNivel.setPartida(mundo.getPartidaActual());
             mundo.iniciarPartida();
             cambiarPanel("Juego");
+
+            publisher.notifySubscribers(Events.NEW_GAME, nombre);
         } catch (PartidaYaExisteException | IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error al crear la partida", JOptionPane.ERROR_MESSAGE);
+
+            publisher.notifySubscribers(Events.EXISTING_GAME, nombre);
         }
     }
 
@@ -233,6 +227,8 @@ public final class InterfazSpaceInvaders extends JFrame {
             panelMenu.repaint();
             actualizarJugadores();
             actualizarJugadorActual(nickname);
+
+            publisher.notifySubscribers(Events.ADDED_PLAYER, nickname);
         } catch (NicknameYaExisteException | IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error al agregar el jugador",
                     JOptionPane.ERROR_MESSAGE);
@@ -261,7 +257,6 @@ public final class InterfazSpaceInvaders extends JFrame {
         mundo.setPartidaActual(partidaActual);
         panelNivel.setPartida(partidaActual);
         iniciarTodosLosHilos();
-
     }
 
     /**
@@ -279,8 +274,10 @@ public final class InterfazSpaceInvaders extends JFrame {
      */
     public void actualizarPartidas() {
         ArrayList<Partida> partidas = mundo.darPartidasJugador();
-        if (partidas.size() == 0)
+        if (partidas.size() == 0) {
             partidas = new ArrayList<Partida>();
+        }
+
         panelMenu.getDialogoSeleccionarPartida().changeList(partidas);
     }
 
@@ -290,16 +287,22 @@ public final class InterfazSpaceInvaders extends JFrame {
     public void nivelCompleto() {
         try {
             if (mundo.getPartidaActual().nivelCompleto()) {
+
                 JOptionPane.showConfirmDialog(null,
                         "NIVEL COMPLETADO!!!", "Informacion...",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+
                 iniciarTodosLosHilos();
+
+                publisher.notifySubscribers(Events.COMPLETED_LEVEL, "");
             } else {
                 panelMenu.repaint();
                 mundo.deleteGame(true);
                 actualizarPartidas();
                 cambiarPanel("Menu");
                 panelMenu.repaint();
+
+                publisher.notifySubscribers(Events.COMPLETED_GAME, true);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -316,6 +319,8 @@ public final class InterfazSpaceInvaders extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        publisher.notifySubscribers(Events.LOST_GAME, false);
         actualizarPartidas();
         cambiarPanel("Menu");
         panelMenu.repaint();
@@ -360,6 +365,10 @@ public final class InterfazSpaceInvaders extends JFrame {
     public static void main(String[] args) {
         InterfazSpaceInvaders gameWindow = InterfazSpaceInvaders.getInstance();
         gameWindow.init();
+
+        for (Events event : Events.values()) {
+            gameWindow.publisher.subscribe(event, new LogSubscriber("./data/log/log.txt"));
+        }
 
         gameWindow.setVisible(true);
     }
