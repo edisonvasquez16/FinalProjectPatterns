@@ -171,8 +171,8 @@ public class CreatePlayer extends JDialog implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Por favor ingrese un nombre y un nickname v�lido",
 						"Error al crear el jugador", JOptionPane.ERROR_MESSAGE);
 
-			else if (txtNickame.getText().length() != 5) {
-				JOptionPane.showMessageDialog(this, "El nickname debe contener 5 caracteres",
+			else if (txtNickame.getText().length() < 5) {
+				JOptionPane.showMessageDialog(this, "El nickname debe contener 5 o más caracteres",
 						"Error al asignar el nickname", JOptionPane.ERROR_MESSAGE);
 			} else {
 				interfaz.reqAgregarJugador(txtNombre.getText(), txtNickame.getText());

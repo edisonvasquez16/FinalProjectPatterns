@@ -361,26 +361,34 @@ public class Partida implements Serializable {
 	}
 
 	public Partida eliminar( String nombre ) {
-		if(esHoja( ))
+		if (esHoja()) {
 			return null;
-		if( this.nombre.compareToIgnoreCase(nombre) == 0) {
-			if( partidaIzquierda == null )
+		}
+
+		if (this.nombre.compareToIgnoreCase(nombre) == 0) {
+			if (partidaIzquierda == null) {
 				return partidaDerecha;
-			if( partidaDerecha == null )
+			}
+
+			if (partidaDerecha == null) {
 				return partidaIzquierda;
+			}
 
-			Partida sucesor = partidaDerecha.darMenor( );
 
-			partidaDerecha = partidaDerecha.eliminar( sucesor.getNombre());
+			Partida sucesor = partidaDerecha.darMenor();
+
+			partidaDerecha = partidaDerecha.eliminar(sucesor.getNombre());
 
 			sucesor.partidaIzquierda = partidaIzquierda;
 			sucesor.partidaDerecha = partidaDerecha;
+
 			return sucesor;
-		}
-		else if( this.nombre.compareToIgnoreCase(nombre) > 0)
-			partidaIzquierda = partidaIzquierda.eliminar( nombre );
-		else
+		} else if (this.nombre.compareToIgnoreCase(nombre) > 0) {
+			partidaIzquierda = partidaIzquierda.eliminar(nombre);
+		} else {
 			partidaDerecha = partidaDerecha.eliminar(nombre);
+		}
+
 		return this;
 	}
 
