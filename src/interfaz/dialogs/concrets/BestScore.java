@@ -47,8 +47,7 @@ public class BestScore extends JDialog implements ActionListener {
 	// -----------------------------------------------------------------
 
 	/**
-	 * 
-	 * @param interfaz
+	 *
 	 */
 	public BestScore(ArrayList<String> puntajes) {
 
@@ -64,7 +63,7 @@ public class BestScore extends JDialog implements ActionListener {
 		butBotonAceptar.setActionCommand(ACEPTAR);
 		butBotonAceptar.addActionListener(this);
 		butBotonAceptar.setBounds(235, 360, 130, 25);
-		butBotonAceptar.setBackground(Color.BLACK);
+		butBotonAceptar.setBackground(Color.WHITE);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 
 		auxiliar.setSize(600,400);

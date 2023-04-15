@@ -104,7 +104,7 @@ public class CreateGame extends JDialog implements ActionListener {
 		butBotonAceptar.setActionCommand(ACEPTAR);
 		butBotonAceptar.addActionListener(this);
 		butBotonAceptar.setBounds(10, 150, 130, 25);
-		butBotonAceptar.setBackground(Color.BLACK);
+		butBotonAceptar.setBackground(Color.WHITE);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonAceptar.setForeground(Color.BLACK);
 
@@ -112,7 +112,7 @@ public class CreateGame extends JDialog implements ActionListener {
 		butBotonCancelar.setActionCommand(CANCELAR);
 		butBotonCancelar.addActionListener(this);
 		butBotonCancelar.setBounds(200, 150, 130, 25);
-		butBotonCancelar.setBackground(Color.BLACK);
+		butBotonCancelar.setBackground(Color.WHITE);
 		butBotonCancelar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonCancelar.setForeground(Color.BLACK);
 
