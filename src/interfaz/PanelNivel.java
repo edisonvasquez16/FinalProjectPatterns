@@ -101,7 +101,7 @@ public class PanelNivel extends JPanel {
             }
         }
 
-        if (space.getPartidaActual().terminarNivel()) {
+        if (space.getEnFuncionamiento() && space.getPartidaActual().terminarNivel()) {
             space.setEnFuncionamiento(false);
             interfaz.getThreadsFacade().stopThreads();
             int bonificacion = (space.puntosPorVida() - space.puntosPorDisparos());

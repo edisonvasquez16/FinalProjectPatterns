@@ -77,15 +77,15 @@ public class NaveJugador extends Nave {
 
 	/**
 	 * 
-	 * @param agregar
+	 * @param partidaNueva
 	 * @throws PartidaYaExisteException
 	 */
-	public void agregarPartida(Partida agregar) throws PartidaYaExisteException {
+	public void agregarPartida(Partida partidaNueva) throws PartidaYaExisteException {
 
 		if (partidaRaiz == null) {
-			partidaRaiz = agregar;
+			partidaRaiz = partidaNueva;
 		} else {
-			partidaRaiz.agregarPartida(agregar);
+			partidaRaiz.agregarPartida(partidaNueva);
 		}
 
 	}
@@ -97,10 +97,10 @@ public class NaveJugador extends Nave {
 	 */
 	public Partida crearPartida(String nombre) throws PartidaYaExisteException {
 
-		Partida b = new Partida(nombre);
-		agregarPartida(b);
+		Partida partidaNueva = new Partida(nombre);
+		agregarPartida(partidaNueva);
 
-		return b;
+		return partidaNueva;
 
 	}
 
