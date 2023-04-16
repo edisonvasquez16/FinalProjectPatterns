@@ -1,6 +1,8 @@
 package mundo.partida;
 
-public class PartidasCollection implements IterableCollection {
+import java.io.Serializable;
+
+public class PartidasCollection implements IterableCollection, Serializable {
     
     private Partida izquierda;
     private Partida derecha;
@@ -51,6 +53,7 @@ public class PartidasCollection implements IterableCollection {
 
     public Iterator createPartidasIterator(){
         Iterator iterator = new PartidasIterator();
+
         return iterator;
     }
 }

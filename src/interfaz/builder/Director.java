@@ -28,6 +28,9 @@ public class Director {
      * @param builder
      */
     public void makePanelImagenInicial(Builder builder) {
+        // Contenedor gr�fico
+        builder.setLayout(new BorderLayout());
+
         // Agrega los tres elementos al panel: imagen de fondo, t�tulo del juego
         // y la intstrucci�n.
 
@@ -43,14 +46,11 @@ public class Director {
         enter.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
         enter.setBounds(20, 440, 240, 30);
 
-        // Contenedor gr�fico
-        builder.setLayout(new BorderLayout());
+        builder.setLabel(invaders);
+        builder.setLabel(enter);
 
         // Imagen de fondo
         builder.setLabel(new JLabel(new ImageIcon("./data/imagenes/menuInicio.gif")));
-
-        builder.setLabel(invaders);
-        builder.setLabel(enter);
     }
 
     /**
@@ -59,6 +59,12 @@ public class Director {
      * @param builder
      */
     public void makePanelMenu(Builder builder) {
+        // Establece el tama�o, la contenedora de tama�o y le quita el fondo que
+        // trae por defecto.
+        builder.setPreferredSize(new Dimension(640, 480));
+        builder.setLayout(null);
+        builder.setOpaque(false);
+
         // T�tulo del juego: "SPACE INVADERS"
         JLabel space = new JLabel("SPACE");
         space.setForeground(Color.WHITE);
@@ -107,12 +113,6 @@ public class Director {
         scoresIcon.setBounds(15, 400, 32, 32);
 
         builder.setLabel(scoresIcon);
-
-        // Establece el tama�o, la contenedora de tama�o y le quita el fondo que
-		// trae por defecto.
-        builder.setLayout(null);
-        builder.setPreferredSize(new Dimension(640, 480));
-        builder.setOpaque(false);
     }
 
     /**

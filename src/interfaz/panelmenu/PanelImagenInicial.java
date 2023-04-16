@@ -37,35 +37,8 @@ public class PanelImagenInicial extends JPanel implements KeyListener {
 	 * Constructor
 	 */
 	public PanelImagenInicial() {
-
 		// Inicializa la asociaci�n con la interfaz
 		this.interfaz = InterfazSpaceInvaders.getInstance();
-
-		// Contenedor gr�fico
-		setLayout(new BorderLayout());
-
-		// Imagen de fondo
-		ImageIcon icono = new ImageIcon("./data/imagenes/menuInicio.gif");
-		labImagen = new JLabel(icono);
-
-		// T�tulo del juego: "SPACE INVADERS"
-		JLabel invaders = new JLabel("Space Invaders");
-		invaders.setFont(new Font("ArcadeClassic", Font.PLAIN, 50));
-		invaders.setForeground(Color.WHITE);
-		invaders.setBounds(150, 20, 400, 50);
-
-		// Texto instructivo: "PRESIONE LA TECLA ESPACIO"
-		JLabel espacio = new JLabel("PRESIONE ENTER");
-		espacio.setForeground(Color.WHITE);
-		espacio.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
-		espacio.setBounds(20, 440, 240, 30);
-
-		// Agrega los tres elementos al panel: imagen de fondo, t�tulo del juego
-		// y la intstrucci�n.
-		add(invaders);
-		add(espacio);
-		add(labImagen);
-
 	}
 
 	// -----------------------------------------------------------------

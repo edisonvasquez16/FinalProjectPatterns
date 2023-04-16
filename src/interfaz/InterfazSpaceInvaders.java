@@ -36,6 +36,8 @@ public final class InterfazSpaceInvaders extends JFrame {
 
     public static Container contenedor;
 
+    private PanelImagenInicial imagen;
+
     private PanelMenu panelMenu;
 
     private PanelNivel panelNivel;
