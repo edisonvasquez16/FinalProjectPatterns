@@ -64,7 +64,7 @@ public class Partida implements Serializable {
 	public Partida(String nombre) {
 		this.nombre = nombre;
 		nivel = new Nivel("1", 0, 0, 0, 0, 0, 0, 0);
-		partidas.setPartida(this);
+		partidas = new PartidasCollection();
 		//		inicializarEnemigos();
 	}
 
@@ -204,7 +204,7 @@ public class Partida implements Serializable {
 	 * 
 	 */
 	public void inicializarPartida() throws IOException {
-
+		partidas.setPartida(this);
 		File archivo = new File("");
 
 		if (nivel.getNivel().equals("1")) {
