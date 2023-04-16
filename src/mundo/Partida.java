@@ -64,8 +64,7 @@ public class Partida implements Serializable {
 	public Partida(String nombre) {
 		this.nombre = nombre;
 		nivel = new Nivel("1", 0, 0, 0, 0, 0, 0, 0);
-		partidas = new PartidasCollection();
-		partidas.setPartida(this);
+		partidas = new PartidasCollection(this);
 		//		inicializarEnemigos();
 	}
 
@@ -359,7 +358,7 @@ public class Partida implements Serializable {
 	public void inorden(ArrayList<Partida> acumulado) {
 		if (partidas.getPartidaIzquierda() != null)
 			partidas.getPartidaIzquierda().partidas.getPartida().inorden(acumulado);
-		acumulado.add(this);
+		acumulado.add(partidas.getPartida());
 		if (partidas.getPartidaDerecha() != null)
 			partidas.getPartidaDerecha().partidas.getPartida().inorden(acumulado);
 	}
@@ -369,7 +368,7 @@ public class Partida implements Serializable {
 			return null;
 		}
 
-		if (this.nombre.compareToIgnoreCase(nombre) == 0) {
+		if (partidas.getPartida().getNombre().compareToIgnoreCase(nombre) == 0) {
 			if (partidas.getPartidaIzquierda() == null) {
 				return partidas.getPartidaDerecha();
 			}
@@ -387,7 +386,7 @@ public class Partida implements Serializable {
 			sucesor.partidas.setPartidaDerecha(partidas.getPartidaDerecha());
 
 			return sucesor;
-		} else if (this.nombre.compareToIgnoreCase(nombre) > 0) {
+		} else if (partidas.getPartida().getNombre().compareToIgnoreCase(nombre) > 0) {
 			partidas.setPartidaIzquierda(partidas.getPartidaIzquierda().eliminar(nombre));
 		} else {
 			partidas.setPartidaDerecha(partidas.getPartidaDerecha().eliminar(nombre));

@@ -3,11 +3,13 @@ import mundo.Partida;
 
 public class PartidasCollection implements IterableCollection {
     
-    public Partida izquierda;
-    public Partida derecha;
-    public Partida centro;
-    private String nombre;
+    private Partida izquierda;
+    private Partida derecha;
+    private Partida centro;
 
+    public PartidasCollection (Partida partida){
+        this.centro = partida;
+    }
 
     public Partida getPartida(){
         return centro;
@@ -46,18 +48,6 @@ public class PartidasCollection implements IterableCollection {
 	 */
 	public void setPartidaDerecha(Partida partidaDerecha) {
 		this.derecha = partidaDerecha;
-	}
-
-    public String getNombre() {
-		return this.nombre;
-	}
-
-	/**
-	 * 
-	 * @param nombre
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
     public Iterator createPartidasIterator(){
