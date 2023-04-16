@@ -1,0 +1,10 @@
+name: FinalProjectPatterns
+packages:
+- path: control
+- path: excepciones
+- path: hilos
+- path: interfaz
+- path: mundo
+- path: observer
+language: java
+appmap_dir: target/appmap

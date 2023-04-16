@@ -1,0 +1,49 @@
+group 'com.Awto.testautomation'
+version '1.0-SNAPSHOT'
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.appland:appmap-gradle-plugin:1.1.1"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'com.appland.appmap'
+apply plugin: 'application'
+
+application {
+    mainClass = 'interfaz.InterfazSpaceInvaders'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    appMapVersion = '1.16.0'
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.appland/appmap-agent
+    runtimeOnly "com.appland:appmap-agent:${appMapVersion}"
+}
+
+application {
+    mainClass = 'interfaz.InterfazSpaceInvaders'
+}
+
+clean {
+    delete "target"
+}
+
+gradle.startParameter.continueOnFailure = true
