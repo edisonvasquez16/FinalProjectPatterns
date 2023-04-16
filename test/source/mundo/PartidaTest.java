@@ -112,11 +112,11 @@ public class PartidaTest extends TestCase {
 		Partida d = new Partida("prueba_EliminarPartida4");
 		
 		try {
-			partida.agregarPartida(partida);
-			partida.agregarPartida(a);
-			partida.agregarPartida(b);
-			partida.agregarPartida(c);
-			partida.agregarPartida(d);
+			partida.partidas.createPartidasIterator().agregarPartida(partida);
+			partida.partidas.createPartidasIterator().agregarPartida(a);
+			partida.partidas.createPartidasIterator().agregarPartida(b);
+			partida.partidas.createPartidasIterator().agregarPartida(c);
+			partida.partidas.createPartidasIterator().agregarPartida(d);
 		} catch (PartidaYaExisteException e) {
 		}
 		
@@ -157,8 +157,7 @@ public class PartidaTest extends TestCase {
 	
 	public void testBuscarPartidaSiNoHayNada () {
 		setUpEscenario1();
-		
-		Partida buscada = partida.buscarPartida("test2.1");
+		Partida buscada = partida.partidas.createPartidasIterator().buscarPartida("test2.1");
 		assertNull("Debe de ser null", buscada);
 	}
 	
@@ -166,7 +165,7 @@ public class PartidaTest extends TestCase {
 		
 		setUpEscenario2();
 		
-		Partida buscada = partida.buscarPartida("test2");
+		Partida buscada = partida.partidas.createPartidasIterator().buscarPartida("test2");
 		assertNotNull("No debe de ser null", buscada);
 		
 	}
@@ -237,7 +236,7 @@ public class PartidaTest extends TestCase {
 		
 		partida.eliminar("prueba_EliminarPartida2");
 		
-		assertNull(partida.buscarPartida("prueba_EliminarPartida2"));
+		assertNull(partida.partidas.createPartidasIterator().buscarPartida("prueba_EliminarPartida2"));
 		
 	}
 	
@@ -245,7 +244,7 @@ public class PartidaTest extends TestCase {
 		setUpEscenario1();
 		
 		assertTrue(partida.esHoja());
-		partida.setPartidaDerecha(new Partida("noSoyHoja"));
+		partida.partidas.setPartidaDerecha(new Partida("noSoyHoja"));
 		assertFalse(partida.esHoja());
 	}
 	
