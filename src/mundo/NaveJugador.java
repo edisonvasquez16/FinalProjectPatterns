@@ -4,8 +4,8 @@ import excepciones.PartidaYaExisteException;
 
 /**
  * 
- * @author Manuel Alejandro Coral Lozano - Juan Sebastián Quintero Yoshioka
- *         Proyecto final - Algoritmos y programación II.
+ * @author Manuel Alejandro Coral Lozano - Juan Sebastiï¿½n Quintero Yoshioka
+ *         Proyecto final - Algoritmos y programaciï¿½n II.
  */
 public class NaveJugador extends Nave {
 
@@ -72,7 +72,7 @@ public class NaveJugador extends Nave {
 	}
 
 	// -----------------------------------------------------------------
-	// -----------------------------Métodos-----------------------------
+	// -----------------------------Mï¿½todos-----------------------------
 	// -----------------------------------------------------------------
 
 	/**
@@ -85,7 +85,7 @@ public class NaveJugador extends Nave {
 		if (partidaRaiz == null) {
 			partidaRaiz = partidaNueva;
 		} else {
-			partidaRaiz.agregarPartida(partidaNueva);
+			partidaRaiz.partidas.createPartidasIterator().agregarPartida(partidaNueva);
 		}
 
 	}

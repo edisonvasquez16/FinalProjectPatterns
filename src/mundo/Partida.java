@@ -1,6 +1,7 @@
 package mundo;
 
 import excepciones.PartidaYaExisteException;
+import mundo.iterator.PartidasCollection;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,13 +21,14 @@ public class Partida implements Serializable {
 	/**
 	 * 
 	 */
-	private Partida partidaIzquierda;
+	//private Partida partidaIzquierda;
 
 	/**
 	 * 
 	 */
-	private Partida partidaDerecha;
+	//private Partida partidaDerecha;
 
+	public PartidasCollection partidas;
 	/**
 	 * 
 	 */
@@ -62,7 +64,7 @@ public class Partida implements Serializable {
 	public Partida(String nombre) {
 		this.nombre = nombre;
 		nivel = new Nivel("1", 0, 0, 0, 0, 0, 0, 0);
-
+		partidas.setPartida(this);
 		//		inicializarEnemigos();
 	}
 
@@ -90,33 +92,33 @@ public class Partida implements Serializable {
 	 * 
 	 * @return
 	 */
-	public Partida getPartidaIzquierda() {
+	/**public Partida getPartidaIzquierda() {
 		return partidaIzquierda;
-	}
+	}**/
 
 	/**
 	 * 
 	 * @param partidaIzquierda
 	 */
-	public void setPartidaIzquierda(Partida partidaIzquierda) {
+	/**public void setPartidaIzquierda(Partida partidaIzquierda) {
 		this.partidaIzquierda = partidaIzquierda;
-	}
+	}**/
 
 	/**
 	 * 
 	 * @return
 	 */
-	public Partida getPartidaDerecha() {
+	/**public Partida getPartidaDerecha() {
 		return partidaDerecha;
-	}
+	}**/
 
 	/**
 	 * 
 	 * @param partidaDerecha
 	 */
-	public void setPartidaDerecha(Partida partidaDerecha) {
+	/**public void setPartidaDerecha(Partida partidaDerecha) {
 		this.partidaDerecha = partidaDerecha;
-	}
+	}*/
 
 	public Enemigo[][] getEnemigos() {
 		return enemigos;
@@ -150,7 +152,7 @@ public class Partida implements Serializable {
 		this.puntaje = puntaje;
 	}
 
-	public void agregarPartida(Partida nodo) throws PartidaYaExisteException {
+	/**public void agregarPartida(Partida nodo) throws PartidaYaExisteException {
 
 		if (this.nombre.compareToIgnoreCase(nodo.nombre) == 0) {
 			throw new PartidaYaExisteException(nodo.nombre);
@@ -172,9 +174,9 @@ public class Partida implements Serializable {
 
 		}
 
-	}
+	}*/
 
-	public Partida buscarPartida(String nombre) {
+	/**public Partida buscarPartida(String nombre) {
 
 		Partida aBuscar = null;
 
@@ -195,7 +197,7 @@ public class Partida implements Serializable {
 		}
 
 		return aBuscar;
-	}
+	}*/
 
 	/**
 	 * @throws IOException
@@ -355,11 +357,11 @@ public class Partida implements Serializable {
 	}
 
 	public void inorden(ArrayList<Partida> acumulado) {
-		if (partidaIzquierda != null)
-			partidaIzquierda.inorden(acumulado);
+		if (partidas.getPartidaIzquierda() != null)
+			partidas.getPartidaIzquierda().partidas.getPartida().inorden(acumulado);
 		acumulado.add(this);
-		if (partidaDerecha != null)
-			partidaDerecha.inorden(acumulado);
+		if (partidas.getPartidaDerecha() != null)
+			partidas.getPartidaDerecha().partidas.getPartida().inorden(acumulado);
 	}
 
 	public Partida eliminar( String nombre ) {
@@ -368,27 +370,27 @@ public class Partida implements Serializable {
 		}
 
 		if (this.nombre.compareToIgnoreCase(nombre) == 0) {
-			if (partidaIzquierda == null) {
-				return partidaDerecha;
+			if (partidas.getPartidaIzquierda() == null) {
+				return partidas.getPartidaDerecha();
 			}
 
-			if (partidaDerecha == null) {
-				return partidaIzquierda;
+			if (partidas.getPartidaDerecha() == null) {
+				return partidas.getPartidaIzquierda();
 			}
 
 
-			Partida sucesor = partidaDerecha.darMenor();
+			Partida sucesor = partidas.getPartidaDerecha().partidas.getPartida().darMenor();
 
-			partidaDerecha = partidaDerecha.eliminar(sucesor.getNombre());
+			partidas.getPartidaDerecha().partidas.setPartidaDerecha(partidas.getPartidaDerecha().eliminar(sucesor.getNombre()));
 
-			sucesor.partidaIzquierda = partidaIzquierda;
-			sucesor.partidaDerecha = partidaDerecha;
+			sucesor.partidas.setPartidaIzquierda(partidas.getPartidaIzquierda());
+			sucesor.partidas.setPartidaDerecha(partidas.getPartidaDerecha());
 
 			return sucesor;
 		} else if (this.nombre.compareToIgnoreCase(nombre) > 0) {
-			partidaIzquierda = partidaIzquierda.eliminar(nombre);
+			partidas.setPartidaIzquierda(partidas.getPartidaIzquierda().eliminar(nombre));
 		} else {
-			partidaDerecha = partidaDerecha.eliminar(nombre);
+			partidas.setPartidaDerecha(partidas.getPartidaDerecha().eliminar(nombre));
 		}
 
 		return this;
@@ -396,11 +398,11 @@ public class Partida implements Serializable {
 
 
 	public Partida darMenor( ) {
-		return (partidaIzquierda == null) ? this : partidaIzquierda.darMenor();
+		return (partidas.getPartidaIzquierda() == null) ? this : partidas.getPartidaIzquierda().darMenor();
 	}
 
 	public boolean esHoja(){
-		return (partidaIzquierda == null && partidaDerecha == null);
+		return (partidas.getPartidaIzquierda() == null && partidas.getPartidaDerecha() == null);
 	}
 
 }

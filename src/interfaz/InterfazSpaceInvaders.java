@@ -253,7 +253,7 @@ public final class InterfazSpaceInvaders extends JFrame {
      */
     public void actualizarPartidaActual(String nombre) {
 
-        Partida partidaActual = mundo.getJugadorActual().getPartidaRaiz().buscarPartida(nombre);
+        Partida partidaActual = mundo.getJugadorActual().getPartidaRaiz().partidas.createPartidasIterator().buscarPartida(nombre);
         mundo.setPartidaActual(partidaActual);
         panelNivel.setPartida(partidaActual);
         iniciarTodosLosHilos();
