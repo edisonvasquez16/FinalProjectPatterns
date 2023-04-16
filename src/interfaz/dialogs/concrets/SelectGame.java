@@ -94,7 +94,7 @@ public class SelectGame extends JDialog implements ListSelectionListener, Action
 		butBotonAceptar.setActionCommand(ACEPTAR);
 		butBotonAceptar.addActionListener(this);
 		butBotonAceptar.setBounds(60, 2, 130, 25);
-		butBotonAceptar.setBackground(Color.BLACK);
+		butBotonAceptar.setBackground(Color.WHITE);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonAceptar.setForeground(Color.BLACK);
 
@@ -102,7 +102,7 @@ public class SelectGame extends JDialog implements ListSelectionListener, Action
 		butBotonCancelar.setActionCommand(CANCELAR);
 		butBotonCancelar.addActionListener(this);
 		butBotonCancelar.setBounds(210, 2, 130, 25);
-		butBotonCancelar.setBackground(Color.BLACK);
+		butBotonCancelar.setBackground(Color.WHITE);
 		butBotonCancelar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonCancelar.setForeground(Color.BLACK);
 

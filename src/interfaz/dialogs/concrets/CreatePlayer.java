@@ -126,7 +126,7 @@ public class CreatePlayer extends JDialog implements ActionListener {
 		butBotonAceptar.setActionCommand(ACEPTAR);
 		butBotonAceptar.addActionListener(this);
 		butBotonAceptar.setBounds(250, 210, 130, 25);
-		butBotonAceptar.setBackground(Color.BLACK);
+		butBotonAceptar.setBackground(Color.WHITE);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonAceptar.setForeground(Color.BLACK);
 

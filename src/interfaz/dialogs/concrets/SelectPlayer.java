@@ -107,7 +107,7 @@ public class SelectPlayer extends JDialog implements ListSelectionListener, Acti
 		butBotonAceptar.setActionCommand(ACEPTAR);
 		butBotonAceptar.addActionListener(this);
 		butBotonAceptar.setBounds(5, 2, 130, 25);
-		butBotonAceptar.setBackground(Color.BLACK);
+		butBotonAceptar.setBackground(Color.WHITE);
 		butBotonAceptar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonAceptar.setForeground(Color.BLACK);
 
@@ -115,7 +115,7 @@ public class SelectPlayer extends JDialog implements ListSelectionListener, Acti
 		butBotonCancelar.setActionCommand(CANCELAR);
 		butBotonCancelar.addActionListener(this);
 		butBotonCancelar.setBounds(140, 2, 130, 25);
-		butBotonCancelar.setBackground(Color.BLACK);
+		butBotonCancelar.setBackground(Color.WHITE);
 		butBotonCancelar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butBotonCancelar.setForeground(Color.BLACK);
 
@@ -123,7 +123,7 @@ public class SelectPlayer extends JDialog implements ListSelectionListener, Acti
 		butOrdenar.addActionListener(this);
 		butOrdenar.setActionCommand(ORDENAR);
 		butOrdenar.setBounds(275, 2, 130, 25);
-		butOrdenar.setBackground(Color.BLACK);
+		butOrdenar.setBackground(Color.WHITE);
 		butOrdenar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		butOrdenar.setForeground(Color.BLACK);
 
