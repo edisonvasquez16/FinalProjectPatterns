@@ -64,11 +64,9 @@ public final class InterfazSpaceInvaders extends JFrame {
         director.makePanelMenu(panelMenuBuilder);
         panelMenu = (PanelMenu) panelMenuBuilder.getResult();
 
-        PanelNivelBuilder panelNivelBuilder = new PanelNivelBuilder();
+        PanelNivelBuilder panelNivelBuilder = new PanelNivelBuilder(mundo.getPartidaActual(), mundo);
         director.makePanelNivel(panelNivelBuilder);
         panelNivel = (PanelNivel) panelNivelBuilder.getResult();
-
-//        panelNivel = new PanelNivel(mundo.getPartidaActual(), mundo); //TODO: Estas dependencias no están solucionadas
 
         PanelImagenInicialBuilder panelImagenInicialBuilder = new PanelImagenInicialBuilder();
         director.makePanelImagenInicial(panelImagenInicialBuilder);

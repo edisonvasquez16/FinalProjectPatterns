@@ -18,9 +18,9 @@ public class PanelNivel extends JPanel {
     private int posJugadorActualX;
     private int posJugadorActualY;
 
-    public PanelNivel(Partida actual, SpaceInvaders b) {
+    public PanelNivel(Partida actual, SpaceInvaders mundo) {
         partida = actual;
-        space = b;
+        space = mundo;
         interfaz = InterfazSpaceInvaders.getInstance();
     }
 

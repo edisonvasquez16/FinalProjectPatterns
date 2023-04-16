@@ -11,16 +11,20 @@ import java.awt.*;
 public class PanelNivelBuilder implements Builder {
 
     private PanelNivel panelNivel;
+    private Partida actual;
+    private SpaceInvaders mundo;
 
-    public PanelNivelBuilder() {
-        this.panelNivel = new PanelNivel(new Partida(""), new SpaceInvaders(false));
+    public PanelNivelBuilder(Partida actual, SpaceInvaders mundo) {
+        this.actual = actual;
+        this.mundo = mundo;
+        this.panelNivel = new PanelNivel(actual, mundo);
     }
 
     /**
      * Reset the object
      */
     public void reset() {
-        this.panelNivel = new PanelNivel(new Partida(""), new SpaceInvaders(false));
+        this.panelNivel = new PanelNivel(actual, mundo);
     }
 
     /**
