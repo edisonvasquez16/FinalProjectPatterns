@@ -1,17 +1,17 @@
 package hilos;
 
 import interfaz.InterfazSpaceInvaders;
-import mundo.Partida;
+import mundo.partida.Partida;
 
 public class ThreadAuxShootCreate extends Threads {
 
 	private Partida partidaEnemigos;
 	private InterfazSpaceInvaders interfaz;
 
-	public ThreadAuxShootCreate(Partida a, InterfazSpaceInvaders principal) {
+	public ThreadAuxShootCreate(Partida a) {
 		// TODO Auto-generated constructor stub
 		partidaEnemigos = a;
-		interfaz = principal;
+		interfaz = InterfazSpaceInvaders.getInstance();
 	}
 
 	@Override

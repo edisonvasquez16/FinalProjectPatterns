@@ -1,9 +1,9 @@
-package mundo;
+package mundo.invaders;
 
 /**
  *
- * @author Manuel Alejandro Coral Lozano - Juan Sebastián Quintero Yoshioka
- *         Proyecto final - Algoritmos y programación II.
+ * @author Manuel Alejandro Coral Lozano - Juan Sebastiï¿½n Quintero Yoshioka
+ *         Proyecto final - Algoritmos y programaciï¿½n II.
  */
 public class InvasorPulpo extends Enemigo {
 

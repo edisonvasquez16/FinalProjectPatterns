@@ -1,6 +1,7 @@
 package mundo;
 
 import excepciones.PartidaYaExisteException;
+import mundo.partida.Partida;
 
 /**
  * 

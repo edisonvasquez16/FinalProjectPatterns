@@ -1,12 +1,12 @@
-package interfaz;
+package interfaz.panelmenu;
 
+import interfaz.InterfazSpaceInvaders;
 import mundo.Disparo;
 import mundo.NaveJugador;
-import mundo.Partida;
+import mundo.partida.Partida;
 import mundo.SpaceInvaders;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicProgressBarUI;
 import java.awt.*;
 
 public class PanelNivel extends JPanel {

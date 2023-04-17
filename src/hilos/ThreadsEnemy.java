@@ -1,18 +1,18 @@
 package hilos;
 
 import interfaz.InterfazSpaceInvaders;
-import mundo.Enemigo;
+import mundo.invaders.Enemigo;
 
 public class ThreadsEnemy extends Threads {
 
 	InterfazSpaceInvaders interfaz;
 	Enemigo enemigo;
 
-	public ThreadsEnemy(Enemigo invasores, InterfazSpaceInvaders interfaz) {
+	public ThreadsEnemy(Enemigo invasores) {
 		// TODO Auto-generated constructor stub
 
 		enemigo = invasores;
-		this.interfaz = interfaz;
+		this.interfaz = InterfazSpaceInvaders.getInstance();
 	}
 
 	@Override

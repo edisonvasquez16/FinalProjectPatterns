@@ -1,9 +1,11 @@
-package mundo;
+package mundo.invaders;
+
+import mundo.Nave;
 
 /**
  *
- * @author Manuel Alejandro Coral Lozano - Juan Sebastián Quintero Yoshioka
- *         Proyecto final - Algoritmos y programación II.
+ * @author Manuel Alejandro Coral Lozano - Juan Sebastiï¿½n Quintero Yoshioka
+ *         Proyecto final - Algoritmos y programaciï¿½n II.
  */
 public abstract class Enemigo extends Nave {
 
@@ -61,7 +63,7 @@ public abstract class Enemigo extends Nave {
 	}
 
 	// -----------------------------------------------------------------
-	// -----------------------------Métodos-----------------------------
+	// -----------------------------Mï¿½todos-----------------------------
 	// -----------------------------------------------------------------
 
 	/**

@@ -1,4 +1,6 @@
-package interfaz;
+package interfaz.panelmenu;
+
+import interfaz.InterfazSpaceInvaders;
 
 import javax.swing.*;
 import java.awt.*;

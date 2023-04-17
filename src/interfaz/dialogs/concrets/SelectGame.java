@@ -1,7 +1,7 @@
 package interfaz.dialogs.concrets;
 
 import interfaz.InterfazSpaceInvaders;
-import mundo.Partida;
+import mundo.partida.Partida;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

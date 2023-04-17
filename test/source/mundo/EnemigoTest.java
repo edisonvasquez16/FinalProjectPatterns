@@ -1,6 +1,8 @@
 package mundo;
 
 import junit.framework.TestCase;
+import mundo.invaders.Enemigo;
+import mundo.invaders.InvasorCalamar;
 
 public class EnemigoTest extends TestCase {
 

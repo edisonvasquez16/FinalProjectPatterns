@@ -1,5 +1,7 @@
 package mundo;
 
+import mundo.invaders.Enemigo;
+
 import java.io.Serializable;
 
 public class Disparo implements Serializable {

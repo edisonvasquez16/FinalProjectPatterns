@@ -1,6 +1,9 @@
 package mundo;
 
 import junit.framework.TestCase;
+import mundo.invaders.Enemigo;
+import mundo.invaders.InvasorCangrejo;
+import mundo.invaders.InvasorPulpo;
 
 public class DisparoTest extends TestCase {
 

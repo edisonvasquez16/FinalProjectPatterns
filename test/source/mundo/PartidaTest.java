@@ -2,6 +2,11 @@ package mundo;
 
 import excepciones.PartidaYaExisteException;
 import junit.framework.TestCase;
+import mundo.invaders.Enemigo;
+import mundo.invaders.InvasorCalamar;
+import mundo.invaders.InvasorCangrejo;
+import mundo.invaders.InvasorPulpo;
+import mundo.partida.Partida;
 
 import java.io.IOException;
 

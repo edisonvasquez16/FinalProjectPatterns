@@ -1,4 +1,4 @@
-package observer;
+package events;
 
 public enum Events {
     ADDED_PLAYER,

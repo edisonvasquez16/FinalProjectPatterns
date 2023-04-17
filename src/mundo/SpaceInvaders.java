@@ -2,6 +2,7 @@ package mundo;
 
 import excepciones.NicknameYaExisteException;
 import excepciones.PartidaYaExisteException;
+import mundo.partida.Partida;
 
 import javax.swing.*;
 import java.io.*;

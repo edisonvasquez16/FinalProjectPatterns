@@ -1,4 +1,4 @@
-package mundo.iterator;
+package mundo.partida;
 
 public interface IterableCollection {
     public Iterator createPartidasIterator();

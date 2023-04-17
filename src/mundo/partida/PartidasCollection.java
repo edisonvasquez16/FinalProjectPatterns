@@ -1,5 +1,4 @@
-package mundo.iterator;
-import mundo.Partida;
+package mundo.partida;
 
 public class PartidasCollection implements IterableCollection {
     

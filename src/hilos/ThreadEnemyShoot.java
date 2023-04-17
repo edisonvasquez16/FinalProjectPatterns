@@ -2,7 +2,7 @@ package hilos;
 
 
 import interfaz.InterfazSpaceInvaders;
-import mundo.Partida;
+import mundo.partida.Partida;
 import mundo.SpaceInvaders;
 
 public class ThreadEnemyShoot extends Threads {
@@ -11,11 +11,11 @@ public class ThreadEnemyShoot extends Threads {
 	private SpaceInvaders space;
 	private InterfazSpaceInvaders interfaz;
 	
-	public ThreadEnemyShoot(Partida a, InterfazSpaceInvaders p, SpaceInvaders b) {
+	public ThreadEnemyShoot(Partida a, SpaceInvaders b) {
 		// TODO Auto-generated constructor stub
 
 		partidaEnemigos = a;
-		interfaz = p;
+		interfaz = InterfazSpaceInvaders.getInstance();;
 		space = b;
 
 	}

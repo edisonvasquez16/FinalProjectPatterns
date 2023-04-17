@@ -1,9 +1,9 @@
 package hilos;
 
 import interfaz.InterfazSpaceInvaders;
-import mundo.Enemigo;
+import mundo.invaders.Enemigo;
 import mundo.NaveJugador;
-import mundo.Partida;
+import mundo.partida.Partida;
 
 public class ThreadPlayerShoot extends Threads {
 
@@ -12,11 +12,11 @@ public class ThreadPlayerShoot extends Threads {
 	private Enemigo[][] enemigos;
 	private Partida actual;
 
-	public ThreadPlayerShoot(NaveJugador a, InterfazSpaceInvaders b, Enemigo[][] c, Partida d) {
+	public ThreadPlayerShoot(NaveJugador a, Enemigo[][] c, Partida d) {
 		// TODO Auto-generated constructor stub
 
 		navesita = a;
-		interfaz = b;
+		interfaz = InterfazSpaceInvaders.getInstance();;
 		enemigos = c;
 		actual = d;
 

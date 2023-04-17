@@ -1,5 +1,4 @@
-package mundo.iterator;
-import mundo.Partida;
+package mundo.partida;
 import excepciones.*;
 public class PartidasIterator implements Iterator {
 

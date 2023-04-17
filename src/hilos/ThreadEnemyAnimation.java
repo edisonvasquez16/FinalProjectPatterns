@@ -1,20 +1,20 @@
 package hilos;
 
 import interfaz.InterfazSpaceInvaders;
-import mundo.Enemigo;
-import mundo.InvasorCalamar;
-import mundo.InvasorCangrejo;
+import mundo.invaders.Enemigo;
+import mundo.invaders.InvasorCalamar;
+import mundo.invaders.InvasorCangrejo;
 
 public class ThreadEnemyAnimation extends Threads {
 
 	Enemigo enemigo;
 	InterfazSpaceInvaders interfaz;
 	
-	public ThreadEnemyAnimation(Enemigo invasores, InterfazSpaceInvaders principal) {
+	public ThreadEnemyAnimation(Enemigo invasores) {
 		// TODO Auto-generated constructor stub
 		
 		enemigo = invasores;
-		interfaz = principal;
+		interfaz = InterfazSpaceInvaders.getInstance();
 	}
 	
 	@Override

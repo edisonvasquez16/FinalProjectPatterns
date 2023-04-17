@@ -1,7 +1,6 @@
-package mundo.iterator;
+package mundo.partida;
 
 import excepciones.PartidaYaExisteException;
-import mundo.Partida;
 
 public interface Iterator {
     public void agregarPartida(Partida partida) throws PartidaYaExisteException;

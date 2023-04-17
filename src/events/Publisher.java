@@ -1,4 +1,4 @@
-package observer;
+package events;
 
 import java.util.*;
 

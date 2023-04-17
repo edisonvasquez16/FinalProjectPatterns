@@ -1,4 +1,4 @@
-package mundo;
+package mundo.invaders;
 
 public class CangrejoCreator extends InvasorCreator {
 

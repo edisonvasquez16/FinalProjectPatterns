@@ -1,6 +1,8 @@
 package mundo;
 
 import junit.framework.TestCase;
+import mundo.invaders.Enemigo;
+import mundo.invaders.InvasorPulpo;
 
 public class NaveTest extends TestCase {
 
