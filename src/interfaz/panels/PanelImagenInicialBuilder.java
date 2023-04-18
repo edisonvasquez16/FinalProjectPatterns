@@ -1,11 +1,10 @@
-package interfaz.builder;
+package interfaz.panels;
 
 import java.awt.*;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import interfaz.InterfazSpaceInvaders;
 import interfaz.PanelImagenInicial;
 
 /**

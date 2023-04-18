@@ -1,4 +1,4 @@
-package interfaz.builder;
+package interfaz.panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,7 +6,6 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-import interfaz.InterfazSpaceInvaders;
 import interfaz.panelmenu.PanelMenu;
 
 public class PanelMenuBuilder implements Builder {
