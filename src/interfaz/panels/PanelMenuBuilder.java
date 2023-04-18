@@ -6,8 +6,6 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-import interfaz.panelmenu.PanelMenu;
-
 public class PanelMenuBuilder implements Builder {
 
     private PanelMenu panelMenu;

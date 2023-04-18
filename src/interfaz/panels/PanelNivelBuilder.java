@@ -2,8 +2,8 @@ package interfaz.panels;
 
 import javax.swing.*;
 
-import interfaz.PanelNivel;
-import mundo.Partida;
+import interfaz.panels.PanelNivel;
+import mundo.partida.Partida;
 import mundo.SpaceInvaders;
 
 import java.awt.*;

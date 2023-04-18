@@ -5,8 +5,6 @@ import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import interfaz.PanelImagenInicial;
-
 /**
  * PanelImagenInicialBuilder in charge of configure a PanelImagenInicial object
  *

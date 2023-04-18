@@ -1,4 +1,4 @@
-package interfaz.panelmenu;
+package interfaz.panels;
 
 import interfaz.InterfazSpaceInvaders;
 
