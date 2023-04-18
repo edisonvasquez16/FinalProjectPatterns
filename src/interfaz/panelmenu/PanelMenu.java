@@ -11,7 +11,7 @@ import java.awt.event.*;
 
 /**
  * Panel que contiene el menu principal del juego
- * 
+ *
  * @author Juan Sebastian Quintero Yoshioka - Manuel Alejandro Coral Lozano
  *         Proyecto final - Algoritmos y programaci�n II
  */
@@ -22,40 +22,38 @@ public class PanelMenu extends JPanel implements ActionListener {
 	// -----------------------------------------------------------------
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 
+	 *
 	 */
-	private final static String CREAR_JUGADOR = "CREAR JUGADOR";
+	public final static String CREAR_JUGADOR = "CREAR JUGADOR";
 
 	/**
-	 * 
+	 *
 	 */
-	private final static String SELECCIONAR_JUGADOR = "SELECCIONAR JUGADOR";
+	public final static String SELECCIONAR_JUGADOR = "SELECCIONAR JUGADOR";
 
 	/**
-	 * 
+	 *
 	 */
-	private final static String CREAR_PARTIDA = "CREAR PARTIDA";
+	public final static String CREAR_PARTIDA = "CREAR PARTIDA";
 
 	/**
-	 * 
+	 *
 	 */
-	private final static String SELECCIONAR_PARTIDA = "SELECCIONAR PARTIDA";
+	public final static String SELECCIONAR_PARTIDA = "SELECCIONAR PARTIDA";
 
-	/**
-	 * 
-	 */
-	private final static String INTRUCCIONES = "INSTRUCCIONES";
+	private static final String FONT_NAME = "ArcadeClassic";
+
 	// -----------------------------------------------------------------
 	// --------------------------Asociaciones---------------------------
 	// -----------------------------------------------------------------
 
 	/**
-	 * 
+	 *
 	 */
 	InterfazSpaceInvaders interfaz;
 
@@ -64,17 +62,17 @@ public class PanelMenu extends JPanel implements ActionListener {
 	// -----------------------------------------------------------------
 
 	/**
-	 * 
+	 *
 	 */
 	DialogBuilder dialogoCrearJugador;
 
 	/**
-	 * 
+	 *
 	 */
 	DialogBuilderWithLists dialogoSeleccionarJugador;
 
 	/**
-	 * 
+	 *
 	 */
 	DialogBuilder dialogoCrearPartida;
 
@@ -84,67 +82,44 @@ public class PanelMenu extends JPanel implements ActionListener {
 	DialogBuilderWithLists dialogoSeleccionarPartida;
 
 	/**
-	 * 
+	 *
 	 */
 	DialogBuilder dialogoInstrucciones;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	DialogBuilder dialogoMejoresPuntajes;
 
 	/**
-	 * 
+	 *
 	 */
 	JPopupMenu popMenuJugar;
 
 	/**
-	 * 
+	 *
 	 */
 	JMenuItem menuCrearPartida;
 
 	/**
-	 * 
+	 *
 	 */
 	JMenuItem menuCargarPartida;
 
 	/**
-	 * 
+	 *
 	 */
 	JPopupMenu popMenuJugador;
 
 	/**
-	 * 
+	 *
 	 */
 	JMenuItem menuNuevoJugador;
 
 	/**
-	 * 
+	 *
 	 */
 	JMenuItem menuSeleccionarJugador;
-
-	/**
-	 * 
-	 */
-	JLabel labOpenMenuJugar;
-
-	/**
-	 * 
-	 */
-	JLabel labOpenMenuJugador;
-
-
-	JLabel labLoginRapido;
-
-	/**
-	 * 
-	 */
-	JLabel labMejoresPuntajes;
-
-	/**
-	 * 
-	 */
-	JLabel labInstrucciones;
 
 	// -----------------------------------------------------------------
 	// ---------------------------Constructor---------------------------
@@ -157,28 +132,6 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		// Inicializa la asociaci�n
 		this.interfaz = InterfazSpaceInvaders.getInstance();
-
-		// Establece el tama�o, la contenedora de tama�o y le quita el fondo que
-		// trae por defecto.
-		setPreferredSize(new Dimension(640, 480));
-		setLayout(null);
-		setOpaque(false);
-
-		// T�tulo del juego: "SPACE INVADERS"
-		JLabel space = new JLabel("SPACE");
-		space.setForeground(Color.WHITE);
-		space.setFont(new Font("ArcadeClassic", Font.PLAIN, 40));
-		space.setBounds(100, 50, 560, 80);
-		JLabel invaders = new JLabel("INVADERS");
-		invaders.setForeground(Color.WHITE);
-		invaders.setFont(new Font("ArcadeClassic", Font.PLAIN, 40));
-		invaders.setBounds(150, 90, 560, 80);
-		ImageIcon image6 = new ImageIcon("./data/imagenes/menu/invaders.png");
-		JLabel invadersIcon = new JLabel(image6);
-		invadersIcon.setBounds(20, 75, 64, 64);
-		add(invadersIcon);
-		add(space);
-		add(invaders);
 
 		// Inicializa los 4 di�logos que se puede ver en el menu
 		dialogoCrearJugador = new CreatePlayerDialogBuilder();
@@ -197,15 +150,15 @@ public class PanelMenu extends JPanel implements ActionListener {
 		dialogoInstrucciones.setLayout();
 
 		// Popup Menu Jugar
-		popMenuJugar = new JPopupMenu();
+		JPopupMenu popMenuJugar = new JPopupMenu();
 
 		// Item1 de Menu Jugar
-		menuCrearPartida = new JMenuItem("Crear partida");
-		menuCrearPartida.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		JMenuItem menuCrearPartida = new JMenuItem("Crear partida");
+		menuCrearPartida.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 
 		// Item2 de Menu Jugar
-		menuCargarPartida = new JMenuItem("Cargar partida");
-		menuCargarPartida.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		JMenuItem menuCargarPartida = new JMenuItem("Cargar partida");
+		menuCargarPartida.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 
 		// A�adir los action listener a los item's de Menu Jugar
 		menuCrearPartida.addActionListener(this);
@@ -218,15 +171,15 @@ public class PanelMenu extends JPanel implements ActionListener {
 		popMenuJugar.add(menuCargarPartida);
 
 		// Popup Menu Jugador
-		popMenuJugador = new JPopupMenu();
+		JPopupMenu popMenuJugador = new JPopupMenu();
 
 		// Item1 de Menu Jugador
-		menuNuevoJugador = new JMenuItem("Nuevo jugador");
-		menuNuevoJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		JMenuItem menuNuevoJugador = new JMenuItem("Nuevo jugador");
+		menuNuevoJugador.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 
 		// Item2 de Menu Jugador
-		menuSeleccionarJugador = new JMenuItem("Seleccionar jugador");
-		menuSeleccionarJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		JMenuItem menuSeleccionarJugador = new JMenuItem("Seleccionar jugador");
+		menuSeleccionarJugador.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 
 		// A�adir los action listener a los Item's de Menu Jugador
 		menuNuevoJugador.addActionListener(this);
@@ -234,7 +187,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		menuSeleccionarJugador.addActionListener(this);
 		menuSeleccionarJugador.setActionCommand(SELECCIONAR_JUGADOR);
 
-		// Agregar al Menu Jugar los Item's
+		// Agregar al Menu Jugador los Item's
 		popMenuJugador.add(menuNuevoJugador);
 		popMenuJugador.add(menuSeleccionarJugador);
 
@@ -242,7 +195,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		// Inicio temporal
 
 		// Boton Open Menu Jugar
-		labOpenMenuJugar = new JLabel("JUGAR");
+		JLabel labOpenMenuJugar = new JLabel("JUGAR");
 		labOpenMenuJugar.setBounds(55, 242, 110, 23);
 		labOpenMenuJugar.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		labOpenMenuJugar.setForeground(Color.WHITE);
@@ -253,6 +206,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 				popMenuJugar.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+
 		ImageIcon image = new ImageIcon("./data/imagenes/menu/play.png");
 		JLabel playIcon = new JLabel(image);
 		playIcon.setBounds(15, 240, 32, 32);
@@ -260,7 +214,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		add(labOpenMenuJugar);
 
 		// Boton Open Menu Jugador
-		labOpenMenuJugador = new JLabel("JUGADOR");
+		JLabel labOpenMenuJugador = new JLabel("JUGADOR");
 		labOpenMenuJugador.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		labOpenMenuJugador.setBounds(55, 282, 190, 23);
 		labOpenMenuJugador.setForeground(Color.WHITE);
@@ -271,6 +225,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 				popMenuJugador.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+
 		ImageIcon image2 = new ImageIcon("./data/imagenes/menu/player.png");
 		JLabel playerIcon = new JLabel(image2);
 		playerIcon.setBounds(15, 280, 32, 32);
@@ -278,7 +233,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		add(labOpenMenuJugador);
 
 		// JLabel de las mejoras
-		labLoginRapido = new JLabel("LOGIN RAPIDO");
+		JLabel labLoginRapido = new JLabel("LOGIN RAPIDO");
 		labLoginRapido.setForeground(Color.WHITE);
 		labLoginRapido.setBounds(55, 322, 250, 23);
 		labLoginRapido.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
@@ -303,8 +258,8 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		//Fin temporal
 
-		// JLabel con las intrucciones
-		labInstrucciones = new JLabel("INSTRUCCIONES");
+		// JLabel con las instrucciones
+		JLabel labInstrucciones = new JLabel("INSTRUCCIONES");
 		labInstrucciones.setForeground(Color.WHITE);
 		labInstrucciones.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		labInstrucciones.setBounds(55, 362, 300, 23);
@@ -339,16 +294,11 @@ public class PanelMenu extends JPanel implements ActionListener {
 				dialogoInstrucciones.viewDialog();
 			}
 		});
-		// labInstrucciones.addMouseListener(new MouseAdapter() {
-		// @Override
-		// public void mouseClicked(MouseEvent e) {
-		// dialogoInstrucciones.mostrar();
-		// }
-		// });
+
 		add(labInstrucciones);
 
 		// JLabel de los mejores puntajes
-		labMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
+		JLabel labMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
 		labMejoresPuntajes.setForeground(Color.WHITE);
 		labMejoresPuntajes.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
 		labMejoresPuntajes.setBounds(55, 402, 340, 23);
@@ -396,7 +346,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 	// -----------------------------------------------------------------
 
 	/**
-	 * 
+	 *
 	 */
 	public void actionPerformed(ActionEvent e) {
 
@@ -407,23 +357,21 @@ public class PanelMenu extends JPanel implements ActionListener {
 		} else if (comando.equals(SELECCIONAR_JUGADOR)) {
 			interfaz.actualizarJugadores();
 			dialogoSeleccionarJugador.getResult();
-		}
-
-		else if (comando.equals(CREAR_PARTIDA))
-			if (interfaz.getJugadorActual() != null)
+		} else if (comando.equals(CREAR_PARTIDA)) {
+			if (interfaz.getJugadorActual() != null) {
 				dialogoCrearPartida.viewDialog();
-			else
+			} else {
 				JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
 						"Error al iniciar partida", JOptionPane.ERROR_MESSAGE);
-
-		else if (comando.equals(SELECCIONAR_PARTIDA)) {
+			}
+		} else if (comando.equals(SELECCIONAR_PARTIDA)) {
 			if (interfaz.getJugadorActual() != null) {
 				interfaz.actualizarPartidas();
 				dialogoSeleccionarPartida.getResult();
-			} else
+			} else {
 				JOptionPane.showMessageDialog(this, "Por favor crear o seleccionar un jugador",
 						"Error al seleccionar la partida", JOptionPane.ERROR_MESSAGE);
-
+			}
 		}
 	}
 
@@ -432,14 +380,14 @@ public class PanelMenu extends JPanel implements ActionListener {
 	// -----------------------------------------------------------------
 
 	/**
-	 * 
+	 *
 	 */
 	public DialogBuilderWithLists getDialogoSeleccionarJugador() {
 		return dialogoSeleccionarJugador;
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 */
 	public DialogBuilderWithLists getDialogoSeleccionarPartida() {
@@ -448,7 +396,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 
 	/**
-	 * 
+	 *
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -460,7 +408,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		// Dibuja el nickname, nombre y monedas del jugador actual del juego.
 		g2.setColor(Color.lightGray);
-		g2.setFont(new Font("ArcadeClassic", Font.PLAIN, 20));
+		g2.setFont(new Font(FONT_NAME, Font.PLAIN, 20));
 		g2.drawString("NICKNAME", 360, 430);
 		g2.drawString("JUGADOR", 500, 430);
 		ImageIcon playerSelect = new ImageIcon("./data/imagenes/menu/playerSelect.png");
@@ -471,14 +419,13 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 		g2.setColor(Color.CYAN);
 		if (interfaz.getJugadorActual() != null) {
-
 			g2.drawString(interfaz.getJugadorActual().getNickname(), 360, 460);
 
-			if (interfaz.getJugadorActual().getNombre().length() <= 13)
+			if (interfaz.getJugadorActual().getNombre().length() <= 13) {
 				g2.drawString(interfaz.getJugadorActual().getNombre(), 500, 460);
-			else
+			} else {
 				g2.drawString(interfaz.getJugadorActual().getNombre().substring(0, 13), 500, 470);
-
+			}
 		}
 	}
 
